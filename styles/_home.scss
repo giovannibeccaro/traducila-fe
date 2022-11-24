@@ -1,0 +1,67 @@
+body.no-overflow {
+  overflow: hidden;
+}
+.home {
+  margin-top: 2rem;
+  max-height: 100%;
+  h1 {
+    font-family: $fredoka;
+    font-size: 1.75rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  form {
+    background-color: $blackColor;
+    display: flex;
+    height: 3rem;
+    border-radius: 5rem;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    input {
+      border: none;
+      background-color: inherit;
+      color: white;
+      border-radius: 5rem;
+      padding: 1rem 0 1rem 1rem;
+      font-size: 0.8rem;
+      width: 80%;
+    }
+    button {
+      background-color: $accentColor;
+      display: grid;
+      place-content: center;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      margin: 0.25rem 0.35rem 0.25rem 0.25rem;
+
+      svg {
+        min-width: 18px;
+        max-width: 18px;
+        max-height: 18px;
+      }
+    }
+  }
+
+  a {
+    font-size: 0.75rem;
+    display: block;
+    width: 60%;
+    margin-top: 0.75rem;
+    color: $blackColor;
+  }
+}
+
+.hero-illustration {
+  position: absolute;
+  left: 0;
+  bottom: -15%;
+  width: 100vw;
+  pointer-events: none;
+  svg {
+    width: 100%;
+  }
+}
