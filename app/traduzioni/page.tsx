@@ -3,7 +3,7 @@ import SingleMostSearched from "../../components/SingleMostSearched/SingleMostSe
 import ChevronDown from "../../components/svgs/ChevronDown";
 import ChevronUp from "../../components/svgs/ChevronUp";
 
-const index = () => {
+const TraduzioniPage = () => {
   const articlesFromBE = [
     {
       song_name: "I miss you",
@@ -111,4 +111,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default TraduzioniPage;

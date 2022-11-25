@@ -6,13 +6,13 @@ import SearchIcon from "../svgs/SearchIcon";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import { setIsNavBlack } from "../../store/navbar/navbarSlice";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 const Navbar = () => {
-  const { isNavBlack } = useSelector((store: RootState) => store.navbar);
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const route = router.pathname;
+  // const { isNavBlack } = useSelector((store: RootState) => store.navbar);
+  // const dispatch = useDispatch();
+  // const router = useRouter();
+  const route = "router.pathname";
 
   if (route.includes("/traduzioni"))
     return (
@@ -27,7 +27,7 @@ const Navbar = () => {
             <SearchIcon color="white" />
           </div>
         </nav>
-        {route === "/traduzioni" && <SearchBar parentSection="navbar" />}
+        {route && <SearchBar parentSection="navbar" />}
       </section>
     );
   else

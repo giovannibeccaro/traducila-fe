@@ -1,10 +1,12 @@
+"use client";
+
 import Head from "next/head";
 import { useEffect } from "react";
 import SearchBar from "../components/Searchbar/SearchBar";
 import ArrowRight from "../components/svgs/ArrowRight";
 import HeroIllustration from "../components/svgs/HeroIllustration";
 // import Image from "next/image";
-export default function Home() {
+export default function HomePage() {
   useEffect(() => {
     document.body.classList.add("no-overflow");
     return () => {
