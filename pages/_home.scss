@@ -1,0 +1,35 @@
+body.no-overflow {
+  overflow: hidden;
+}
+.home {
+  margin-top: 2rem;
+  max-height: 100%;
+  h1 {
+    font-family: $fredoka;
+    font-size: 1.75rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  a {
+    font-size: 0.75rem;
+    display: block;
+    width: 60%;
+    margin-top: 0.75rem;
+    color: $blackColor;
+  }
+}
+
+.hero-illustration {
+  position: absolute;
+  left: 0;
+  bottom: -15%;
+  width: 100vw;
+  pointer-events: none;
+  svg {
+    width: 100%;
+  }
+}

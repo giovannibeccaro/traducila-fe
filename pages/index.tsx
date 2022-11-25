@@ -1,10 +1,9 @@
 import Head from "next/head";
 import { useEffect } from "react";
+import SearchBar from "../components/Searchbar/SearchBar";
 import ArrowRight from "../components/svgs/ArrowRight";
 import HeroIllustration from "../components/svgs/HeroIllustration";
-import SearchIcon from "../components/svgs/SearchIcon";
 // import Image from "next/image";
-
 export default function Home() {
   useEffect(() => {
     document.body.classList.add("no-overflow");
@@ -28,15 +27,7 @@ export default function Home() {
           Inserire qui un testo carino riguardo il fatto che le nostre
           traduzioni sono migliori per motivo X.
         </p>
-        <form action="submit">
-          <input
-            type="text"
-            placeholder="Cerca qualcosa (canzoni, artisti, album)"
-          />
-          <button type="submit">
-            <SearchIcon color="white" />
-          </button>
-        </form>
+        <SearchBar parentSection="homepage" />
         <a href="#">
           Oppure dai un&apos;occhiata a tutte le nostre traduzioni{" "}
           <ArrowRight />

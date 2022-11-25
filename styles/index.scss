@@ -1,7 +1,10 @@
 @import "_variables";
 @import "_reset.scss";
 @import "_global";
-@import "_home";
 @import "_contattaci";
-@import "_navbar";
-@import "_footer";
+@import "/pages/home";
+@import "/pages/traduzioni/traduzioni";
+@import "/components/Navbar/navbar";
+@import "/components/Footer/footer";
+@import "/components/Searchbar/searchBar";
+@import "/components/SingleMostSearched/singleMostSearched";

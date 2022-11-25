@@ -1,0 +1,46 @@
+form {
+  background-color: $blackColor;
+  display: flex;
+  height: 3rem;
+  border-radius: 5rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  input {
+    border: none;
+    background-color: inherit;
+    color: white;
+    border-radius: 5rem;
+    padding: 1rem 0 1rem 1rem;
+    font-size: 0.8rem;
+    width: 80%;
+    color: white;
+  }
+  button {
+    background-color: $accentColor;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    margin: 0.25rem 0.35rem 0.25rem 0.25rem;
+    width: 40px;
+
+    svg {
+      min-width: 18px;
+      max-width: 18px;
+      max-height: 18px;
+    }
+  }
+  &.navbar {
+    background-color: $whiteColor;
+    height: 2.65rem;
+    input {
+      height: 100%;
+      &::placeholder {
+        color: $blackColor;
+      }
+    }
+    button {
+      width: 34px;
+    }
+  }
+}

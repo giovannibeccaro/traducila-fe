@@ -1,0 +1,12 @@
+.traduzioni {
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .translation-list-header {
+    margin-block: 3.5rem -0.5rem;
+    &.first {
+      margin-top: 0;
+    }
+  }
+}

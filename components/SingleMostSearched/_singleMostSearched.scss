@@ -1,0 +1,47 @@
+.single-most-searched {
+  display: flex;
+  font-size: 0.75rem;
+  gap: 1rem;
+  align-items: center;
+  margin-block: 1.7rem;
+  position: relative;
+  &::after {
+    content: "";
+    width: 100vw;
+    height: 2px;
+    background-color: $blackColor;
+    position: absolute;
+    bottom: calc(-0.85rem - 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .info {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    justify-content: space-between;
+    width: 100%;
+    .main-info {
+      p {
+        line-height: 0.75;
+      }
+      h5 {
+        margin: 0;
+        font-size: 1em;
+      }
+    }
+
+    .category {
+      font-size: 0.85em;
+      font-weight: 700;
+      opacity: 0.5;
+    }
+  }
+}
