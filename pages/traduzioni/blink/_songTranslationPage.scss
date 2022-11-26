@@ -1,0 +1,38 @@
+.song-page-main {
+  h1 {
+    font-size: 1.25rem;
+    margin-block: -1rem 1rem;
+  }
+  .translated-text,
+  .original-text {
+    font-size: 0.75rem;
+  }
+
+  .song-page-secondary-section {
+    background-color: $blackColor;
+    color: $whiteColor;
+    margin: -2rem;
+    margin-top: 0;
+    padding: 2rem;
+
+    h2 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+    p {
+      margin-bottom: 2rem;
+      font-size: 0.75rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+
+      a {
+        color: $whiteColor;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
