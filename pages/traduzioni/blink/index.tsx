@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { originalSong } from "./songs";
 import { song } from "./songs";
-import { setIsTranslation } from "../../../store/swapButton/swapButtonSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 

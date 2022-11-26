@@ -19,6 +19,7 @@ const Navbar = () => {
     route.split("/").includes("traduzioni") && route.split("/").length === 2;
   const isSingleSongPage =
     route.split("/").includes("traduzioni") && route.split("/").length > 2;
+  const isContattaciPage = route.split("/").includes("contattaci");
 
   if (route.includes("traduzioni"))
     return (
@@ -37,25 +38,9 @@ const Navbar = () => {
         {isSingleSongPage && <SongInfo />}
       </section>
     );
-  else if (isSingleSongPage) {
+  else
     return (
-      <section className="black-navbar">
-        <nav className="navbar">
-          <div className="logo">
-            <Logo />
-            <p>traducila</p>
-          </div>
-          <div className="navbar-items">
-            <MenuIcon color="white" />
-            <SearchIcon color="white" />
-          </div>
-        </nav>
-        {route === "/traduzioni" && <SearchBar parentSection="navbar" />}
-      </section>
-    );
-  } else
-    return (
-      <nav className="navbar">
+      <nav className={isContattaciPage ? "navbar" : "navbar navbar-contattaci"}>
         <div className="logo">
           <Logo />
           <p>traducila</p>
