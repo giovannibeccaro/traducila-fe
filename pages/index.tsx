@@ -3,9 +3,13 @@ import { useEffect } from "react";
 import SearchBar from "../components/Searchbar/SearchBar";
 import ArrowRight from "../components/svgs/ArrowRight";
 import HeroIllustration from "../components/svgs/HeroIllustration";
+import useCheckHeight from "../hooks/useCheckHeight";
 // import Image from "next/image";
 export default function Home() {
+  const { height } = useCheckHeight();
   useEffect(() => {
+    console.log(window.innerHeight);
+
     document.body.classList.add("no-overflow");
     return () => {
       document.body.classList.remove("no-overflow");
@@ -32,9 +36,11 @@ export default function Home() {
           Oppure dai un&apos;occhiata a tutte le nostre traduzioni{" "}
           <ArrowRight />
         </a>
-        <div className="hero-illustration">
-          <HeroIllustration />
-        </div>
+        {height > 775 && (
+          <div className="hero-illustration">
+            <HeroIllustration />
+          </div>
+        )}
       </section>
     </>
   );
