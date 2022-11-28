@@ -20,6 +20,7 @@ const Navbar = () => {
   const isSingleSongPage =
     route.split("/").includes("traduzioni") && route.split("/").length > 2;
   const isContattaciPage = route.split("/").includes("contattaci");
+  console.log(isContattaciPage);
 
   if (route.includes("traduzioni"))
     return (
@@ -40,14 +41,18 @@ const Navbar = () => {
     );
   else
     return (
-      <nav className={isContattaciPage ? "navbar" : "navbar navbar-contattaci"}>
+      <nav className={isContattaciPage ? "navbar navbar-contattaci" : "navbar"}>
         <div className="logo">
           <Logo />
           <p>traducila</p>
         </div>
         <div className="navbar-items">
-          <MenuIcon color="hsl(0, 0%, 17%)" />
-          <SearchIcon color="hsl(0, 0%, 17%)" />
+          <MenuIcon
+            color={isContattaciPage ? "hsl(340, 27%, 97%)" : "hsl(0, 0%, 17%)"}
+          />
+          <SearchIcon
+            color={isContattaciPage ? "hsl(340, 27%, 97%)" : "hsl(0, 0%, 17%)"}
+          />
         </div>
       </nav>
     );

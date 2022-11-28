@@ -1,9 +1,44 @@
 .contattaci-page {
+  font-family: $poppins;
+  font-size: 14px;
   .main-article {
     background-color: $blackColor;
     color: $whiteColor;
     margin: -2rem;
-    margin-top: 0;
+    margin-top: 1rem;
     padding: 2rem;
+    padding-bottom: 3.85rem;
+    h2 {
+      font-size: 2.25rem;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-family: $roboto;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .secondary-articles {
+    margin-top: 5rem;
+  }
+  .secondary-article {
+    position: relative;
+    overflow-x: hidden;
+    margin: -2rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    svg {
+      position: absolute;
+      top: 5%;
+      right: -10%;
+      width: 70%;
+      opacity: 0.6;
+    }
+    &.secondary-article:nth-child(1) {
+      svg {
+        top: -10%;
+      }
+    }
   }
 }
