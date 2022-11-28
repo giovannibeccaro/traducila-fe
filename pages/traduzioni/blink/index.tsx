@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { originalSong } from "./songs";
-import { song } from "./songs";
+import { originalSong } from "../../../public/songs";
+import { song } from "../../../public/songs";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 
