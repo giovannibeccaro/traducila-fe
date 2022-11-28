@@ -1,26 +1,16 @@
-import { useEffect, useState } from "react";
 import SearchBar from "../Searchbar/SearchBar";
 import Logo from "../svgs/Logo";
 import MenuIcon from "../svgs/MenuIcon";
 import SearchIcon from "../svgs/SearchIcon";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../store/store";
-import { setIsNavBlack } from "../../store/navbar/navbarSlice";
 import { useRouter } from "next/router";
 import SongInfo from "../SongInfo/SongInfo";
 
 const Navbar = () => {
-  const { isNavBlack } = useSelector((store: RootState) => store.navbar);
-  const dispatch = useDispatch();
   const router = useRouter();
   const route = router.pathname;
-  //? check if pathname is only "/traduzioni"
-  const isOnlyTranslationPage =
-    route.split("/").includes("traduzioni") && route.split("/").length === 2;
   const isSingleSongPage =
     route.split("/").includes("traduzioni") && route.split("/").length > 2;
   const isContattaciPage = route.split("/").includes("contattaci");
-  console.log(isContattaciPage);
 
   if (route.includes("traduzioni"))
     return (
