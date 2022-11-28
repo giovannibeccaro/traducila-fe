@@ -46,6 +46,13 @@ body.no-overflow {
   bottom: -15%;
   width: 100vw;
   pointer-events: none;
+  @media (max-height: $height1) {
+    // smaller screen fix
+    bottom: -20%;
+  }
+  @media (max-height: $height0) {
+    bottom: -30%;
+  }
   svg {
     width: 100%;
   }
