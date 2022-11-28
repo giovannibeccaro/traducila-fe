@@ -34,7 +34,7 @@ export default function Home() {
           Oppure dai un&apos;occhiata a tutte le nostre traduzioni{" "}
           <ArrowRight />
         </a>
-        {height && height > 680 && (
+        {height && height > 300 && (
           <div className="hero-illustration">
             <HeroIllustration />
           </div>
