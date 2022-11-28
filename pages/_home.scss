@@ -10,6 +10,10 @@ body.no-overflow {
     margin: 0;
     &:last-of-type {
       margin-bottom: 1rem;
+      @media (max-height: $height1) {
+        // smaller screen fix
+        margin-bottom: 0.25rem;
+      }
     }
   }
 
@@ -17,15 +21,22 @@ body.no-overflow {
     font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 2.5rem;
+    @media (max-height: $height1) {
+      // smaller screen fix
+      margin-bottom: 1.5rem;
+    }
   }
 
   a {
     font-size: 0.75rem;
     display: block;
     width: 60%;
-    margin-top: 0.75rem;
     color: $blackColor;
     margin-top: 2rem;
+    @media (max-height: $height1) {
+      // smaller screen fix
+      margin-top: 1.25rem;
+    }
   }
 }
 
