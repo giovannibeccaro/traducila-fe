@@ -10,11 +10,18 @@ const Navbar = () => {
   const route = router.pathname;
   const isSingleSongPage =
     route.split("/").includes("traduzioni") && route.split("/").length > 2;
+  const isTraduzioniPage =
+    route.split("/").includes("traduzioni") && route.split("/").length === 2;
+
   const isContattaciPage = route.split("/").includes("contattaci");
 
   if (route.includes("traduzioni"))
     return (
-      <section className="black-navbar">
+      <section
+        className={
+          isTraduzioniPage ? "black-navbar traduzioni" : "black-navbar"
+        }
+      >
         <nav className="navbar">
           <div className="logo">
             <Logo />
@@ -31,7 +38,11 @@ const Navbar = () => {
     );
   else
     return (
-      <nav className={isContattaciPage ? "navbar navbar-contattaci" : "navbar"}>
+      <nav
+        className={
+          isContattaciPage ? "navbar navbar-contattaci" : "navbar unfixed"
+        }
+      >
         <div className="logo">
           <Logo />
           <p>traducila</p>

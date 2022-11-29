@@ -8,6 +8,13 @@
   width: 100%;
   padding: 2rem;
   height: 100px;
+  z-index: 3;
+
+  &.unfixed {
+    position: static;
+    padding: 0;
+    height: auto;
+  }
 
   .logo {
     display: flex;
@@ -36,10 +43,14 @@
   position: fixed;
   width: 100%;
   border-bottom: 1px solid $whiteColor;
+
+  &.traduzioni {
+    margin-top: -5rem;
+  }
 }
 
 .navbar.navbar-contattaci {
   background-color: $blackColor;
-  margin: -2rem;
   padding: 2rem;
+  width: 100%;
 }

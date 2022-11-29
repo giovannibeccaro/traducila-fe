@@ -7,6 +7,13 @@ import { RootState } from "../../../store/store";
 const SongTranslationPage = () => {
   const { isTranslation } = useSelector((store: RootState) => store.swapButton);
 
+  useEffect(() => {
+    document.body.classList.add("margin-top");
+    return () => {
+      document.body.classList.remove("margin-top");
+    };
+  }, []);
+
   return (
     <main className="song-page-main">
       <section className="song-page-main-section">
