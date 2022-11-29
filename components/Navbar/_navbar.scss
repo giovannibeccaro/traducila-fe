@@ -2,6 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  height: 100px;
 
   .logo {
     display: flex;
@@ -22,9 +28,14 @@
 .black-navbar {
   background-color: $blackColor;
   margin: -2rem;
+  margin-top: -4rem;
   padding: 2rem;
+  padding-bottom: 1.25rem;
   margin-bottom: 2rem;
   border-bottom-right-radius: 2rem;
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid $whiteColor;
 }
 
 .navbar.navbar-contattaci {

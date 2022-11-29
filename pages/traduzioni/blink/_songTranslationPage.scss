@@ -1,4 +1,5 @@
 .song-page-main {
+  padding-top: 13.5rem;
   h1 {
     font-size: 1.25rem;
     margin-block: -1rem 1rem;
@@ -35,4 +36,8 @@
       }
     }
   }
+}
+
+body.single-song-body {
+  margin-top: 8rem;
 }

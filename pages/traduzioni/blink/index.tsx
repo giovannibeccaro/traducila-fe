@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { originalSong } from "../../../public/songs";
 import { song } from "../../../public/songs";
 import { useSelector } from "react-redux";
