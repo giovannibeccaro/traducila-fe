@@ -5,6 +5,7 @@ body {
   background-color: $whiteColor;
   position: relative;
   overflow-x: hidden;
+  height: 100%;
 }
 
 span.inline {
@@ -15,4 +16,8 @@ span.inline {
 
 span.light-weight-text {
   font-weight: 300;
+}
+
+html {
+  height: 100%;
 }
