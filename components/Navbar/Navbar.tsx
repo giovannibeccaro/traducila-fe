@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import SongInfo from "../SongInfo/SongInfo";
 import NavLinks from "../NavLinks/NavLinks";
 import { useState } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   //? route variables
@@ -29,11 +30,16 @@ const Navbar = () => {
         }
       >
         <nav className="navbar">
-          <div className="logo">
+          <Link href="/" className="logo">
             <Logo />
             <p>traducila</p>
-          </div>
+          </Link>
           <div className="navbar-items">
+            {!isTraduzioniPage && (
+              <button>
+                <SearchIcon color="white" />
+              </button>
+            )}
             <button
               className={isMobileMenuOpen ? "close" : ""}
               onClick={() => setIsMobileMenuOpen(true)}
@@ -44,11 +50,6 @@ const Navbar = () => {
               isMobileMenuOpen={isMobileMenuOpen}
               setIsMobileMenuOpen={setIsMobileMenuOpen}
             />
-            {!isTraduzioniPage && (
-              <button>
-                <SearchIcon color="white" />
-              </button>
-            )}
           </div>
         </nav>
         {route === "/traduzioni" && <SearchBar parentSection="navbar" />}
@@ -62,11 +63,20 @@ const Navbar = () => {
           isContattaciPage ? "navbar navbar-contattaci" : "navbar unfixed"
         }
       >
-        <div className="logo">
+        <Link href="/" className="logo">
           <Logo />
           <p>traducila</p>
-        </div>
+        </Link>
         <div className="navbar-items">
+          {!isTraduzioniPage && (
+            <button>
+              <SearchIcon
+                color={
+                  isContattaciPage ? "hsl(340, 27%, 97%)" : "hsl(0, 0%, 17%)"
+                }
+              />
+            </button>
+          )}
           <button
             className={isMobileMenuOpen ? "close" : ""}
             onClick={() => setIsMobileMenuOpen(true)}
@@ -81,15 +91,6 @@ const Navbar = () => {
             isMobileMenuOpen={isMobileMenuOpen}
             setIsMobileMenuOpen={setIsMobileMenuOpen}
           />
-          {!isTraduzioniPage && (
-            <button>
-              <SearchIcon
-                color={
-                  isContattaciPage ? "hsl(340, 27%, 97%)" : "hsl(0, 0%, 17%)"
-                }
-              />
-            </button>
-          )}
         </div>
       </nav>
     );
