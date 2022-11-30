@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchIcon from "../svgs/SearchIcon";
 
 type Props = {
@@ -6,11 +6,17 @@ type Props = {
 };
 
 const SearchBar: React.FC<Props> = ({ parentSection }) => {
+  const [isInputFocused, setIsInputFocused] = useState(false);
   return (
-    <form className={parentSection} action="submit">
+    <form
+      className={`${parentSection} ${isInputFocused ? "input-focused" : ""}`}
+      action="submit"
+    >
       <input
         type="text"
         placeholder="Cerca qualcosa (canzoni, artisti, album)"
+        onFocus={() => setIsInputFocused(true)}
+        onBlur={() => setIsInputFocused(false)}
       />
       <button type="submit">
         <SearchIcon color="white" />

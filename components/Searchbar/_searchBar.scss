@@ -5,6 +5,10 @@ form {
   border-radius: 5rem;
   justify-content: space-between;
   margin-top: 1.5rem;
+  &.input-focused {
+    outline: 2px solid $accentColor;
+  }
+
   input {
     border: none;
     background-color: inherit;
@@ -27,6 +31,7 @@ form {
     aspect-ratio: 1/1;
     margin: 0.25rem 0.35rem 0.25rem 0.25rem;
     width: 40px;
+    height: 40px;
 
     svg {
       min-width: 18px;
@@ -36,8 +41,11 @@ form {
   }
   &.navbar {
     background-color: $whiteColor;
+    align-items: center;
+    height: 2.75rem;
     input {
       height: 100%;
+      color: $blackColor;
       &::placeholder {
         color: $blackColor;
       }
