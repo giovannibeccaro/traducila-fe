@@ -8,7 +8,7 @@ type Props = {
   category: string;
 };
 
-const SingleMostSearched: React.FC<Props> = ({
+const ListSingleSong: React.FC<Props> = ({
   songName,
   artistName,
   songImage,
@@ -28,4 +28,4 @@ const SingleMostSearched: React.FC<Props> = ({
   );
 };
 
-export default SingleMostSearched;
+export default ListSingleSong;

@@ -1,5 +1,5 @@
-import React from "react";
-import SingleMostSearched from "../../components/SingleMostSearched/SingleMostSearched";
+import React, { useState } from "react";
+import ListSingleSong from "../../components/ListSingleSong/ListSingleSong";
 import ChevronDownIcon from "../../components/svgs/ChevronDownIcon";
 import ChevronUpIcon from "../../components/svgs/ChevronUpIcon";
 
@@ -77,35 +77,68 @@ const TraduzioniPage = () => {
     },
   ];
 
+  const [isMostViewedOpen, setIsMostViewedOpen] = useState(true);
+  const [isNewTranslationsOpen, setIsNewTranslationsOpen] = useState(false);
+  const [isNewReleasesOpen, setIsNewReleasesOpen] = useState(false);
+
   return (
     <section className="traduzioni">
-      <div className="most-viewed">
+      <div className="song-list">
         <span className="inline translation-list-header first">
-          <h2>I più cercati</h2> <ChevronUpIcon />
+          <h2>I più cercati</h2>{" "}
+          <button onClick={() => setIsMostViewedOpen(!isMostViewedOpen)}>
+            {isMostViewedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          </button>
         </span>
-        {articlesFromBE.map((article) => (
-          <SingleMostSearched
-            key={article.id}
-            songName={article.song_name}
-            artistName={article.artist_name}
-            songImage={article.song_image}
-            category={article.category}
-          />
-        ))}
+        {isMostViewedOpen &&
+          articlesFromBE.map((article) => (
+            <ListSingleSong
+              key={article.id}
+              songName={article.song_name}
+              artistName={article.artist_name}
+              songImage={article.song_image}
+              category={article.category}
+            />
+          ))}
       </div>
-      <div className="most-viewed">
+      <div className="song-list">
         <span className="inline translation-list-header">
-          <h2>Ultime traduzioni</h2> <ChevronUpIcon />
+          <h2>Ultime traduzioni</h2>{" "}
+          <button
+            onClick={() => setIsNewTranslationsOpen(!isNewTranslationsOpen)}
+          >
+            {isNewTranslationsOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          </button>
         </span>
-        {articlesFromBE.map((article) => (
-          <SingleMostSearched
-            key={article.id}
-            songName={article.song_name}
-            artistName={article.artist_name}
-            songImage={article.song_image}
-            category={article.category}
-          />
-        ))}
+        {isNewTranslationsOpen &&
+          articlesFromBE.map((article) => (
+            <ListSingleSong
+              key={article.id}
+              songName={article.song_name}
+              artistName={article.artist_name}
+              songImage={article.song_image}
+              category={article.category}
+            />
+          ))}
+      </div>
+
+      <div className="song-list">
+        <span className="inline translation-list-header">
+          <h2>Ultime uscite</h2>{" "}
+          <button onClick={() => setIsNewReleasesOpen(!isNewReleasesOpen)}>
+            {isNewReleasesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          </button>
+        </span>
+        {isNewReleasesOpen &&
+          articlesFromBE.map((article) => (
+            <ListSingleSong
+              key={article.id}
+              songName={article.song_name}
+              artistName={article.artist_name}
+              songImage={article.song_image}
+              category={article.category}
+            />
+          ))}
       </div>
     </section>
   );
