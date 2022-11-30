@@ -1,7 +1,7 @@
 import React from "react";
 import SingleMostSearched from "../../components/SingleMostSearched/SingleMostSearched";
-import ChevronDown from "../../components/svgs/ChevronDown";
-import ChevronUp from "../../components/svgs/ChevronUp";
+import ChevronDownIcon from "../../components/svgs/ChevronDownIcon";
+import ChevronUpIcon from "../../components/svgs/ChevronUpIcon";
 
 const TraduzioniPage = () => {
   const articlesFromBE = [
@@ -81,7 +81,7 @@ const TraduzioniPage = () => {
     <section className="traduzioni">
       <div className="most-viewed">
         <span className="inline translation-list-header first">
-          <h2>I più cercati</h2> <ChevronUp />
+          <h2>I più cercati</h2> <ChevronUpIcon />
         </span>
         {articlesFromBE.map((article) => (
           <SingleMostSearched
@@ -95,7 +95,7 @@ const TraduzioniPage = () => {
       </div>
       <div className="most-viewed">
         <span className="inline translation-list-header">
-          <h2>Ultime traduzioni</h2> <ChevronUp />
+          <h2>Ultime traduzioni</h2> <ChevronUpIcon />
         </span>
         {articlesFromBE.map((article) => (
           <SingleMostSearched

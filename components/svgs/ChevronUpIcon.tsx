@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChevronUp = () => {
+const ChevronUpIcon = () => {
   return (
     <svg
       width="12"
@@ -17,4 +17,4 @@ const ChevronUp = () => {
   );
 };
 
-export default ChevronUp;
+export default ChevronUpIcon;

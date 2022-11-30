@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
 import SearchBar from "../components/Searchbar/SearchBar";
-import ArrowRight from "../components/svgs/ArrowRight";
+import ArrowRightIcon from "../components/svgs/ArrowRightIcon";
 import HeroIllustration from "../components/svgs/HeroIllustration";
 import useCheckHeight from "../hooks/useCheckHeight";
 // import Image from "next/image";
@@ -33,7 +33,7 @@ export default function Home() {
           <SearchBar parentSection="homepage" />
           <a href="#">
             Oppure dai un&apos;occhiata a tutte le nostre traduzioni{" "}
-            <ArrowRight />
+            <ArrowRightIcon />
           </a>
         </div>
         {height && height > 500 && (

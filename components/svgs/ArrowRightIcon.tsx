@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArrowRight = () => {
+const ArrowRightIcon = () => {
   return (
     <>
       <svg
@@ -19,4 +19,4 @@ const ArrowRight = () => {
   );
 };
 
-export default ArrowRight;
+export default ArrowRightIcon;

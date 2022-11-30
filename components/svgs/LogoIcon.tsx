@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const Logo = () => {
+const LogoIcon = () => {
   return (
     <>
       <svg
@@ -38,4 +38,4 @@ const Logo = () => {
   );
 };
 
-export default Logo;
+export default LogoIcon;

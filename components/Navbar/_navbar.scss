@@ -30,6 +30,14 @@ nav.navbar {
     display: flex;
     gap: 1rem;
   }
+
+  button {
+    transition-duration: 500ms;
+    &.close {
+      opacity: 0;
+      transform: rotate(100deg);
+    }
+  }
 }
 
 .black-navbar {
