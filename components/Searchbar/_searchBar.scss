@@ -36,15 +36,11 @@ form {
   }
   &.navbar {
     background-color: $whiteColor;
-    height: 2.65rem;
     input {
       height: 100%;
       &::placeholder {
         color: $blackColor;
       }
-    }
-    button {
-      width: 34px;
     }
   }
 }

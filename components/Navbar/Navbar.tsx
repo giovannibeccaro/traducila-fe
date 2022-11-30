@@ -10,8 +10,7 @@ const Navbar = () => {
   const route = router.pathname;
   const isSingleSongPage =
     route.split("/").includes("traduzioni") && route.split("/").length > 2;
-  const isTraduzioniPage =
-    route.split("/").includes("traduzioni") && route.split("/").length === 2;
+  const isTraduzioniPage = route === "/traduzioni";
 
   const isContattaciPage = route.split("/").includes("contattaci");
 

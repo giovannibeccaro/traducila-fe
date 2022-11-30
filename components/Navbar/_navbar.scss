@@ -1,4 +1,4 @@
-.navbar {
+nav.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,9 +43,16 @@
   position: fixed;
   width: 100%;
   border-bottom: 1px solid $whiteColor;
-
+  z-index: 9;
+  //? traduzioni page navbar fix
   &.traduzioni {
-    margin-top: -5rem;
+    margin-top: 0;
+    top: 0;
+    nav {
+      position: static;
+      padding: 0;
+      height: auto;
+    }
   }
 }
 
