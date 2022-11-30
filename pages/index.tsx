@@ -36,11 +36,9 @@ export default function Home() {
             <ArrowRightIcon />
           </a>
         </div>
-        {height && height > 500 && (
-          <div className="hero-illustration">
-            <HeroIllustration />
-          </div>
-        )}
+        <div className="hero-illustration">
+          <HeroIllustration />
+        </div>
       </section>
     </>
   );
