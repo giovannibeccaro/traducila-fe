@@ -1,14 +1,19 @@
 nav.navbar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 2rem;
-  height: 100px;
+  padding-bottom: 1.25rem;
   z-index: 3;
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &.unfixed {
     position: static;
@@ -57,11 +62,16 @@ nav.navbar {
   &.traduzioni {
     margin-top: 0;
     top: 0;
+    left: initial;
     nav {
       position: static;
       padding: 0;
       height: auto;
     }
+  }
+  &.single-song {
+    top: initial;
+    left: initial;
   }
 }
 
@@ -69,4 +79,12 @@ nav.navbar {
   background-color: $blackColor;
   padding: 2rem;
   width: 100%;
+  margin-top: 0;
+  border-radius: 0;
+  border: 0;
+}
+
+.navbar.navbar-home {
+  position: initial;
+  padding: 0;
 }

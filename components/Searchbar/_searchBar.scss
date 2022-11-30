@@ -51,4 +51,16 @@ form {
       }
     }
   }
+  &.navbar-search {
+    background-color: $whiteColor;
+    align-items: center;
+    height: 2.75rem;
+    input {
+      height: 100%;
+      color: $blackColor;
+      &::placeholder {
+        color: $blackColor;
+      }
+    }
+  }
 }

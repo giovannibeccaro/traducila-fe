@@ -7,6 +7,7 @@ import SongInfo from "../SongInfo/SongInfo";
 import NavLinks from "../NavLinks/NavLinks";
 import { useState } from "react";
 import Link from "next/link";
+import iconColorCheck from "../../utils/iconColorCheck";
 
 const Navbar = () => {
   //? route variables
@@ -18,18 +19,21 @@ const Navbar = () => {
     route.split("/").includes("traduzioni") && route.split("/").length > 2;
   const isTraduzioniPage = route === "/traduzioni";
   const isContattaciPage = route === "/contattaci";
+  const isHomePage = route === "/";
 
   //? mobile menu modal
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  if (route.includes("traduzioni"))
-    return (
-      <section
-        className={
-          isTraduzioniPage ? "black-navbar traduzioni" : "black-navbar"
-        }
+  return (
+    <>
+      <nav
+        className={`navbar 
+          ${isHomePage && "navbar-home"}
+          ${isTraduzioniPage && "black-navbar traduzioni"} 
+          ${isSingleSongPage && "black-navbar single-song"} 
+          ${isContattaciPage && "navbar-contattaci"}`}
       >
-        <nav className="navbar">
+        <div className="main-nav">
           <Link href="/" className="logo">
             <Logo />
             <p>traducila</p>
@@ -37,27 +41,28 @@ const Navbar = () => {
           <div className="navbar-items">
             {!isTraduzioniPage && (
               <button>
-                <SearchIcon color="white" />
+                <SearchIcon color={iconColorCheck(route)} />
               </button>
             )}
             <button
               className={isMobileMenuOpen ? "close" : ""}
               onClick={() => setIsMobileMenuOpen(true)}
             >
-              <MenuIcon color="white" />
+              <MenuIcon color={iconColorCheck(route)} />
             </button>
             <NavLinks
               isMobileMenuOpen={isMobileMenuOpen}
               setIsMobileMenuOpen={setIsMobileMenuOpen}
             />
           </div>
-        </nav>
+        </div>
         {route === "/traduzioni" && <SearchBar parentSection="navbar" />}
         {isSingleSongPage && <SongInfo />}
-      </section>
-    );
-  else
-    return (
+      </nav>
+    </>
+  );
+  return (
+    <>
       <nav
         className={
           isContattaciPage ? "navbar navbar-contattaci" : "navbar unfixed"
@@ -68,7 +73,10 @@ const Navbar = () => {
           <p>traducila</p>
         </Link>
         <div className="navbar-items">
-          {!isTraduzioniPage && (
+          {
+            //? Hide search icon in traduzioni and homepage
+          }
+          {!isTraduzioniPage && !isHomePage && (
             <button>
               <SearchIcon
                 color={
@@ -93,7 +101,11 @@ const Navbar = () => {
           />
         </div>
       </nav>
-    );
+      {/* <section className="navbar-input-section">
+          <SearchBar parentSection="navbar-search" />
+        </section> */}
+    </>
+  );
 };
 
 export default Navbar;

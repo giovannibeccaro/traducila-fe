@@ -51,13 +51,11 @@
   margin-inline: -2rem;
   margin-block: -8rem;
   pointer-events: none;
-  // @media (max-height: $height1) {
-  //   // smaller screen fix
-  //   bottom: -20%;
-  // }
-  // @media (max-height: $height0) {
-  //   bottom: -30%;
-  // }
+  @media (min-height: 930px) {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 0;
+  }
   svg {
     width: 100%;
     margin-bottom: -1rem;
