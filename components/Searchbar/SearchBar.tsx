@@ -7,6 +7,7 @@ type Props = {
 
 const SearchBar: React.FC<Props> = ({ parentSection }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [searchedSong, setSearchedSong] = useState("");
   return (
     <form
       className={`${parentSection} ${isInputFocused ? "input-focused" : ""}`}

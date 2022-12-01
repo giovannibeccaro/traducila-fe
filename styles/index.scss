@@ -3,7 +3,7 @@
 @import "_global";
 @import "/pages/home";
 @import "/pages/traduzioni/traduzioni";
-@import "/pages/traduzioni/blink/songTranslationPage";
+@import "/pages/traduzioni/[songSlug]/songTranslationPage";
 @import "/pages/contattaci/contattaci";
 @import "/components/Navbar/navbar";
 @import "/components/Footer/footer";

@@ -3,9 +3,12 @@ import { originalSong } from "../../../public/songs";
 import { song } from "../../../public/songs";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import { useRouter } from "next/router";
 
 const SongTranslationPage = () => {
   const { isTranslation } = useSelector((store: RootState) => store.swapButton);
+  const router = useRouter();
+  console.log(router.query.songSlug);
 
   useEffect(() => {
     document.body.classList.add("margin-top");

@@ -4,6 +4,7 @@ import ChevronDownIcon from "../../components/svgs/ChevronDownIcon";
 import ChevronUpIcon from "../../components/svgs/ChevronUpIcon";
 
 const TraduzioniPage = () => {
+  // prendiamo queste canzoni tramite get static props
   const articlesFromBE = [
     {
       song_name: "I miss you",

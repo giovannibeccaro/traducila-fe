@@ -39,7 +39,7 @@ const Navbar = () => {
             <p>traducila</p>
           </Link>
           <div className="navbar-items">
-            {!isTraduzioniPage && (
+            {!isTraduzioniPage && !isHomePage && (
               <button>
                 <SearchIcon color={iconColorCheck(route)} />
               </button>
@@ -59,51 +59,6 @@ const Navbar = () => {
         {route === "/traduzioni" && <SearchBar parentSection="navbar" />}
         {isSingleSongPage && <SongInfo />}
       </nav>
-    </>
-  );
-  return (
-    <>
-      <nav
-        className={
-          isContattaciPage ? "navbar navbar-contattaci" : "navbar unfixed"
-        }
-      >
-        <Link href="/" className="logo">
-          <Logo />
-          <p>traducila</p>
-        </Link>
-        <div className="navbar-items">
-          {
-            //? Hide search icon in traduzioni and homepage
-          }
-          {!isTraduzioniPage && !isHomePage && (
-            <button>
-              <SearchIcon
-                color={
-                  isContattaciPage ? "hsl(340, 27%, 97%)" : "hsl(0, 0%, 17%)"
-                }
-              />
-            </button>
-          )}
-          <button
-            className={isMobileMenuOpen ? "close" : ""}
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <MenuIcon
-              color={
-                isContattaciPage ? "hsl(340, 27%, 97%)" : "hsl(0, 0%, 17%)"
-              }
-            />
-          </button>
-          <NavLinks
-            isMobileMenuOpen={isMobileMenuOpen}
-            setIsMobileMenuOpen={setIsMobileMenuOpen}
-          />
-        </div>
-      </nav>
-      {/* <section className="navbar-input-section">
-          <SearchBar parentSection="navbar-search" />
-        </section> */}
     </>
   );
 };
