@@ -1,30 +1,75 @@
-import React, { useEffect, useState } from "react";
-import { originalSong } from "../../../public/songs";
-import { song } from "../../../public/songs";
-import { useSelector } from "react-redux";
+import React, { FC, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../store/store";
-import { useRouter } from "next/router";
+import { artistType, songType } from "../../../types";
+import { fetchedDataType, fetchedArtistDataType } from "../../../types";
+import { getQuery } from "../../../utils/utils";
+import { setSongInfo } from "../../../store/songInfo/songInfoSlice";
+import OtherTranslationFromArtist from "../../../components/OtherTranslationsFromArtist/OtherTranslationFromArtist";
 
-const SongTranslationPage = () => {
+type Props = {
+  songData: songType;
+  artistData: artistType[];
+};
+
+const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
+  //? redux for isTranslation
   const { isTranslation } = useSelector((store: RootState) => store.swapButton);
-  const router = useRouter();
-  console.log(router.query.songSlug);
 
+  //? redux for songInfo state setting
+  const dispatch = useDispatch();
+  const {
+    songName,
+    originalSong,
+    translatedSong,
+    writtenBy,
+    producedBy,
+    yearOfProduction,
+    songDescription,
+    slug,
+    album,
+    artist,
+    songImg,
+  } = songData.attributes;
+
+  const artistName = artist.data.attributes.artistName;
+  const albumName = album.data.attributes.albumName;
+  const songImgUrl = songImg.data.attributes.name;
+
+  //? setting redux songInfo state with getStaticProps data
   useEffect(() => {
-    document.body.classList.add("margin-top");
-    return () => {
-      document.body.classList.remove("margin-top");
-    };
-  }, []);
+    dispatch(
+      setSongInfo({
+        songName,
+        artistName,
+        songImg: songImgUrl,
+        albumName,
+        yearOfProduction,
+        writtenBy,
+        producedBy,
+      })
+    );
+  }, [
+    dispatch,
+    songName,
+    artistName,
+    albumName,
+    songImgUrl,
+    yearOfProduction,
+    writtenBy,
+    producedBy,
+  ]);
 
   return (
     <main className="song-page-main">
       <section className="song-page-main-section">
-        <h1>Traduzione di I miss you</h1>
+        <h1>{`${
+          isTranslation ? "Traduzione di " : "Testo di "
+        } ${songName}`}</h1>
         {isTranslation ? (
           <div
             className="translated-text"
-            dangerouslySetInnerHTML={{ __html: song }}
+            dangerouslySetInnerHTML={{ __html: translatedSong }}
           />
         ) : (
           <div
@@ -35,43 +80,57 @@ const SongTranslationPage = () => {
       </section>
       <section className="song-page-secondary-section">
         <h2>Descrizione</h2>
-        <p>
-          “I Miss You” is one of Blink-182’s most iconic tracks, serving as a
-          haunting depiction of the effect depression can have on a relationship
-          and its subsequent fallout.
-          <br />
-          Chart wise, it peaked at #1 on Billboard’s Alternative Songs and was
-          certified Gold by RIAA.
-          <br />
-          The song was produced entirely acoustically and features an upright
-          bass, cello, and brushes on the drums. The track is also the only
-          blink-182 track to-date in which Travis uses brushes instead of
-          drumsticks.
-          <br />
-          Tom DeLonge and Mark Hoppus wrote the song in a two-part way,
-          combining two songs together to make this track. The song was inspired
-          by The Cure’s song “The Lovecats” and contains a reference to the film
-          The Nightmare Before Christmas.
-          <br />
-          The track went on to inspire The Chainsmokers‘ “Closer.”
-        </p>
-        <h2>Altre traduzioni di blink-182</h2>
-        <ul>
-          <li>
-            <a href="#">Always</a>
-          </li>
-          <li>
-            {" "}
-            <a href="#">All the small things</a>
-          </li>
-          <li>
-            {" "}
-            <a href="#">What&apos;s my age again</a>
-          </li>
-        </ul>
+        <p>{songDescription}</p>
+        {artistData.length > 0 && (
+          <OtherTranslationFromArtist data={artistData} />
+        )}
       </section>
     </main>
   );
 };
-
 export default SongTranslationPage;
+
+export async function getStaticPaths() {
+  const endpoint = process.env.NEXT_PUBLIC_DEV_BACKEND_ENDPOINT;
+  if (!endpoint) return;
+  const res = await fetch(endpoint + "/api/posts?populate=*");
+  const data = await res.json();
+  const paths = data.data.map((song: songType) => {
+    return {
+      params: { songSlug: song.attributes.slug },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export const getStaticProps = async (context: any) => {
+  //? request single song data
+  const initialQuerySong = getQuery("posts");
+  const searchBySlug = "?filters[slug][$eq]=";
+  const songSlug = context.params.songSlug;
+  const res = await fetch(
+    `${initialQuerySong}${searchBySlug}${songSlug}&populate=*`
+  );
+  const songData: fetchedDataType = await res.json();
+
+  //? request album data for otherTranslations component
+  const initialQueryArtist = getQuery("artists");
+  const searchByArtistSlug = "?filters[artistSlug][$eq]=";
+  const artistSlug =
+    songData.data[0].attributes.artist.data.attributes.artistSlug;
+  const artistRes = await fetch(
+    `${initialQueryArtist}${searchByArtistSlug}${artistSlug}&populate=*`
+  );
+  const artistData: fetchedArtistDataType = await artistRes.json();
+
+  return {
+    props: {
+      songData: songData.data[0],
+      artistData: artistData.data[0].attributes.songs.data,
+    },
+  };
+};

@@ -72,6 +72,9 @@ nav.navbar {
   &.single-song {
     top: initial;
     left: initial;
+    .main-nav {
+      margin-top: 2rem;
+    }
   }
 }
 

@@ -7,7 +7,7 @@ import SongInfo from "../SongInfo/SongInfo";
 import NavLinks from "../NavLinks/NavLinks";
 import { useState } from "react";
 import Link from "next/link";
-import iconColorCheck from "../../utils/iconColorCheck";
+import { iconColorCheck } from "../../utils/utils";
 
 const Navbar = () => {
   //? route variables
@@ -28,10 +28,10 @@ const Navbar = () => {
     <>
       <nav
         className={`navbar 
-          ${isHomePage && "navbar-home"}
-          ${isTraduzioniPage && "black-navbar traduzioni"} 
-          ${isSingleSongPage && "black-navbar single-song"} 
-          ${isContattaciPage && "navbar-contattaci"}`}
+          ${isHomePage ? "navbar-home" : ""}
+          ${isTraduzioniPage ? "black-navbar traduzioni" : ""} 
+          ${isSingleSongPage ? "black-navbar single-song" : ""} 
+          ${isContattaciPage ? "navbar-contattaci" : ""}`}
       >
         <div className="main-nav">
           <Link href="/" className="logo">

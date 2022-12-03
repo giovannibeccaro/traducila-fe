@@ -14,6 +14,16 @@ const SongInfo = () => {
     [dispatch, isTranslation]
   );
 
+  //? redux for song info state
+  const { songInfo } = useSelector((store: RootState) => store.songInfo);
+  const {
+    songName,
+    songImg,
+    albumName,
+    yearOfProduction,
+    writtenBy,
+    producedBy,
+  } = songInfo;
   //? slim navbar functionality
   //  1) check if user has scrolled
   const [isPageScrolled, setIsPageScrolled] = useState<boolean>(false);
@@ -46,33 +56,32 @@ const SongInfo = () => {
       />
       <div className="song-info">
         <div className="main-info">
-          <h2 className="song-title">I miss you</h2>
-          <h3 className="artist-name">blink-182</h3>
+          <h2 className="song-title">{songName}</h2>
+          <h3 className="artist-name">{"artistName"}</h3>
         </div>
         {!isPageScrolled && (
           <div className="secondary-info">
             <p>
               <span className="light-weight-text">Album: </span>
-              <b>blink-182</b>
+              <b>{albumName}</b>
             </p>
             <p>
               <span className="light-weight-text">Anno di produzione: </span>
-              <b>2003</b>
+              <b>{yearOfProduction}</b>
             </p>
             <p>
               <span className="light-weight-text">Scritto da: </span>
-              <b>M. Hoppus, T. De Longe, T. Barker</b>
+              <b>{writtenBy}</b>
             </p>
             <p>
               <span className="light-weight-text">Prodotto da: </span>
-              <b>Jerry Finn</b>
+              <b>{producedBy}</b>
             </p>
           </div>
         )}
         <button
           className="show-alt-text"
           onClick={() => {
-            console.count();
             return clickButton();
           }}
         >
