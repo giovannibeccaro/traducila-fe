@@ -3,14 +3,17 @@
   top: -100vh;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 105vh;
   opacity: 0.92;
   background-color: $blackColor;
   padding: 2rem;
+  padding-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   transition-duration: 300ms;
+  z-index: 99999;
+
   &.open {
     transform: translateY(100vh);
   }
@@ -41,4 +44,8 @@
     font-family: $roboto;
     text-decoration: none;
   }
+}
+
+body.nav-menu-on {
+  overflow-y: hidden;
 }

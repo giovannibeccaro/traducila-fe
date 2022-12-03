@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import CrossIcon from "../svgs/CrossIcon";
 
@@ -11,6 +11,16 @@ const NavLinks: React.FC<Props> = ({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
 }) => {
+  //? if navbar menu on mobile is open, block body so that the user can't scroll in the background
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add("nav-menu-on");
+    }
+
+    return () => {
+      document.body.classList.remove("nav-menu-on");
+    };
+  }, [isMobileMenuOpen]);
   return (
     <section className={isMobileMenuOpen ? "nav-links open" : "nav-links"}>
       <button
