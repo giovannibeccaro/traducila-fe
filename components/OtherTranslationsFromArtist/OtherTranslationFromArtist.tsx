@@ -1,26 +1,28 @@
 import React from "react";
-import { artistType } from "../../types";
+import { songType } from "../../types";
+import Link from "next/link";
 
 type Props = {
-  data: artistType[];
+  data: songType[];
+  slug: string;
 };
 
-const OtherTranslationFromArtist: React.FC<Props> = ({ data }) => {
-  console.log(data);
-
+const OtherTranslationFromArtist: React.FC<Props> = ({ data, slug }) => {
+  //? don't render current song
+  const dataWithoutCurrentSong = data.filter(
+    (song) => song.attributes.slug !== slug
+  );
   return (
     <section>
       <h2>Altre traduzioni di blink-182</h2>
       <ul>
-        <li>
-          <a href="#">Always</a>
-        </li>
-        <li>
-          <a href="#">All the small things</a>
-        </li>
-        <li>
-          <a href="#">What&apos;s my age again</a>
-        </li>
+        {dataWithoutCurrentSong.map((song) => (
+          <li key={song.id}>
+            <Link href={`/traduzioni/${song.attributes.slug}`}>
+              {song.attributes.songName}
+            </Link>
+          </li>
+        ))}
       </ul>
     </section>
   );

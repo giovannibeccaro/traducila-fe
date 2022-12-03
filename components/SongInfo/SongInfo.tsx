@@ -19,6 +19,7 @@ const SongInfo = () => {
   const {
     songName,
     songImg,
+    artistName,
     albumName,
     yearOfProduction,
     writtenBy,
@@ -48,16 +49,20 @@ const SongInfo = () => {
         isPageScrolled ? "song-info-section slim" : "song-info-section "
       }
     >
-      <Image
-        src="/ab67616d0000b2730538b48c180256e0bdd8363f.jpg"
-        alt="song-cover"
-        width="120"
-        height="120"
-      />
+      {songImg ? (
+        <Image src={`${songImg}`} alt="song-cover" width="120" height="120" />
+      ) : (
+        <Image
+          src={"/placeholder.png"}
+          alt="song-cover"
+          width="120"
+          height="120"
+        />
+      )}
       <div className="song-info">
         <div className="main-info">
           <h2 className="song-title">{songName}</h2>
-          <h3 className="artist-name">{"artistName"}</h3>
+          <h3 className="artist-name">{artistName}</h3>
         </div>
         {!isPageScrolled && (
           <div className="secondary-info">

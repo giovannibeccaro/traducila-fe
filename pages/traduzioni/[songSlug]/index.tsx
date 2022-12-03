@@ -9,7 +9,7 @@ import OtherTranslationFromArtist from "../../../components/OtherTranslationsFro
 
 type Props = {
   songData: songType;
-  artistData: artistType[];
+  artistData: songType[];
 };
 
 const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
@@ -34,7 +34,7 @@ const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
 
   const artistName = artist.data.attributes.artistName;
   const albumName = album.data.attributes.albumName;
-  const songImgUrl = songImg.data.attributes.name;
+  const songImgUrl = songImg.data.attributes.url;
 
   //? setting redux songInfo state with getStaticProps data
   useEffect(() => {
@@ -82,7 +82,7 @@ const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
         <h2>Descrizione</h2>
         <p>{songDescription}</p>
         {artistData.length > 0 && (
-          <OtherTranslationFromArtist data={artistData} />
+          <OtherTranslationFromArtist data={artistData} slug={slug} />
         )}
       </section>
     </main>
