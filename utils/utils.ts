@@ -20,3 +20,11 @@ export function getQuery(category: string) {
   const newQuery = `${endpoint}/api/${category}`;
   return newQuery;
 }
+
+export const stringToSlug = (str: string) =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");

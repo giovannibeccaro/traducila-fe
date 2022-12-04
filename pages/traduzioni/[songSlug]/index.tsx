@@ -119,11 +119,9 @@ export const getStaticProps = async (context: any) => {
 
   //? request album data for otherTranslations component
   const initialQueryArtist = getQuery("artists");
-  const searchByArtistSlug = "?filters[artistSlug][$eq]=";
-  const artistSlug =
-    songData.data[0].attributes.artist.data.attributes.artistSlug;
+  const artistSlug = songData.data[0].attributes.artist.data.attributes.slug;
   const artistRes = await fetch(
-    `${initialQueryArtist}${searchByArtistSlug}${artistSlug}&populate=*`
+    `${initialQueryArtist}${searchBySlug}${artistSlug}&populate=*`
   );
   const artistData: fetchedArtistDataType = await artistRes.json();
 

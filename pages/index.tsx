@@ -26,12 +26,12 @@ export default function Home() {
           <h1>LE MIGLIORI</h1>
           <h1>TRADUZIONI DEI </h1>
           <h1>TUOI TESTI PREFERITI</h1>
-          <p>
+          <p className="subtitle">
             Inserire qui un testo carino riguardo il fatto che le nostre
             traduzioni sono migliori per motivo X.
           </p>
           <SearchBar parentSection="homepage" />
-          <a href="#">
+          <a className="view-others" href="#">
             Oppure dai un&apos;occhiata a tutte le nostre traduzioni{" "}
             <ArrowRightIcon />
           </a>

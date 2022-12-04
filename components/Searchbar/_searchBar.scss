@@ -5,6 +5,8 @@ form {
   border-radius: 5rem;
   justify-content: space-between;
   margin-top: 1.5rem;
+  position: relative;
+  z-index: 9;
   &.input-focused {
     outline: 2px solid $accentColor;
   }
@@ -13,7 +15,7 @@ form {
     border: none;
     background-color: inherit;
     color: white;
-    border-radius: 5rem;
+    border-radius: 2rem;
     padding: 1rem 0 1rem 1rem;
     font-size: 0.8rem;
     width: 80%;

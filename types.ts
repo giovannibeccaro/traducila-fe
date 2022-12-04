@@ -5,7 +5,7 @@ export type artistType = {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    artistSlug: string;
+    slug: string;
     songs: {
       data: songType[];
     };
@@ -73,4 +73,12 @@ export type fetchedArtistDataType = {
       total: number;
     };
   };
+};
+
+export type suggestionType = {
+  entryName: string;
+  category: string;
+  artist?: string;
+  slug: string;
+  test?: string;
 };
