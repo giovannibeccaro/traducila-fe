@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type InitialStateType = {
   songInfo: {
-    songName: string;
+    name: string;
     artistName: string;
     songImg: string;
     albumName: string;
@@ -15,7 +15,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
   songInfo: {
-    songName: "",
+    name: "",
     artistName: "",
     songImg: "",
     albumName: "",

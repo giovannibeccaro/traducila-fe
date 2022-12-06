@@ -4,6 +4,7 @@ import SearchBar from "../components/Searchbar/SearchBar";
 import ArrowRightIcon from "../components/svgs/ArrowRightIcon";
 import HeroIllustration from "../components/svgs/HeroIllustration";
 import useCheckHeight from "../hooks/useCheckHeight";
+
 // import Image from "next/image";
 export default function Home() {
   const height = useCheckHeight();

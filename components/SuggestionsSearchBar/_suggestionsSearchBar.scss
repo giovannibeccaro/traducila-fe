@@ -11,43 +11,37 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     li {
       margin-bottom: 0.25rem;
+      &:last-of-type {
+        margin-bottom: 0.75rem;
+      }
     }
-    // li {
-    //   position: relative;
-    //   margin-bottom: 1.75rem;
-    //   &:last-of-type {
-    //     margin-bottom: 0.25rem;
-    //     &::after {
-    //       content: none;
-    //     }
-    //   }
-    //   &::after {
-    //     content: "";
-    //     height: 2px;
-    //     width: 100%;
-    //     background-color: $whiteColor;
-    //     position: absolute;
-    //     transform: translateY(1rem);
-    //     opacity: 0.1;
-    //   }
-    // }
     a {
       color: $whiteColor;
       display: flex;
       width: 100%;
       justify-content: space-between;
       text-decoration: none;
-      min-height: 3rem;
-      background-color: rgb(57, 57, 57);
-      border-radius: 0.25rem;
-      padding: 0.5rem 0.5rem;
+      height: 2.5rem;
+      padding: 0.5rem;
+      position: relative;
+      &::after {
+        content: "";
+        height: 2px;
+        width: 96%;
+        background-color: $whiteColor;
+        position: absolute;
+        bottom: -3px;
+        opacity: 0.1;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
   .suggestion-left-part {
-    font-size: 1rem;
+    font-size: 0.75rem;
     display: flex;
     align-items: flex-end;
   }
@@ -56,7 +50,7 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     .category-tag {
       //   background-color: $whiteColor;
       //   color: $blackColor;
@@ -73,15 +67,16 @@
   }
 }
 
-.suggestions-section-loading {
-  background-color: $blackColor;
-  color: $whiteColor;
-  position: absolute;
-  width: calc(100% - 4rem);
-  transform: translateY(-1.5rem);
-  z-index: 5;
-  border-radius: 0 0 1.5rem 1.5rem;
-  padding: 0.5rem;
-  height: 25rem;
-  text-align: center;
+.suggestions-section.traduzioni {
+  top: -1.5rem;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 2rem 0.75rem;
+}
+.suggestions-section.navbar {
+  top: 9rem;
+  width: 100%;
+  left: 0;
+  padding: 0.5rem 2rem 0.75rem;
+  background-color: rgb(59, 59, 59);
 }

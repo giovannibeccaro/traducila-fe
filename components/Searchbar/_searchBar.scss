@@ -41,7 +41,7 @@ form {
       max-height: 18px;
     }
   }
-  &.navbar {
+  &.from-traduzioni {
     background-color: $whiteColor;
     align-items: center;
     height: 2.75rem;
@@ -63,6 +63,22 @@ form {
       &::placeholder {
         color: $blackColor;
       }
+    }
+  }
+  &.from-navbar {
+    width: 100vw;
+    margin-inline: -2rem;
+    background-color: rgb(59, 59, 59);
+    border-radius: 0;
+    height: 3rem;
+    padding-inline: 2rem;
+
+    input {
+      padding: 0;
+    }
+    button {
+      background-color: transparent;
+      margin-inline: 0;
     }
   }
 }

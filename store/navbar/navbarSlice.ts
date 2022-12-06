@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type InitialStateType = {
-  isNavBlack: boolean;
+  navbarHeight: string;
 };
 
 const initialState: InitialStateType = {
-  isNavBlack: false,
+  navbarHeight: "",
 };
 
 const navbarSlice = createSlice({
   name: "navbar",
   initialState,
   reducers: {
-    setIsNavBlack(state, action) {
-      state.isNavBlack = action.payload;
+    setNavbarHeight(state, action) {
+      state.navbarHeight = action.payload;
     },
   },
 });
 
-export const { setIsNavBlack } = navbarSlice.actions;
+export const { setNavbarHeight } = navbarSlice.actions;
 export default navbarSlice.reducer;

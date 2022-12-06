@@ -17,7 +17,7 @@ const SongInfo = () => {
   //? redux for song info state
   const { songInfo } = useSelector((store: RootState) => store.songInfo);
   const {
-    songName,
+    name,
     songImg,
     artistName,
     albumName,
@@ -61,7 +61,7 @@ const SongInfo = () => {
       )}
       <div className="song-info">
         <div className="main-info">
-          <h2 className="song-title">{songName}</h2>
+          <h2 className="song-title">{name}</h2>
           <h3 className="artist-name">{artistName}</h3>
         </div>
         {!isPageScrolled && (

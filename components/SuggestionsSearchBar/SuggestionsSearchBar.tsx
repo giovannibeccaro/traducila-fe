@@ -4,33 +4,31 @@ import { suggestionType } from "../../types";
 import { getQuery, stringToSlug } from "../../utils/utils";
 type Props = {
   searchedSong: string;
+  route: string;
 };
 
-const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong }) => {
+const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
+  const isTraduzioniPage = route === "/traduzioni";
+  const isHomePage = route === "/";
+
   const [suggestions, setSuggestions] = useState<suggestionType[]>([]);
-  const [backupSongs, setBackupSongs] = useState<suggestionType[]>([]);
 
   useEffect(() => {
     // we will fetch all categories from the most likely to least likely to contain user search
     function fetchSuggestions() {
-      const categories = ["posts", "artists", "albums"];
+      const categories = ["posts", "artists"];
       const slug = stringToSlug(searchedSong);
 
       // fetch data for each category
       categories.forEach(async (category) => {
         const endpoint = getQuery(category);
-        const field = () => {
-          if (category === "artists") return "artistName";
-          if (category === "albums") return "albumName";
-          if (category === "posts") return "songName";
-        };
         const populate = () => {
           if (category === "artists") return "";
           return "&populate[0]=artist";
         };
         try {
           const res = await fetch(
-            `${endpoint}?filters[slug][$startsWith]=${slug}${populate()}&fields[0]=${field()}`
+            `${endpoint}?filters[slug][$startsWith]=${slug}${populate()}&fields[0]=name`
           );
           const { data } = await res.json();
 
@@ -40,29 +38,13 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong }) => {
           // suggestions is the array of results of category fetches
           const suggestionsFetched: suggestionType[] = data.map(
             ({ attributes }: any) => {
-              if (category === "artists") {
-                return {
-                  entryName: attributes.artistName,
-                  category: "artista",
-                  slug: stringToSlug(attributes.artistName),
-                };
-              }
-              if (category === "albums") {
-                return {
-                  entryName: attributes.albumName,
-                  category: "album",
-                  artist: attributes.artist.data.attributes.artistName,
-                  slug: stringToSlug(attributes.albumName),
-                };
-              }
-              if (category === "posts") {
-                return {
-                  entryName: attributes.songName,
-                  category: "testo e traduzione",
-                  artist: attributes.artist.data.attributes.artistName,
-                  slug: stringToSlug(attributes.songName),
-                };
-              }
+              return {
+                entryName: attributes.name,
+                category,
+                slug: stringToSlug(attributes.name),
+                artist: attributes.artist?.data.attributes.name,
+                artistSlug: attributes.artist?.data.attributes.slug,
+              };
             }
           );
           // set suggestions inside state
@@ -87,24 +69,36 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong }) => {
   }, [searchedSong]);
 
   return suggestions.length > 0 ? (
-    <section className="suggestions-section">
+    <section
+      className={`${isHomePage ? "suggestions-section" : ""}${
+        isTraduzioniPage ? "suggestions-section traduzioni" : ""
+      }${!isTraduzioniPage && !isHomePage ? "suggestions-section navbar" : ""}`}
+    >
       <ul>
-        {suggestions.map(({ entryName, category, artist, slug }) => (
-          <li key={Math.random()}>
-            <Link href={slug}>
-              <p className="suggestion-left-part">{entryName}</p>
-              <div className="suggestion-right-part">
-                <div className="category-tag">{category}</div>
-                <p className="artist">{artist}</p>
-              </div>
-            </Link>
-          </li>
-        ))}
+        {suggestions.map(
+          ({ entryName, category, artist, slug, artistSlug }) => (
+            <li key={Math.random()}>
+              <Link
+                href={
+                  category === "artists"
+                    ? slug
+                    : `${artistSlug}/${slug}-traduzione`
+                }
+              >
+                <p className="suggestion-left-part">{entryName}</p>
+                <div className="suggestion-right-part">
+                  <div className="category-tag">
+                    {category === "artists" ? "artista" : "testo e traduzione"}
+                  </div>
+                  {artist && <p className="artist">{artist}</p>}
+                </div>
+              </Link>
+            </li>
+          )
+        )}
       </ul>
     </section>
-  ) : (
-    <section className="suggestions-section-loading"></section>
-  );
+  ) : null;
 };
 
 export default SuggestionsSearchBar;

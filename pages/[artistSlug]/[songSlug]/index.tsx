@@ -9,17 +9,17 @@ import OtherTranslationFromArtist from "../../../components/OtherTranslationsFro
 
 type Props = {
   songData: songType;
-  artistData: songType[];
+  songsFromArtist: songType[];
 };
 
-const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
+const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
   //? redux for isTranslation
   const { isTranslation } = useSelector((store: RootState) => store.swapButton);
 
   //? redux for songInfo state setting
   const dispatch = useDispatch();
   const {
-    songName,
+    name,
     originalSong,
     translatedSong,
     writtenBy,
@@ -32,15 +32,15 @@ const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
     songImg,
   } = songData.attributes;
 
-  const artistName = artist.data.attributes.artistName;
-  const albumName = album.data.attributes.albumName;
+  const artistName = artist.data.attributes.name;
+  const albumName = album.data.attributes.name;
   const songImgUrl = songImg.data.attributes.url;
 
   //? setting redux songInfo state with getStaticProps data
   useEffect(() => {
     dispatch(
       setSongInfo({
-        songName,
+        name,
         artistName,
         songImg: songImgUrl,
         albumName,
@@ -51,7 +51,7 @@ const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
     );
   }, [
     dispatch,
-    songName,
+    name,
     artistName,
     albumName,
     songImgUrl,
@@ -63,9 +63,7 @@ const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
   return (
     <main className="song-page-main">
       <section className="song-page-main-section">
-        <h1>{`${
-          isTranslation ? "Traduzione di " : "Testo di "
-        } ${songName}`}</h1>
+        <h1>{`${isTranslation ? "Traduzione di " : "Testo di "} ${name}`}</h1>
         {isTranslation ? (
           <div
             className="translated-text"
@@ -81,8 +79,12 @@ const SongTranslationPage: FC<Props> = ({ songData, artistData }) => {
       <section className="song-page-secondary-section">
         <h2>Descrizione</h2>
         <p>{songDescription}</p>
-        {artistData.length > 0 && (
-          <OtherTranslationFromArtist data={artistData} slug={slug} />
+        {songsFromArtist.length > 0 && (
+          <OtherTranslationFromArtist
+            data={songsFromArtist}
+            slug={slug}
+            artistSlug={artist.data.attributes.slug}
+          />
         )}
       </section>
     </main>
@@ -96,8 +98,13 @@ export async function getStaticPaths() {
   const res = await fetch(endpoint + "/api/posts?populate=*");
   const data = await res.json();
   const paths = data.data.map((song: songType) => {
+    console.log(song.attributes.artist.data.attributes.slug);
+
     return {
-      params: { songSlug: song.attributes.slug },
+      params: {
+        songSlug: song.attributes.slug,
+        artistSlug: song.attributes.artist.data.attributes.slug,
+      },
     };
   });
 
@@ -124,11 +131,12 @@ export const getStaticProps = async (context: any) => {
     `${initialQueryArtist}${searchBySlug}${artistSlug}&populate=*`
   );
   const artistData: fetchedArtistDataType = await artistRes.json();
+  console.log(artistData);
 
   return {
     props: {
       songData: songData.data[0],
-      artistData: artistData.data[0].attributes.songs.data,
+      songsFromArtist: artistData.data[0].attributes.songs.data,
     },
   };
 };

@@ -1,0 +1,45 @@
+main.artist-page {
+  margin: -2rem; //remove body padding
+  .artist-info {
+    background-color: $blackColor;
+    color: white;
+    padding: 2rem;
+    padding-bottom: 2.5rem;
+    border-bottom-right-radius: 3rem;
+  }
+  .artist-name {
+    font-weight: 500;
+    margin-block: 0.25rem 0.85rem;
+    font-size: 2rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.75rem;
+    p {
+      background-color: $whiteColor;
+      color: $blackColor;
+      padding: 0.15rem 0.75rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-family: $roboto;
+      font-weight: 700;
+      border-radius: 3rem;
+      opacity: 0.6;
+    }
+  }
+  .description {
+    font-size: 0.75rem;
+  }
+
+  .albums-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 2.5rem;
+  }
+}

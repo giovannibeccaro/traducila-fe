@@ -3,7 +3,8 @@
 @import "_global";
 @import "/pages/home";
 @import "/pages/traduzioni/traduzioni";
-@import "/pages/traduzioni/[songSlug]/songTranslationPage";
+@import "/pages/[artistSlug]/artistPage";
+@import "/pages/[artistSlug]/[songSlug]/songTranslationPage";
 @import "/pages/contattaci/contattaci";
 @import "/components/Navbar/navbar";
 @import "/components/Footer/footer";
@@ -12,3 +13,4 @@
 @import "/components/SongInfo/songInfo";
 @import "/components/SuggestionsSearchBar/_suggestionsSearchBar";
 @import "/components/NavLinks/navLinks";
+@import "/components/ArtistSingleAlbum.tsx/artistSingleAlbum";

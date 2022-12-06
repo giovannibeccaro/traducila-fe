@@ -39,6 +39,9 @@ nav.navbar {
 
   button {
     transition-duration: 500ms;
+    &.go-back-btn {
+      transform: rotate(360deg);
+    }
     &.close {
       opacity: 0;
       transform: rotate(100deg);
@@ -88,4 +91,8 @@ nav.navbar {
 .navbar.navbar-home {
   position: initial;
   padding: 0;
+}
+
+.navbar.artist-page {
+  background-color: $blackColor;
 }

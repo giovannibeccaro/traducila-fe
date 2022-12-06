@@ -1,7 +1,25 @@
 export type artistType = {
   id: number;
   attributes: {
-    artistName: string;
+    name: string;
+    slug: string;
+    tags: { data: tagType[] };
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    songs: {
+      data: songType[];
+    };
+    albums: {
+      data: albumType[];
+    };
+  };
+};
+export type albumType = {
+  id: number;
+  attributes: {
+    name: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
@@ -15,7 +33,7 @@ export type artistType = {
 export type songType = {
   id: number;
   attributes: {
-    songName: string;
+    name: string;
     originalSong: string;
     translatedSong: string;
     writtenBy: string;
@@ -37,16 +55,7 @@ export type songType = {
       };
     };
     album: {
-      data: {
-        id: number;
-        attributes: {
-          albumName: string;
-          createdAt: string;
-          updatedAt: string;
-          publishedAt: string;
-          albumSlug: string;
-        };
-      };
+      data: albumType;
     };
     artist: { data: artistType };
   };
@@ -54,25 +63,10 @@ export type songType = {
 
 export type fetchedDataType = {
   data: songType[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
 };
+
 export type fetchedArtistDataType = {
   data: artistType[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
 };
 
 export type suggestionType = {
@@ -81,4 +75,12 @@ export type suggestionType = {
   artist?: string;
   slug: string;
   test?: string;
+  artistSlug?: string;
+};
+
+export type tagType = {
+  id: number;
+  attributes: {
+    genre: string;
+  };
 };

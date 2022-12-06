@@ -25,3 +25,15 @@ html {
 button {
   background-color: transparent;
 }
+
+//? changing elements inside body based on its class
+
+body.margin-top-searchbar {
+  main.contattaci-page {
+    margin-top: 8rem;
+  }
+
+  .song-page-main {
+    padding-top: calc(min(35vw, 130px) * 2 + 4.5rem);
+  }
+}
