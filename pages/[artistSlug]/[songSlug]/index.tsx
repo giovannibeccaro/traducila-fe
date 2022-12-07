@@ -60,6 +60,16 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
     producedBy,
   ]);
 
+  useEffect(() => {
+    function updateCount() {
+      const artistSlug = artist.data.attributes.slug;
+      fetch(`${getQuery("posts")}/${artistSlug}/${songData.id}`, {
+        method: "PATCH",
+      });
+    }
+    updateCount();
+  }, [artist.data.attributes.slug, songData.id]);
+
   return (
     <main className="song-page-main">
       <section className="song-page-main-section">
@@ -97,16 +107,12 @@ export async function getStaticPaths() {
   if (!endpoint) return;
   const res = await fetch(endpoint + "/api/posts?populate=*");
   const data = await res.json();
-  const paths = data.data.map((song: songType) => {
-    console.log(song.attributes.artist.data.attributes.slug);
-
-    return {
-      params: {
-        songSlug: song.attributes.slug,
-        artistSlug: song.attributes.artist.data.attributes.slug,
-      },
-    };
-  });
+  const paths = data.data.map((song: songType) => ({
+    params: {
+      songSlug: song.attributes.slug,
+      artistSlug: song.attributes.artist.data.attributes.slug,
+    },
+  }));
 
   return {
     paths,

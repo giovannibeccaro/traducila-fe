@@ -5,25 +5,30 @@ type Props = {
   songName: string;
   artistName: string;
   songImage: string;
-  category: string;
+  slug: string;
+  position?: number;
 };
 
 const ListSingleSong: React.FC<Props> = ({
   songName,
   artistName,
   songImage,
-  category,
+  slug,
+  position,
 }) => {
   return (
     <article className="single-most-searched">
-      <Image src={songImage} alt="album-cover" width={120} height={120} />
-      <section className="info">
-        <div className="main-info">
-          <h5>{songName}</h5>
-          <p>{artistName}</p>
-        </div>
-        <p className="category">{category}</p>
-      </section>
+      <div className="left-part">
+        <Image src={songImage} alt="album-cover" width={120} height={120} />
+        <section className="info">
+          <div className="main-info">
+            <h5>{songName}</h5>
+            <p>{artistName}</p>
+          </div>
+          <p className="category">Testo e traduzione</p>
+        </section>
+      </div>
+      {position?.toString() && <p className="position">{position + 1}°</p>}
     </article>
   );
 };

@@ -1,7 +1,7 @@
-.single-most-searched {
-  font-size: 0.75rem;
+.single-artist-article {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
   margin-block: 1.7rem;
   position: relative;
   &::after {
@@ -16,31 +16,16 @@
     opacity: 0.3;
   }
 
-  .left-part {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  img {
-    width: 60px;
-    height: 60px;
-  }
-
   .info {
     height: auto;
     display: flex;
     flex-direction: column;
-    height: 60px;
     justify-content: space-between;
     width: 100%;
     .main-info {
-      p {
-        line-height: 0.75;
-      }
       h5 {
         margin: 0;
-        font-size: 1em;
+        font-size: 1rem;
       }
     }
 

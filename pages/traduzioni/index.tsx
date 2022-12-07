@@ -1,104 +1,57 @@
-import React, { useState } from "react";
+import { type } from "os";
+import React, { useEffect, useState } from "react";
+import ListSingleArtist from "../../components/ListSingleArtist/ListSingleArtist";
 import ListSingleSong from "../../components/ListSingleSong/ListSingleSong";
 import ChevronDownIcon from "../../components/svgs/ChevronDownIcon";
 import ChevronUpIcon from "../../components/svgs/ChevronUpIcon";
+import { artistType, fetchedDataType, songType } from "../../types";
+import { getQuery } from "../../utils/utils";
 
-const TraduzioniPage = () => {
+type Props = {
+  mostViewed: songType[];
+  newTranslations: songType[];
+  mostViewedArtists: artistType[];
+};
+
+const TraduzioniPage: React.FC<Props> = ({
+  mostViewed,
+  newTranslations,
+  mostViewedArtists,
+}) => {
   // prendiamo queste canzoni tramite get static props
-  const articlesFromBE = [
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 1,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 2,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 3,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 4,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 5,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 6,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 7,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 8,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 9,
-    },
-    {
-      song_name: "I miss you",
-      artist_name: "blink-182",
-      song_image: "/ab67616d0000b2730538b48c180256e0bdd8363f.jpg",
-      category: "Testo e traduzione",
-      id: 10,
-    },
-  ];
 
   const [isMostViewedOpen, setIsMostViewedOpen] = useState(true);
   const [isNewTranslationsOpen, setIsNewTranslationsOpen] = useState(false);
   const [isNewReleasesOpen, setIsNewReleasesOpen] = useState(false);
+
+  useEffect(() => {
+    console.log(isMostViewedOpen);
+  }, [isMostViewedOpen]);
 
   return (
     <section className="traduzioni">
       <div className="song-list">
         <span className="inline translation-list-header first">
           <h2>I più cercati</h2>{" "}
-          <button onClick={() => setIsMostViewedOpen(!isMostViewedOpen)}>
+          <button
+            onClick={(e) => {
+              console.log(e.currentTarget);
+
+              setIsMostViewedOpen(!isMostViewedOpen);
+            }}
+          >
             {isMostViewedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </button>
         </span>
         {isMostViewedOpen &&
-          articlesFromBE.map((article) => (
+          mostViewed.map((article, position) => (
             <ListSingleSong
               key={article.id}
-              songName={article.song_name}
-              artistName={article.artist_name}
-              songImage={article.song_image}
-              category={article.category}
+              songName={article.attributes.name}
+              artistName={article.attributes.artist.data.attributes.name}
+              songImage={article.attributes.songImg.data.attributes.url}
+              slug={article.attributes.slug}
+              position={position}
             />
           ))}
       </div>
@@ -112,13 +65,13 @@ const TraduzioniPage = () => {
           </button>
         </span>
         {isNewTranslationsOpen &&
-          articlesFromBE.map((article) => (
+          newTranslations.map((article) => (
             <ListSingleSong
               key={article.id}
-              songName={article.song_name}
-              artistName={article.artist_name}
-              songImage={article.song_image}
-              category={article.category}
+              songName={article.attributes.name}
+              artistName={article.attributes.artist.data.attributes.name}
+              songImage={article.attributes.songImg.data.attributes.url}
+              slug={article.attributes.slug}
             />
           ))}
       </div>
@@ -131,18 +84,53 @@ const TraduzioniPage = () => {
           </button>
         </span>
         {isNewReleasesOpen &&
-          articlesFromBE.map((article) => (
-            <ListSingleSong
-              key={article.id}
-              songName={article.song_name}
-              artistName={article.artist_name}
-              songImage={article.song_image}
-              category={article.category}
+          mostViewedArtists.map((artist, position) => (
+            <ListSingleArtist
+              key={artist.id}
+              artistName={artist.attributes.name}
+              slug={artist.attributes.slug}
+              position={position}
             />
           ))}
       </div>
     </section>
   );
 };
+
+export async function getStaticProps() {
+  const endpointPosts = getQuery("posts");
+  const endpointArtists = getQuery("artists");
+  try {
+    const [newTranslationsRes, mostViewedRes, mostViewedArtistsRes] =
+      await Promise.all([
+        fetch(
+          `${endpointPosts}?sort=publishedAt%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+        ),
+        fetch(
+          `${endpointPosts}?sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+        ),
+        fetch(
+          `${endpointArtists}?sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+        ),
+      ]);
+
+    const [newTranslationsData, mostViewedData, mostViewedArtistsData] =
+      await Promise.all<fetchedDataType>([
+        newTranslationsRes.json(),
+        mostViewedRes.json(),
+        mostViewedArtistsRes.json(),
+      ]);
+
+    return {
+      props: {
+        mostViewed: mostViewedData.data,
+        newTranslations: newTranslationsData.data,
+        mostViewedArtists: mostViewedArtistsData.data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export default TraduzioniPage;

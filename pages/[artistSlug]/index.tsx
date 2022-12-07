@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ArtistSingleAlbum from "../../components/ArtistSingleAlbum.tsx/ArtistSingleAlbum";
 import { artistType, fetchedArtistDataType } from "../../types";
@@ -12,6 +12,16 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
   // load redux state for navbar height
   const { navbarHeight } = useSelector((store: RootState) => store.navbar);
   console.log(navbarHeight);
+
+  useEffect(() => {
+    function updateCount() {
+      const artistId = data.id;
+      fetch(`${getQuery("artists")}/${artistId}`, {
+        method: "PATCH",
+      });
+    }
+    updateCount();
+  }, [data.id]);
 
   const { name, slug, tags, description, songs, albums } = data.attributes;
 

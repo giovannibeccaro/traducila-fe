@@ -6,6 +6,7 @@
   border-radius: 0.75rem;
   color: $whiteColor;
   align-items: center;
+  max-width: 60%;
   img {
     width: 10rem;
     height: 10rem;
@@ -26,6 +27,10 @@
     li {
       font-size: 0.75rem;
       color: hsla(0, 33%, 97%, 0.6);
+      position: relative;
+      margin-bottom: 0.9rem;
+      text-align: center;
+
       a {
         color: $whiteColor;
         text-decoration: none;
