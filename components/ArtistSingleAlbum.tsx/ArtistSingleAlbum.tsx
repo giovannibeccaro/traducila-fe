@@ -20,13 +20,10 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
 
   useEffect(() => {
     async function fetchImage() {
-      const res = await fetch(
-        `${getQuery("posts")}?filters[slug][$eq]=${
-          albumData.songs.data[0].attributes.slug
-        }&populate=songImg`
-      );
+      const res = await fetch(`${getQuery("albums")}?populate=image`);
       const data = await res.json();
-      const image = data.data[0].attributes.songImg.data.attributes.url;
+      const image = data.data[0].attributes.image.data[0].attributes.url;
+
       setAlbumImg(image);
     }
     fetchImage();

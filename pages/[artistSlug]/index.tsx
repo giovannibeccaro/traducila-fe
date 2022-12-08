@@ -11,7 +11,6 @@ type Props = {
 const ArtistPage: React.FC<Props> = ({ data }) => {
   // load redux state for navbar height
   const { navbarHeight } = useSelector((store: RootState) => store.navbar);
-  console.log(navbarHeight);
 
   useEffect(() => {
     function updateCount() {
@@ -24,6 +23,7 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
   }, [data.id]);
 
   const { name, slug, tags, description, songs, albums } = data.attributes;
+  console.log(data.attributes);
 
   return (
     <main className="artist-page">
@@ -35,7 +35,7 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
       >
         <h2 className="artist-name">{name}</h2>
         <div className="tags">
-          {tags.data.map((tag) => (
+          {tags?.data.map((tag) => (
             <p key={tag.attributes.genre}>{tag.attributes.genre}</p>
           ))}
         </div>
@@ -76,9 +76,6 @@ export const getStaticProps = async (context: any) => {
   const initialQuerySong = getQuery("artists");
   const searchBySlug = "?filters[slug][$eq]=";
   const slug = context.params.artistSlug;
-  console.log(
-    `${initialQuerySong}${searchBySlug}${slug}&fields[0]=name&fields[1]=slug&fields[2]=description&populate[tags][fields][0]=genre&populate[albums][populate][0]=songs`
-  );
 
   const res = await fetch(
     `${initialQuerySong}${searchBySlug}${slug}&fields[0]=name&fields[1]=slug&fields[2]=description&populate[tags][fields][0]=genre&populate[albums][populate][0]=songs`
