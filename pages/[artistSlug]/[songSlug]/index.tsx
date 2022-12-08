@@ -107,12 +107,17 @@ export async function getStaticPaths() {
   if (!endpoint) return;
   const res = await fetch(endpoint + "?populate=*");
   const data = await res.json();
-  const paths = data.data.map((song: songType) => ({
-    params: {
-      songSlug: song.attributes.slug,
-      artistSlug: song.attributes.artist.data.attributes.slug,
-    },
-  }));
+  const acceptedSongs = data.data.filter(
+    (song: songType) => song.attributes.originalSong !== null
+  );
+  const paths = acceptedSongs.map((song: songType) => {
+    return {
+      params: {
+        songSlug: song.attributes.slug,
+        artistSlug: song.attributes.artist.data.attributes.slug,
+      },
+    };
+  });
 
   return {
     paths,

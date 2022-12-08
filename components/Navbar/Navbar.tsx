@@ -33,6 +33,7 @@ const Navbar = () => {
   const isSingleSongPage = router.asPath.includes("traduzione");
   const isTraduzioniPage = route === "/traduzioni";
   const isContattaciPage = route === "/contattaci";
+  const isErrorPage = route === "/_error";
   const isHomePage = route === "/";
 
   // mobile menu modal
@@ -116,7 +117,7 @@ const Navbar = () => {
             <SearchBar parentSection="from-navbar" />
           </div>
         )}
-        {isSingleSongPage && <SongInfo />}
+        {isSingleSongPage && !isErrorPage && <SongInfo />}
       </nav>
     </>
   );
