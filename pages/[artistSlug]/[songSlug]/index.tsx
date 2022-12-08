@@ -103,9 +103,9 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
 export default SongTranslationPage;
 
 export async function getStaticPaths() {
-  const endpoint = process.env.NEXT_PUBLIC_DEV_BACKEND_ENDPOINT;
+  const endpoint = getQuery("posts");
   if (!endpoint) return;
-  const res = await fetch(endpoint + "/api/posts?populate=*");
+  const res = await fetch(endpoint + "?populate=*");
   const data = await res.json();
   const paths = data.data.map((song: songType) => ({
     params: {

@@ -55,9 +55,9 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
 };
 
 export async function getStaticPaths() {
-  const endpoint = process.env.NEXT_PUBLIC_DEV_BACKEND_ENDPOINT;
+  const endpoint = getQuery("artists");
   if (!endpoint) return;
-  const res = await fetch(endpoint + "/api/artists?populate=*");
+  const res = await fetch(endpoint + "?populate=*");
   const data = await res.json();
   const paths = data.data.map((artist: artistType) => ({
     params: {
