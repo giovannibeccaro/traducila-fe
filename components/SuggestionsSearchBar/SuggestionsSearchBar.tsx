@@ -1,13 +1,19 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setIsSearchbarVisible } from "../../store/navbar/navbarSlice";
 import { suggestionType } from "../../types";
 import { getQuery, stringToSlug } from "../../utils/utils";
+
 type Props = {
   searchedSong: string;
   route: string;
 };
 
 const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
+  //redux to remove searchbar after click on suggestion
+  const dispatch = useDispatch();
+
   const isTraduzioniPage = route === "/traduzioni";
   const isHomePage = route === "/";
 
@@ -82,8 +88,9 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
                 href={
                   category === "artists"
                     ? slug
-                    : `${artistSlug}/${slug}-traduzione`
+                    : `/${artistSlug}/${slug}-traduzione`
                 }
+                onClick={() => dispatch(setIsSearchbarVisible(false))}
               >
                 <p className="suggestion-left-part">{entryName}</p>
                 <div className="suggestion-right-part">

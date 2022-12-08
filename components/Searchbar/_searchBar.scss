@@ -7,9 +7,7 @@ form {
   margin-top: 1.5rem;
   position: relative;
   z-index: 9;
-  &.input-focused {
-    outline: 2px solid $accentColor;
-  }
+  border: 2px soilid transparent;
 
   input {
     border: none;
@@ -18,11 +16,23 @@ form {
     border-radius: 2rem;
     padding: 1rem 0 1rem 1rem;
     font-size: 0.8rem;
-    width: 80%;
+    width: 100%;
     color: white;
+    position: relative;
+
     &:focus-visible {
-      border: none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
       outline: none;
+      background-color: rgb(62, 62, 62);
+      & + button {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        margin: 0.25rem;
+        // width: 48px;
+        // height: 48px;
+        // margin: 0;
+      }
     }
   }
   button {
@@ -34,6 +44,7 @@ form {
     margin: 0.25rem 0.35rem 0.25rem 0.25rem;
     width: 40px;
     height: 40px;
+    transition-duration: 300ms;
 
     svg {
       min-width: 18px;
@@ -51,6 +62,18 @@ form {
       &::placeholder {
         color: $blackColor;
       }
+      &:focus-visible {
+        background-color: rgb(197, 197, 197);
+        &::placeholder {
+          color: black;
+        }
+        & + button {
+          margin: 0.15rem;
+        }
+      }
+    }
+    button {
+      margin: 0.15rem;
     }
   }
   &.navbar-search {
@@ -75,10 +98,24 @@ form {
 
     input {
       padding: 0;
+      &:focus-visible {
+        width: 100%;
+        margin-left: -2rem;
+        padding-left: 2rem;
+        border-radius: 0;
+        background-color: rgb(68, 68, 68);
+        &::placeholder {
+          color: white;
+        }
+      }
     }
     button {
       background-color: transparent;
       margin-inline: 0;
+      &:focus-visible {
+        outline: none;
+        background-color: $accentColor;
+      }
     }
   }
 }

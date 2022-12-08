@@ -32,7 +32,6 @@ const TraduzioniPage: React.FC<Props> = ({
     <section className="traduzioni">
       <div className="song-list">
         <span className="inline translation-list-header first">
-          <h2>I più cercati</h2>{" "}
           <button
             onClick={(e) => {
               console.log(e.currentTarget);
@@ -40,6 +39,7 @@ const TraduzioniPage: React.FC<Props> = ({
               setIsMostViewedOpen(!isMostViewedOpen);
             }}
           >
+            <p>I più cercati</p>
             {isMostViewedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </button>
         </span>
@@ -51,16 +51,17 @@ const TraduzioniPage: React.FC<Props> = ({
               artistName={article.attributes.artist.data.attributes.name}
               songImage={article.attributes.songImg.data.attributes.url}
               slug={article.attributes.slug}
+              artistSlug={article.attributes.artist.data.attributes.slug}
               position={position}
             />
           ))}
       </div>
       <div className="song-list">
         <span className="inline translation-list-header">
-          <h2>Ultime traduzioni</h2>{" "}
           <button
             onClick={() => setIsNewTranslationsOpen(!isNewTranslationsOpen)}
           >
+            <p>Ultime traduzioni</p>
             {isNewTranslationsOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </button>
         </span>
@@ -72,14 +73,15 @@ const TraduzioniPage: React.FC<Props> = ({
               artistName={article.attributes.artist.data.attributes.name}
               songImage={article.attributes.songImg.data.attributes.url}
               slug={article.attributes.slug}
+              artistSlug={article.attributes.artist.data.attributes.slug}
             />
           ))}
       </div>
 
       <div className="song-list">
         <span className="inline translation-list-header">
-          <h2>Ultime uscite</h2>{" "}
           <button onClick={() => setIsNewReleasesOpen(!isNewReleasesOpen)}>
+            <p>Artisti più cercati</p>
             {isNewReleasesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </button>
         </span>

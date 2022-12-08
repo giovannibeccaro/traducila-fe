@@ -4,11 +4,19 @@ import SwitchTextIcon from "../svgs/SwitchTextIcon";
 import { setIsTranslation } from "../../store/swapButton/swapButtonSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const SongInfo = () => {
   //? redux for original song/translation check
   const { isTranslation } = useSelector((store: RootState) => store.swapButton);
   const dispatch = useDispatch();
+
+  //? route to get artist slug
+  const route = useRouter();
+
+  const [artistSlug, setArtistSlug] = useState("");
+
   const clickButton = useCallback(
     () => dispatch(setIsTranslation(!isTranslation)),
     [dispatch, isTranslation]
@@ -41,7 +49,14 @@ const SongInfo = () => {
     return () => {
       window.removeEventListener("scroll", checkScroll);
     };
-  });
+  }, [isPageScrolled]);
+
+  useEffect(() => {
+    const routeSlug = route.query.artistSlug;
+    if (typeof routeSlug === "string") {
+      setArtistSlug(routeSlug);
+    }
+  }, [route.query.artistSlug]);
 
   return (
     <section
@@ -57,12 +72,15 @@ const SongInfo = () => {
           alt="song-cover"
           width="120"
           height="120"
+          priority
         />
       )}
       <div className="song-info">
         <div className="main-info">
           <h2 className="song-title">{name}</h2>
-          <h3 className="artist-name">{artistName}</h3>
+          <Link href={`/${artistSlug}`}>
+            <h3 className="artist-name">{artistName}</h3>
+          </Link>
         </div>
         {!isPageScrolled && (
           <div className="secondary-info">

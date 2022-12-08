@@ -9,11 +9,10 @@ type Props = {
 };
 
 const SearchBar: React.FC<Props> = ({ parentSection }) => {
-  // check where searchbar is shown.
+  // check where searchbar is shown (home, traduzioni or navbar).
   const router = useRouter();
   const route = router.pathname;
 
-  const [isInputFocused, setIsInputFocused] = useState(false);
   const [searchedSong, setSearchedSong] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(true);
 
@@ -28,21 +27,19 @@ const SearchBar: React.FC<Props> = ({ parentSection }) => {
   }, [searchedSong]);
 
   const suggestionsRef = useRef(null);
+  const inputRef = useRef(null);
   useOutsideAlerter(suggestionsRef, () => setShowSuggestions(false));
 
   return (
     <>
-      <form
-        className={`${parentSection} ${isInputFocused ? "input-focused" : ""}`}
-        action="submit"
-      >
+      <form className={parentSection} action="submit">
         <input
+          ref={inputRef}
           type="text"
           placeholder="Cerca qualcosa (canzoni, artisti, album)"
           onFocus={() => {
-            setIsInputFocused(true), setShowSuggestions(true);
+            setShowSuggestions(true);
           }}
-          onBlur={() => setIsInputFocused(false)}
           onChange={(e) => {
             onChangeHandler(e);
           }}

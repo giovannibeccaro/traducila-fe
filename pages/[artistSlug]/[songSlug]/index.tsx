@@ -137,7 +137,6 @@ export const getStaticProps = async (context: any) => {
     `${initialQueryArtist}${searchBySlug}${artistSlug}&populate=*`
   );
   const artistData: fetchedArtistDataType = await artistRes.json();
-  console.log(artistData);
 
   return {
     props: {

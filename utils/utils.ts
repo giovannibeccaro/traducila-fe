@@ -1,5 +1,5 @@
 import { fetchedDataType } from "../types";
-const env = "DEV";
+let env = "PROD";
 
 export function iconColorCheck(route: string) {
   const white = "hsl(340, 27%, 97%)";

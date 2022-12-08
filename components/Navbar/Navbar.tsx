@@ -12,11 +12,16 @@ import SearchIconBack from "../svgs/SearchIconBack";
 import { useOutsideAlerter } from "../../hooks/useOutsideAlerter";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { setNavbarHeight } from "../../store/navbar/navbarSlice";
+import {
+  setNavbarHeight,
+  setIsSearchbarVisible,
+} from "../../store/navbar/navbarSlice";
 
 const Navbar = () => {
-  // load redux state for navbar height
-  const { isTranslation } = useSelector((store: RootState) => store.swapButton);
+  // load redux state for navbar height and searchbar visibility
+  const { isSearchbarVisible } = useSelector(
+    (store: RootState) => store.navbar
+  );
   const dispatch = useDispatch();
 
   // route variables
@@ -32,8 +37,6 @@ const Navbar = () => {
 
   // mobile menu modal
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // searchbar toggle
-  const [isSearchbarVisible, setIsSearchbarVisible] = useState(false);
 
   const searchBarRef = useRef(null);
   const otherSearchBarRef = useRef(null);
@@ -49,14 +52,16 @@ const Navbar = () => {
   }, [isSearchbarVisible]);
 
   useEffect(() => {
-    setIsSearchbarVisible(false);
+    dispatch(setIsSearchbarVisible(false));
     dispatch(
       setNavbarHeight(navbarRef.current?.clientHeight.toString() + "px")
     );
   }, [route, dispatch]);
 
-  useOutsideAlerter(searchBarRef, () => setIsSearchbarVisible(false));
-  useOutsideAlerter(otherSearchBarRef, () => setIsSearchbarVisible(false));
+  useOutsideAlerter(searchBarRef, () => dispatch(setIsSearchbarVisible(false)));
+  useOutsideAlerter(otherSearchBarRef, () =>
+    dispatch(setIsSearchbarVisible(false))
+  );
 
   return (
     <>
@@ -78,7 +83,9 @@ const Navbar = () => {
             {!isTraduzioniPage && !isHomePage && (
               <button
                 className={isSearchbarVisible ? "go-back-btn" : "search-btn"}
-                onClick={() => setIsSearchbarVisible(!isSearchbarVisible)}
+                onClick={() =>
+                  dispatch(setIsSearchbarVisible(!isSearchbarVisible))
+                }
               >
                 {isSearchbarVisible ? (
                   <SearchIconBack color={iconColorCheck(route)} />
