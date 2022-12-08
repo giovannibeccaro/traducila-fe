@@ -24,18 +24,12 @@ const TraduzioniPage: React.FC<Props> = ({
   const [isNewTranslationsOpen, setIsNewTranslationsOpen] = useState(false);
   const [isNewReleasesOpen, setIsNewReleasesOpen] = useState(false);
 
-  useEffect(() => {
-    console.log(isMostViewedOpen);
-  }, [isMostViewedOpen]);
-
   return (
     <section className="traduzioni">
       <div className="song-list">
         <span className="inline translation-list-header first">
           <button
             onClick={(e) => {
-              console.log(e.currentTarget);
-
               setIsMostViewedOpen(!isMostViewedOpen);
             }}
           >
@@ -106,13 +100,13 @@ export async function getStaticProps() {
     const [newTranslationsRes, mostViewedRes, mostViewedArtistsRes] =
       await Promise.all([
         fetch(
-          `${endpointPosts}?sort=publishedAt%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+          `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=publishedAt%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
         ),
         fetch(
-          `${endpointPosts}?sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+          `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
         ),
         fetch(
-          `${endpointArtists}?sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+          `${endpointArtists}?&sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
         ),
       ]);
 
