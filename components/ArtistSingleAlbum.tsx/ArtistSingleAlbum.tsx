@@ -31,24 +31,33 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
 
   return (
     <div className="single-album">
-      <Image
-        src={albumImg}
-        alt={`copertina di ${albumData.name}`}
-        width="200"
-        height="200"
-      />
-      <h2 className="album-name">{albumData.name}</h2>
+      <div className="top-part">
+        <h2 className="album-name">{albumData.name}</h2>
+
+        <Image
+          src={albumImg}
+          alt={`copertina di ${albumData.name}`}
+          width="60"
+          height="60"
+        />
+      </div>
       <ul>
         {albumData.songs.data.map((song) => {
           if (song.attributes.translatedSong) {
             return (
-              <li key={song.id}>
+              <li className="translated" key={song.id}>
                 <Link href={`/${artistSlug}/${song.attributes.slug}`}>
                   {song.attributes.name}
+                  <p className="category">Testo e traduzione</p>
                 </Link>
               </li>
             );
-          } else return <li key={song.id}>{song.attributes.name}</li>;
+          } else
+            return (
+              <li className="not-translated" key={song.id}>
+                {song.attributes.name}
+              </li>
+            );
         })}
       </ul>
     </div>

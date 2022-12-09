@@ -40,6 +40,7 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
         </div>
         <p className="description">{description}</p>
       </section>
+      <h2 className="album-header">Album dell&apos;artista</h2>
       <div className="albums-section">
         {albums.data.map((album) => (
           <ArtistSingleAlbum

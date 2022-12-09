@@ -9,7 +9,7 @@ main.artist-page {
   .artist-name {
     font-weight: 500;
     margin-block: 0.25rem 0.85rem;
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .tags {
@@ -21,7 +21,7 @@ main.artist-page {
       background-color: $whiteColor;
       color: $blackColor;
       padding: 0.15rem 0.75rem;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       font-family: $roboto;
       font-weight: 700;
@@ -30,15 +30,19 @@ main.artist-page {
     }
   }
   .description {
-    font-size: 0.75rem;
+    font-size: $normalText;
+  }
+
+  .album-header {
+    margin-inline: 2rem;
+    margin-block: 2rem 1rem;
+    font-weight: 500;
+    font-size: 1.35rem;
   }
 
   .albums-section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
     gap: 2.5rem;
   }
 }

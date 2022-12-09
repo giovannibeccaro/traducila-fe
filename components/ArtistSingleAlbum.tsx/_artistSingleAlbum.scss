@@ -1,20 +1,29 @@
 .single-album {
   display: flex;
   flex-direction: column;
-  background-color: $blackColor;
-  padding: 2.5rem;
+  padding: 2rem;
+  padding-top: 1rem;
   border-radius: 0.75rem;
-  color: $whiteColor;
-  align-items: center;
-  max-width: 60%;
-  img {
-    width: 10rem;
-    height: 10rem;
-    margin-bottom: 1rem;
+  color: $blackColor;
+
+  .top-part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-inline: -2rem;
+    padding-inline: 2rem;
   }
+
+  img {
+    width: 70px;
+    height: 70px;
+  }
+
   .album-name {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
   }
 
   ul {
@@ -23,17 +32,35 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    align-items: center;
     li {
-      font-size: 0.75rem;
-      color: hsla(0, 33%, 97%, 0.6);
+      font-size: $normalText;
+      color: hsla(0, 0%, 23%, 0.6);
       position: relative;
-      margin-bottom: 0.9rem;
-      text-align: center;
+      background-color: $whiteColor;
+      padding-block: 1rem;
+      border-bottom: 1px solid hsla(0, 0%, 23%, 0.1);
+      margin-inline: -2rem;
+      padding-inline: 2rem;
+      &.translated {
+        background-color: rgb(255, 255, 255);
+        padding: 0;
+      }
 
       a {
-        color: $whiteColor;
-        text-decoration: none;
+        color: $blackColor;
+        font-weight: 600;
+        padding-block: 1rem;
+        padding-inline: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .category {
+          font-weight: 700;
+          opacity: 0.5;
+          font-size: 0.75rem;
+          align-self: flex-end;
+          margin-bottom: -0.5rem;
+        }
       }
     }
   }

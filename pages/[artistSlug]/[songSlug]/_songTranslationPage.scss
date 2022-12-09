@@ -6,7 +6,7 @@
   }
   .translated-text,
   .original-text {
-    font-size: 0.75rem;
+    font-size: $normalText;
   }
 
   .song-page-secondary-section {
@@ -23,7 +23,7 @@
     }
     p {
       margin-bottom: 2rem;
-      font-size: 0.75rem;
+      font-size: $normalText;
     }
     ul {
       list-style: none;
