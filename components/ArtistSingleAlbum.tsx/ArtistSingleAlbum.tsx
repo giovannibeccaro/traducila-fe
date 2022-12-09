@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { songType } from "../../types";
 import { getQuery } from "../../utils/utils";
+import InfoIcon from "../svgs/InfoIcon";
 
 type Props = {
   albumData: {
@@ -17,6 +18,7 @@ type Props = {
 
 const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
   const [albumImg, setAlbumImg] = useState("/placeholder.png");
+  const [showTooltip, setShowTooltip] = useState({ visible: false, id: 99999 });
 
   useEffect(() => {
     async function fetchImage() {
@@ -55,7 +57,33 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
           } else
             return (
               <li className="not-translated" key={song.id}>
-                {song.attributes.name}
+                <p>{song.attributes.name}</p>
+                <p
+                  className="no-translation-available"
+                  style={
+                    showTooltip.visible && showTooltip.id === song.id
+                      ? { fontSize: ".5rem" }
+                      : { fontSize: "1.1rem" }
+                  }
+                  onClick={() =>
+                    setShowTooltip({
+                      visible: !showTooltip.visible,
+                      id: song.id,
+                    })
+                  }
+                >
+                  {showTooltip.visible && showTooltip.id === song.id ? (
+                    <span>
+                      Non abbiamo ancora tradotto questa canzone.{" "}
+                      <Link className="more-info" href={"/traduzioni"}>
+                        Clicca qui
+                      </Link>{" "}
+                      per scoprire di più.
+                    </span>
+                  ) : (
+                    <InfoIcon />
+                  )}
+                </p>
               </li>
             );
         })}

@@ -12,8 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <Navbar />
         <NextNProgress
-          transformCSS={(css) => {
-            console.log(css);
+          transformCSS={() => {
             return (
               <style>{`#nprogress {
               pointer-events: none;
