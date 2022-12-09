@@ -6,9 +6,10 @@ import SearchIcon from "../svgs/SearchIcon";
 
 type Props = {
   parentSection: string;
+  shouldFocus?: boolean;
 };
 
-const SearchBar: React.FC<Props> = ({ parentSection }) => {
+const SearchBar: React.FC<Props> = ({ parentSection, shouldFocus }) => {
   // check where searchbar is shown (home, traduzioni or navbar).
   const router = useRouter();
   const route = router.pathname;
@@ -27,8 +28,16 @@ const SearchBar: React.FC<Props> = ({ parentSection }) => {
   }, [searchedSong]);
 
   const suggestionsRef = useRef(null);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   useOutsideAlerter(suggestionsRef, () => setShowSuggestions(false));
+
+  //? focus this input element when rendered. This works because if it isn't shown on page it means that it is not rendered and it shuts off, so when it is shown it gets instant focus. This only happens when searchbar is in navbar
+
+  useEffect(() => {
+    if (parentSection === "from-navbar") {
+      inputRef.current?.focus();
+    }
+  }, [parentSection]);
 
   return (
     <>

@@ -39,6 +39,9 @@ const Navbar = () => {
   // mobile menu modal
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // check if input should be focused (after clicking on search button)
+  const [shouldFocus, setShouldFocus] = useState(false);
+
   const searchBarRef = useRef(null);
   const otherSearchBarRef = useRef(null);
   const navbarRef = useRef<HTMLDivElement | null>(null);
