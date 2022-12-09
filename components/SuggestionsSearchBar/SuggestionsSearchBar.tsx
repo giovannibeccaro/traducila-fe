@@ -87,7 +87,7 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
               <Link
                 href={
                   category === "artists"
-                    ? slug
+                    ? `/${slug}`
                     : `/${artistSlug}/${slug}-traduzione`
                 }
                 onClick={() => dispatch(setIsSearchbarVisible(false))}
