@@ -6,13 +6,13 @@
   color: $whiteColor;
   gap: 1rem;
   height: min(30vw, 175px);
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   z-index: 3;
 
   img {
     width: min(30vw, 175px);
     height: min(30vw, 175px);
-    transition-duration: 300ms;
+    transition-duration: 200ms;
   }
 
   .song-info {
@@ -21,7 +21,7 @@
     align-items: flex-start;
     justify-content: space-between;
     .show-alt-text {
-      transition-duration: 300ms;
+      transition-duration: 200ms;
     }
   }
 
