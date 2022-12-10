@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { useOutsideAlerter } from "../../hooks/useOutsideAlerter";
+import { stringToSlug } from "../../utils/utils";
 import SuggestionsSearchBar from "../SuggestionsSearchBar/SuggestionsSearchBar";
 import SearchIcon from "../svgs/SearchIcon";
 
@@ -39,9 +40,19 @@ const SearchBar: React.FC<Props> = ({ parentSection, shouldFocus }) => {
     }
   }, [parentSection]);
 
+  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    router.push(`/traduzioni?${stringToSlug(searchedSong)}`);
+    setShowSuggestions(false);
+  }
+
   return (
     <>
-      <form className={parentSection} action="submit">
+      <form
+        className={parentSection}
+        action="submit"
+        onSubmit={(e) => submitHandler(e)}
+      >
         <input
           ref={inputRef}
           type="text"

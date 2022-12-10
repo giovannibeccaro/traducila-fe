@@ -5,7 +5,7 @@ import React from "react";
 type Props = {
   artistName: string;
   slug: string;
-  position: number;
+  position?: number;
 };
 
 const ListSingleArtist: React.FC<Props> = ({ artistName, slug, position }) => {
@@ -18,7 +18,7 @@ const ListSingleArtist: React.FC<Props> = ({ artistName, slug, position }) => {
           </div>
           <p className="category">Artista</p>
         </section>
-        <p className="position">{position + 1}°</p>
+        {position && <p className="position">{position + 1}°</p>}
       </article>
     </Link>
   );

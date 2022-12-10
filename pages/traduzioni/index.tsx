@@ -1,7 +1,8 @@
-import { type } from "os";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ListSingleArtist from "../../components/ListSingleArtist/ListSingleArtist";
 import ListSingleSong from "../../components/ListSingleSong/ListSingleSong";
+import ResultsSection from "../../components/ResultsSection/ResultsSection";
 import ChevronDownIcon from "../../components/svgs/ChevronDownIcon";
 import ChevronUpIcon from "../../components/svgs/ChevronUpIcon";
 import { artistType, fetchedDataType, songType } from "../../types";
@@ -18,14 +19,18 @@ const TraduzioniPage: React.FC<Props> = ({
   newTranslations,
   mostViewedArtists,
 }) => {
-  // prendiamo queste canzoni tramite get static props
-
+  //? lists states
   const [isMostViewedOpen, setIsMostViewedOpen] = useState(true);
   const [isNewTranslationsOpen, setIsNewTranslationsOpen] = useState(false);
-  const [isNewReleasesOpen, setIsNewReleasesOpen] = useState(false);
+  const [isMostViewedArtists, setIsMostViewedArtists] = useState(false);
+
+  // get query parameter
+  const router = useRouter();
+  const query = router.asPath.split("?")[1];
 
   return (
     <section className="traduzioni">
+      {query && <ResultsSection query={query} />}
       <div className="song-list">
         <span className="inline translation-list-header first">
           <button
@@ -74,12 +79,12 @@ const TraduzioniPage: React.FC<Props> = ({
 
       <div className="song-list">
         <span className="inline translation-list-header">
-          <button onClick={() => setIsNewReleasesOpen(!isNewReleasesOpen)}>
+          <button onClick={() => setIsMostViewedArtists(!isMostViewedArtists)}>
             <p>Artisti più cercati</p>
-            {isNewReleasesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            {isMostViewedArtists ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </button>
         </span>
-        {isNewReleasesOpen &&
+        {isMostViewedArtists &&
           mostViewedArtists.map((artist, position) => (
             <ListSingleArtist
               key={artist.id}

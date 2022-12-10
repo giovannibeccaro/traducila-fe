@@ -24,43 +24,49 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
     function fetchSuggestions() {
       const categories = ["posts", "artists"];
       const slug = stringToSlug(searchedSong);
-
       // fetch data for each category
-      categories.forEach(async (category) => {
-        const endpoint = getQuery(category);
-        const populate = () => {
-          if (category === "artists") return "";
-          return "&populate[0]=artist";
-        };
-        try {
-          const res = await fetch(
-            `${endpoint}?filters[slug][$startsWith]=${slug}${populate()}&fields[0]=name`
-          );
-          const { data } = await res.json();
+      if (slug.length > 1) {
+        categories.forEach(async (category) => {
+          const endpoint = getQuery(category);
+          const populate = () => {
+            if (category === "artists") return "";
+            return "&populate[0]=artist";
+          };
+          try {
+            const res = await fetch(
+              `${endpoint}?filters[slug][$contains]=${slug}${populate()}&fields[0]=name&fields[1]=slug${
+                category === "posts"
+                  ? "&filters[translatedSong][$notNull]=true"
+                  : ""
+              }`
+            );
+            const { data } = await res.json();
+            // if nothing was fetched, don't update suggestions state
+            if (data.length === 0) return;
 
-          // if nothing was fetched, don't update suggestions state
-          if (data.length === 0) return;
+            // suggestions is the array of results of category fetches
 
-          // suggestions is the array of results of category fetches
-          const suggestionsFetched: suggestionType[] = data.map(
-            ({ attributes }: any) => {
-              return {
-                entryName: attributes.name,
-                category,
-                slug: stringToSlug(attributes.name),
-                artist: attributes.artist?.data.attributes.name,
-                artistSlug: attributes.artist?.data.attributes.slug,
-              };
-            }
-          );
-          // set suggestions inside state
-          setSuggestions((prev) => {
-            return [...prev, ...suggestionsFetched];
-          });
-        } catch (error) {
-          return;
-        }
-      });
+            const suggestionsFetched: suggestionType[] = data.map(
+              ({ attributes }: any) => {
+                return {
+                  entryName: attributes.name,
+                  category,
+                  slug: attributes.slug,
+                  artist: attributes.artist?.data.attributes.name,
+                  artistSlug: attributes.artist?.data.attributes.slug,
+                };
+              }
+            );
+
+            // set suggestions inside state
+            setSuggestions((prev) => {
+              return [...prev, ...suggestionsFetched];
+            });
+          } catch (error) {
+            return;
+          }
+        });
+      }
     }
 
     const timer = setTimeout(() => {
@@ -86,9 +92,7 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
             <li key={Math.random()}>
               <Link
                 href={
-                  category === "artists"
-                    ? `/${slug}`
-                    : `/${artistSlug}/${slug}-traduzione`
+                  category === "artists" ? `/${slug}` : `/${artistSlug}/${slug}`
                 }
                 onClick={() => dispatch(setIsSearchbarVisible(false))}
               >
