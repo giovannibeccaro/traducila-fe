@@ -2,6 +2,7 @@
 $whiteColor: hsl(340, 27%, 97%);
 $accentColor: hsl(338, 58%, 52%);
 $blackColor: hsl(0, 0%, 17%);
+$searchBarColor: hsl(335, 20%, 11.8%);
 
 //? FONTS
 $roboto: "Roboto Condensed", sans-serif;
@@ -12,9 +13,12 @@ $poppins: "Poppins", sans-serif;
 //? MEDIA QUERIES
 $height1: 775px;
 $height0: 730px;
+$width1: 480px;
 $width2: 600px;
 $width3: 700px;
 $width4: 1000px;
+$width4minus: 900px;
+$width5: 1200px;
 
 //? FONT SIZE
 $normalText: 0.9rem;
