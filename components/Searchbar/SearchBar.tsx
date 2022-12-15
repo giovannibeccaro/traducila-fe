@@ -70,7 +70,7 @@ const SearchBar: React.FC<Props> = ({ parentSection, shouldFocus }) => {
         </button>
       </form>
       {searchedSong.length >= 2 && showSuggestions && (
-        <div ref={suggestionsRef}>
+        <div className="suggestions" ref={suggestionsRef}>
           <SuggestionsSearchBar searchedSong={searchedSong} route={route} />
         </div>
       )}

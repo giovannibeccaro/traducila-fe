@@ -4,10 +4,14 @@ form {
   height: 3rem;
   border-radius: 5rem;
   justify-content: space-between;
-  margin-top: 1.5rem;
+  margin-top: 3.9rem;
   position: relative;
   z-index: 9;
   border: 2px soilid transparent;
+  width: min(100%, 30rem);
+  &:focus-within {
+    outline: 3px solid $accentColor;
+  }
 
   input {
     border: none;
@@ -16,23 +20,15 @@ form {
     border-radius: 2rem;
     padding: 1rem 0 1rem 1rem;
     font-size: 0.8rem;
+    @media (min-width: $width2) {
+      font-size: 1rem;
+      padding: 1.1rem 0 1.1rem 1.1rem;
+    }
     width: 100%;
     color: white;
     position: relative;
-
     &:focus-visible {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
       outline: none;
-      background-color: rgb(62, 62, 62);
-      & + button {
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-        margin: 0.25rem;
-        // width: 48px;
-        // height: 48px;
-        // margin: 0;
-      }
     }
   }
   button {
@@ -56,24 +52,24 @@ form {
     background-color: $whiteColor;
     align-items: center;
     height: 2.75rem;
+    margin-inline: auto;
+    width: min(100%, 45rem);
+
+    @media (min-width: $width2) {
+      height: 3.2rem;
+    }
     input {
       height: 100%;
       color: $blackColor;
       &::placeholder {
         color: $blackColor;
       }
-      &:focus-visible {
-        background-color: rgb(197, 197, 197);
-        &::placeholder {
-          color: black;
-        }
-        & + button {
-          margin: 0.15rem;
-        }
-      }
     }
     button {
       margin: 0.15rem;
+      @media (min-width: $width2) {
+        margin-right: 0.39rem;
+      }
     }
   }
   &.navbar-search {
@@ -88,34 +84,34 @@ form {
       }
     }
   }
+
   &.from-navbar {
     width: 100vw;
     margin-inline: -2rem;
+    margin-top: 1.5rem;
     background-color: rgb(59, 59, 59);
     border-radius: 0;
     height: 3rem;
     padding-inline: 2rem;
-
+    &:focus-within {
+      outline: none;
+    }
+    @media (min-width: $width2) {
+      margin-inline: -6%;
+      padding-inline: 6%;
+    }
     input {
       padding: 0;
-      &:focus-visible {
-        width: 100%;
-        margin-left: -2rem;
-        padding-left: 2rem;
-        border-radius: 0;
-        background-color: rgb(68, 68, 68);
-        &::placeholder {
-          color: white;
-        }
-      }
     }
     button {
       background-color: transparent;
       margin-inline: 0;
-      &:focus-visible {
-        outline: none;
-        background-color: $accentColor;
-      }
     }
   }
+}
+
+.searchbar-container {
+  // contains from-navbar only
+  display: flex;
+  width: 100vw;
 }

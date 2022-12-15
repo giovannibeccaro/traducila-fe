@@ -9,6 +9,8 @@ type Props = {
 };
 
 const ListSingleArtist: React.FC<Props> = ({ artistName, slug, position }) => {
+  console.log(artistName, position);
+  console.log(position === 0);
   return (
     <Link href={`/${slug}`}>
       <article className="single-artist-article">
@@ -18,7 +20,7 @@ const ListSingleArtist: React.FC<Props> = ({ artistName, slug, position }) => {
           </div>
           <p className="category">Artista</p>
         </section>
-        {position && <p className="position">{position + 1}°</p>}
+        {position?.toString() && <p className="position">{position + 1}°</p>}
       </article>
     </Link>
   );

@@ -16,6 +16,7 @@ import {
   setNavbarHeight,
   setIsSearchbarVisible,
 } from "../../store/navbar/navbarSlice";
+import useCheckMobileScreen from "../../hooks/useCheckMobileScreen";
 
 const Navbar = () => {
   // load redux state for navbar height and searchbar visibility
@@ -39,8 +40,8 @@ const Navbar = () => {
   // mobile menu modal
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // check if input should be focused (after clicking on search button)
-  const [shouldFocus, setShouldFocus] = useState(false);
+  // check width of page
+  // const isMobile = useCheckMobileScreen();
 
   const searchBarRef = useRef(null);
   const otherSearchBarRef = useRef(null);
@@ -99,7 +100,7 @@ const Navbar = () => {
               </button>
             )}
             <button
-              className={isMobileMenuOpen ? "close" : ""}
+              className={isMobileMenuOpen ? "menu close" : "menu"}
               onClick={() => setIsMobileMenuOpen(true)}
             >
               <MenuIcon color={iconColorCheck(route)} />
@@ -111,12 +112,15 @@ const Navbar = () => {
           </div>
         </div>
         {route === "/traduzioni" && (
-          <div ref={otherSearchBarRef}>
+          <div
+            className="searchbar-container-traduzioni"
+            ref={otherSearchBarRef}
+          >
             <SearchBar parentSection="from-traduzioni" />
           </div>
         )}
         {isSearchbarVisible && (
-          <div ref={searchBarRef}>
+          <div className="searchbar-container" ref={searchBarRef}>
             <SearchBar parentSection="from-navbar" />
           </div>
         )}

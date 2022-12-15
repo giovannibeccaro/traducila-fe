@@ -29,7 +29,7 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
       <section
         className="artist-info"
         style={
-          navbarHeight ? { marginTop: navbarHeight } : { marginTop: "88px" }
+          navbarHeight ? { paddingTop: navbarHeight } : { marginTop: "88px" }
         }
       >
         <h2 className="artist-name">{name}</h2>

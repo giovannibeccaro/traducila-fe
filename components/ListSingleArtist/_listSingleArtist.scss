@@ -4,6 +4,10 @@
   align-items: center;
   margin-block: 1.7rem;
   position: relative;
+  height: 60px;
+  @media (min-width: $width4) {
+    width: 12rem;
+  }
   &::after {
     content: "";
     width: 100vw;
@@ -14,6 +18,9 @@
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.3;
+    @media (min-width: $width2) {
+      width: 0;
+    }
   }
 
   .info {
@@ -26,6 +33,7 @@
       h5 {
         margin: 0;
         font-size: 1rem;
+        font-weight: 500;
       }
     }
 
@@ -37,5 +45,18 @@
   }
   .position {
     font-size: 1.5rem;
+  }
+}
+
+.desktop-single-artist {
+  display: none;
+  @media (min-width: $width4) {
+    display: block;
+  }
+}
+.mobile-single-artist {
+  display: block;
+  @media (min-width: $width4) {
+    display: none;
   }
 }

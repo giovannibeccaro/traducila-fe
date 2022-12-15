@@ -42,10 +42,42 @@
     font-size: 2rem;
     font-family: $roboto;
     text-decoration: none;
+    &:hover {
+      color: $accentColor;
+    }
   }
 }
 
 body.nav-menu-on {
   height: 100vh;
   overflow-y: hidden;
+}
+
+@media (min-width: $width2) {
+  .nav-links {
+    position: initial;
+    background-color: initial;
+    height: initial;
+    padding: initial;
+    flex-direction: row;
+    color: $blackColor;
+    transition-duration: 0ms;
+
+    .close-menu {
+      display: none;
+    }
+
+    ul {
+      flex-direction: row;
+      font-weight: 600;
+      gap: 2rem;
+      @media (min-width: $width4) {
+        gap: 3.5rem;
+      }
+    }
+    li a {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+  }
 }

@@ -1,13 +1,14 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect } from "react";
 import SearchBar from "../components/Searchbar/SearchBar";
 import ArrowRightIcon from "../components/svgs/ArrowRightIcon";
 import HeroIllustration from "../components/svgs/HeroIllustration";
-import useCheckHeight from "../hooks/useCheckHeight";
+import HeroIllustrationDesktop from "../components/svgs/HeroIllustrationDesktop";
+import HomeMusicNotes from "../components/svgs/HomeMusicNotes";
 
 // import Image from "next/image";
 export default function Home() {
-  const height = useCheckHeight();
   useEffect(() => {
     document.body.classList.add("no-overflow");
     return () => {
@@ -24,21 +25,33 @@ export default function Home() {
       </Head>
       <section className="home">
         <div className="home-main">
-          <h1>LE MIGLIORI</h1>
-          <h1>TRADUZIONI DEI </h1>
-          <h1>TUOI TESTI PREFERITI</h1>
+          <div className="mobile-heading">
+            <h1>LE MIGLIORI</h1>
+            <h1>TRADUZIONI DEI </h1>
+            <h1>TUOI TESTI PREFERITI</h1>
+          </div>
+          <div className="desktop-heading">
+            <h1>LE MIGLIORI TRADUZIONI</h1>
+            <h1>DEI TUOI TESTI PREFERITI</h1>
+          </div>
           <p className="subtitle">
             Inserire qui un testo carino riguardo il fatto che le nostre
             traduzioni sono migliori per motivo X.
           </p>
           <SearchBar parentSection="homepage" />
-          <a className="view-others" href="#">
+          <Link className="view-others" href="/traduzioni">
             Oppure dai un&apos;occhiata a tutte le nostre traduzioni{" "}
             <ArrowRightIcon />
-          </a>
+          </Link>
+          <div className="music-notes">
+            <HomeMusicNotes />
+          </div>
         </div>
-        <div className="hero-illustration">
+        <div className="hero-illustration-mobile">
           <HeroIllustration />
+        </div>
+        <div className="hero-illustration-desktop">
+          <HeroIllustrationDesktop />
         </div>
       </section>
     </>

@@ -1,15 +1,23 @@
 main.artist-page {
   margin: -2rem; //remove body padding
+  @media (min-width: $width2) {
+    margin: -3rem;
+  }
   .artist-info {
     background-color: $blackColor;
     color: white;
     padding: 0 2rem 2.5rem 2rem;
     border-bottom-right-radius: 3rem;
+    @media (min-width: $width2) {
+      padding-inline: 25%;
+      margin-inline: -7%;
+    }
   }
   .artist-name {
     font-weight: 500;
     margin-block: 0.25rem 0.85rem;
     font-size: 2.25rem;
+    @include max60;
   }
 
   .tags {
@@ -17,6 +25,8 @@ main.artist-page {
     gap: 0.75rem;
     flex-wrap: wrap;
     margin-bottom: 1.75rem;
+    @include max60;
+
     p {
       background-color: $whiteColor;
       color: $blackColor;
@@ -31,18 +41,23 @@ main.artist-page {
   }
   .description {
     font-size: $normalText;
+    @include max60;
   }
 
   .album-header {
-    margin-inline: 2rem;
     margin-block: 2rem 1rem;
     font-weight: 500;
     font-size: 1.35rem;
+    margin-inline: 2rem;
+    @media (min-width: $width2) {
+      @include max45;
+    }
   }
 
   .albums-section {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    @include max45;
   }
 }

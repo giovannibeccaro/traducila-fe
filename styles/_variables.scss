@@ -27,3 +27,14 @@ $normalText: 0.9rem;
 $paddingMobile: 2rem;
 $paddingDesktop: 3rem 6%;
 $paddingDesktopNegative: -3rem -6%;
+
+//? MIXINS
+
+@mixin max60 {
+  max-width: 60rem;
+  margin-inline: auto;
+}
+@mixin max45 {
+  max-width: 45rem;
+  margin-inline: auto;
+}

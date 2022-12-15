@@ -1,15 +1,31 @@
 .contattaci-page {
   font-family: $poppins;
   font-size: 14px;
+  @media (min-width: $width2) {
+    font-size: 1rem;
+  }
   .main-article {
     background-color: $blackColor;
     color: $whiteColor;
     margin: -2rem;
-    margin-top: 3.9rem;
+    margin-top: 3rem;
     padding: 2rem;
     padding-bottom: 3.85rem;
     h2 {
       font-size: 2.25rem;
+    }
+    @media (min-width: $width2) {
+      margin: -6rem -7%;
+      padding: 13rem 7% 6rem;
+    }
+    @media (min-width: 800px) {
+      padding-inline: 20%;
+    }
+    @media (min-width: $width4) {
+      margin: -7%;
+      margin-top: 2rem;
+      padding-inline: 25%;
+      padding-block: 6rem 3.85rem;
     }
   }
 
@@ -21,6 +37,17 @@
   }
   .secondary-articles {
     margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    @media (min-width: $width2) {
+      margin-top: 10rem;
+    }
+    @media (min-width: 450px) {
+      max-width: 70%;
+      margin-inline: auto;
+      font-size: 1.1rem;
+    }
   }
   .secondary-article {
     position: relative;
@@ -28,16 +55,91 @@
     margin: -2rem;
     padding: 2rem;
     margin-bottom: 2rem;
+    @media (min-width: $width2) {
+      margin: -3rem -7%;
+      padding: 3rem 7%;
+    }
     svg {
       position: absolute;
       top: 5%;
       right: -10%;
       width: 70%;
       opacity: 0.6;
+      @media (min-width: 430px) {
+        right: 0;
+      }
     }
     &.secondary-article:nth-child(1) {
       svg {
         top: -10%;
+        @media (min-width: 430px) {
+          right: -10%;
+        }
+        @media (min-width: $width4minus) {
+          width: 25vw;
+          height: 25vw;
+          right: -1vw;
+          top: -2vw;
+        }
+      }
+    }
+    &.secondary-article:nth-child(2) {
+      svg {
+        @media (min-width: $width4minus) {
+          width: 30vw;
+          height: 20vw;
+          right: 0;
+        }
+      }
+    }
+    &.secondary-article:nth-child(3) {
+      svg {
+        top: 3.5rem;
+        @media (min-width: $width4minus) {
+          width: 30vw;
+          height: 15vw;
+          right: 0;
+          top: 2.25rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $width4minus) {
+  .contattaci-page {
+    .secondary-articles {
+      margin-inline: auto;
+      flex-direction: row;
+      max-width: initial;
+    }
+    .secondary-article {
+      font-size: 0.75rem;
+      h2 {
+        font-size: 1.5rem;
+      }
+      svg {
+        width: 100%;
+      }
+    }
+    &.secondary-article:nth-child(2),
+    &.secondary-article:nth-child(3) {
+      svg {
+        background-color: red;
+      }
+    }
+  }
+}
+@media (min-width: $width5) {
+  .contattaci-page {
+    .secondary-articles {
+      justify-content: space-between;
+      gap: 5rem;
+    }
+    .secondary-article {
+      font-size: 0.9rem;
+      h2 {
+        font-size: 1.75rem;
       }
     }
   }

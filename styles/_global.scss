@@ -6,6 +6,9 @@ body {
   position: relative;
   overflow-x: hidden;
   height: 100%;
+  @media (min-width: $width2) {
+    padding: 3rem 6%;
+  }
 }
 
 span.inline {
@@ -43,4 +46,14 @@ body.margin-top-searchbar {
   .song-page-main {
     padding-top: calc(min(35vw, 130px) * 2 + 4.5rem);
   }
+}
+
+body.no-overflow {
+  @media (min-width: $width5) {
+    overflow-y: hidden;
+  }
+}
+
+* :focus-visible {
+  outline: 3px dotted $accentColor;
 }

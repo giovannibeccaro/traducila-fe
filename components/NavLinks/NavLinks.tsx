@@ -24,7 +24,7 @@ const NavLinks: React.FC<Props> = ({
   return (
     <section className={isMobileMenuOpen ? "nav-links open" : "nav-links"}>
       <button
-        className={isMobileMenuOpen ? " open" : ""}
+        className={isMobileMenuOpen ? "close-menu open" : "close-menu"}
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <CrossIcon />

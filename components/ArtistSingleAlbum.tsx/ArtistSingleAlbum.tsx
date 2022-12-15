@@ -59,12 +59,11 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
               <li className="not-translated" key={song.id}>
                 <p>{song.attributes.name}</p>
                 <p
-                  className="no-translation-available"
-                  style={
+                  className={`no-translation-available ${
                     showTooltip.visible && showTooltip.id === song.id
-                      ? { fontSize: ".5rem" }
-                      : { fontSize: "1.1rem" }
-                  }
+                      ? "small"
+                      : "big"
+                  }`}
                   onClick={() =>
                     setShowTooltip({
                       visible: !showTooltip.visible,
