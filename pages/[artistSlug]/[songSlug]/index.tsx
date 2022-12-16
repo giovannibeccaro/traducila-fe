@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../store/store";
 import { artistType, songType } from "../../../types";
 import { fetchedDataType, fetchedArtistDataType } from "../../../types";
-import { getQuery } from "../../../utils/utils";
+import { dangerouslyHtmlLinkConvert, getQuery } from "../../../utils/utils";
 import { setSongInfo } from "../../../store/songInfo/songInfoSlice";
 import OtherTranslationFromArtist from "../../../components/OtherTranslationsFromArtist/OtherTranslationFromArtist";
+import { useRouter } from "next/router";
 
 type Props = {
   songData: songType;
@@ -70,9 +71,14 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
     updateCount();
   }, [artist.data.attributes.slug, songData.id]);
 
+  const router = useRouter();
+  function clickHandler(e: any) {
+    router.push(dangerouslyHtmlLinkConvert(e));
+  }
+
   return (
     <main className="song-page-main">
-      <section className="song-page-main-section">
+      <section className="song-page-first-section">
         <h1>{`${isTranslation ? "Traduzione di " : "Testo di "} ${name}`}</h1>
         {isTranslation ? (
           <div
@@ -86,16 +92,40 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
           />
         )}
       </section>
-      <section className="song-page-secondary-section">
-        <h2>Descrizione</h2>
-        <p>{songDescription}</p>
-        {songsFromArtist.length > 0 && (
-          <OtherTranslationFromArtist
-            data={songsFromArtist}
-            slug={slug}
-            artistSlug={artist.data.attributes.slug}
+      <section className="desktop-only-section">
+        <div className="original-text-container">
+          <h1>{`Testo di ${name}`}</h1>
+          <div
+            className="translated-text"
+            dangerouslySetInnerHTML={{ __html: originalSong }}
           />
-        )}
+        </div>
+        <div className="translated-text-container">
+          <h1>{`Traduzione di ${name}`}</h1>
+          <div
+            className="translated-text"
+            dangerouslySetInnerHTML={{ __html: translatedSong }}
+          />
+        </div>
+      </section>
+      <section className="song-page-secondary-section">
+        <div className="secondary-section-content">
+          <div className="secondary-section-description">
+            <h2>Descrizione</h2>
+            <div
+              className="description"
+              onClick={clickHandler}
+              dangerouslySetInnerHTML={{ __html: songDescription }}
+            />
+          </div>
+          {songsFromArtist.length > 0 && (
+            <OtherTranslationFromArtist
+              data={songsFromArtist}
+              slug={slug}
+              artistSlug={artist.data.attributes.slug}
+            />
+          )}
+        </div>
       </section>
     </main>
   );
@@ -138,6 +168,7 @@ export const getStaticProps = async (context: any) => {
   //? request album data for otherTranslations component
   const initialQueryArtist = getQuery("artists");
   const artistSlug = songData.data[0].attributes.artist.data.attributes.slug;
+
   const artistRes = await fetch(
     `${initialQueryArtist}${searchBySlug}${artistSlug}&populate=*`
   );

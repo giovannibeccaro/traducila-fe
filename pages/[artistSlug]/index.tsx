@@ -4,11 +4,15 @@ import ArtistSingleAlbum from "../../components/ArtistSingleAlbum.tsx/ArtistSing
 import { artistType, fetchedArtistDataType } from "../../types";
 import { getQuery } from "../../utils/utils";
 import { RootState } from "../../store/store";
+import { dangerouslyHtmlLinkConvert } from "../../utils/utils";
+import { useRouter } from "next/router";
 
 type Props = {
   data: artistType;
 };
 const ArtistPage: React.FC<Props> = ({ data }) => {
+  const router = useRouter();
+
   // load redux state for navbar height
   const { navbarHeight } = useSelector((store: RootState) => store.navbar);
 
@@ -21,6 +25,10 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
     }
     updateCount();
   }, [data.id]);
+
+  function clickHandler(e: any) {
+    router.push(dangerouslyHtmlLinkConvert(e));
+  }
 
   const { name, slug, tags, description, songs, albums } = data.attributes;
 
@@ -38,7 +46,11 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
             <p key={tag.attributes.genre}>{tag.attributes.genre}</p>
           ))}
         </div>
-        <p className="description">{description}</p>
+        <div
+          className="description"
+          onClick={clickHandler}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       </section>
       <h2 className="album-header">Album dell&apos;artista</h2>
       <div className="albums-section">

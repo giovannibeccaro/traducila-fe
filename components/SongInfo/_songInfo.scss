@@ -13,6 +13,11 @@
     height: min(30vw, 175px);
   }
 
+  .scroll-to-description {
+    display: none;
+    transition-duration: 0ms;
+  }
+
   .song-info {
     display: flex;
     flex-direction: column;
@@ -20,18 +25,23 @@
     justify-content: space-between;
     .show-alt-text {
       transition-duration: 0ms;
+      margin: 0;
     }
   }
 
   a {
     color: $whiteColor;
     text-decoration: underline;
+    &:hover {
+      color: $accentColor;
+    }
   }
 
   .artist-name {
     font-weight: 300;
     opacity: 0.8;
     line-height: 0.75;
+    font-style: italic;
   }
 
   .secondary-info {
@@ -66,6 +76,70 @@
     img {
       width: 50px;
       height: 50px;
+    }
+  }
+}
+
+@media (min-width: $width5) {
+  .song-info-section {
+    transform: translateY(5vh);
+
+    .show-alt-text {
+      display: none;
+    }
+
+    img {
+      position: absolute;
+      box-shadow: 0 0 2rem rgba(37, 37, 37, 0.5);
+      border-radius: 0.25rem;
+    }
+
+    .song-info {
+      margin-left: calc(min(30vw, 175px) + 1rem); // same as img
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      .song-title {
+        font-size: 2.5rem;
+        font-weight: 600;
+      }
+      .artist-name {
+        font-size: 1.5rem;
+      }
+    }
+
+    .main-info {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .secondary-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &.slim {
+      transform: initial;
+      height: 65px;
+      margin-top: 1.75rem;
+
+      img {
+        height: 50px;
+        width: 50px;
+      }
+      .song-title {
+        font-size: 1rem;
+      }
+      .artist-name {
+        font-size: 0.75rem;
+      }
+      .song-info {
+        margin-left: 60px; // same as img + 10 px
+        height: 50px; // same as img
+      }
     }
   }
 }

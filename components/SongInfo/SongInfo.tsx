@@ -102,12 +102,7 @@ const SongInfo = () => {
             </p>
           </div>
         )}
-        <button
-          className="show-alt-text"
-          onClick={() => {
-            return clickButton();
-          }}
-        >
+        <button className="show-alt-text" onClick={() => clickButton()}>
           <SwitchTextIcon />{" "}
           {isTranslation ? "Mostra testo originale" : "Mostra traduzione"}
         </button>

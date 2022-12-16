@@ -9,6 +9,10 @@
     font-size: $normalText;
   }
 
+  .desktop-only-section {
+    display: none;
+  }
+
   .song-page-secondary-section {
     background-color: $blackColor;
     color: $whiteColor;
@@ -34,6 +38,48 @@
         font-size: 0.9rem;
         font-weight: 600;
       }
+    }
+  }
+}
+
+@media (min-width: $width2) {
+  .song-page-main {
+    padding-top: calc(min(35vw, 130px) * 2.5);
+    .song-page-first-section {
+      @include max60;
+    }
+    .song-page-secondary-section {
+      width: 100vw;
+      margin-inline: -7%;
+    }
+    .secondary-section-content {
+      @include max50;
+    }
+  }
+}
+@media (min-width: $width5) {
+  .song-page-main {
+    padding-top: calc(min(35vw, 130px) * 2.75);
+
+    .song-page-first-section {
+      display: none;
+    }
+
+    .desktop-only-section {
+      display: flex;
+      justify-content: space-between;
+      max-width: 55rem;
+      margin-inline: auto;
+    }
+
+    .secondary-section-content {
+      display: flex;
+      gap: 3rem;
+      max-width: 60rem;
+    }
+
+    .secondary-section-description {
+      flex-basis: 66%;
     }
   }
 }

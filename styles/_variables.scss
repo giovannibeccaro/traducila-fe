@@ -19,6 +19,7 @@ $width3: 700px;
 $width4: 1000px;
 $width4minus: 900px;
 $width5: 1200px;
+$width6: 1500px;
 
 //? FONT SIZE
 $normalText: 0.9rem;
@@ -36,5 +37,9 @@ $paddingDesktopNegative: -3rem -6%;
 }
 @mixin max45 {
   max-width: 45rem;
+  margin-inline: auto;
+}
+@mixin max50 {
+  max-width: 50rem;
   margin-inline: auto;
 }

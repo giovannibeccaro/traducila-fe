@@ -28,3 +28,11 @@ export const stringToSlug = (str: string) =>
     .replace(/[^\w\s-]/g, "")
     .replace(/[\s_-]+/g, "-")
     .replace(/^-+|-+$/g, "");
+
+export function dangerouslyHtmlLinkConvert(e: any) {
+  const targetLink = e.target.closest("a");
+  if (!targetLink) return;
+  e.preventDefault();
+  return targetLink.href;
+  console.log(targetLink.href); // this.props.history.push(e.target.href)
+}

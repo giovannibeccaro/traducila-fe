@@ -155,7 +155,7 @@ export async function getStaticProps() {
     const [newTranslationsRes, mostViewedRes, mostViewedArtistsRes] =
       await Promise.all([
         fetch(
-          `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=publishedAt%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+          `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=updatedAt%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
         ),
         fetch(
           `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
