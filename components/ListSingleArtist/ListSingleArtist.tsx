@@ -9,8 +9,6 @@ type Props = {
 };
 
 const ListSingleArtist: React.FC<Props> = ({ artistName, slug, position }) => {
-  console.log(artistName, position);
-  console.log(position === 0);
   return (
     <Link href={`/${slug}`}>
       <article className="single-artist-article">

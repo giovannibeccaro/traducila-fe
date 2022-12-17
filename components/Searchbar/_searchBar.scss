@@ -12,12 +12,23 @@ form {
   &:focus-within {
     outline: 3px solid $accentColor;
   }
+  &.homepage {
+    align-items: center;
+    input {
+      height: 100%;
+    }
+    button {
+      margin: 0.25rem 0.45rem 0.25rem 0.25rem;
+      width: 35px;
+      height: 35px;
+    }
+  }
 
   input {
     border: none;
     background-color: inherit;
     color: white;
-    border-radius: 2rem;
+    border-radius: 50%;
     padding: 1rem 0 1rem 1rem;
     font-size: 0.8rem;
     @media (min-width: $width2) {
@@ -114,4 +125,25 @@ form {
   // contains from-navbar only
   display: flex;
   width: 100vw;
+}
+
+@media (min-width: $width6) {
+  form.homepage {
+    height: 6vh;
+    width: 39vw;
+    align-items: center;
+
+    input {
+      font-size: 1vw;
+    }
+    button {
+      width: 4.5vh;
+      height: 4.5vh;
+      margin-right: 1vh;
+      svg {
+        width: 2vw;
+        height: 2vw;
+      }
+    }
+  }
 }

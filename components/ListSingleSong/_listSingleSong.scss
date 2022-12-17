@@ -1,6 +1,9 @@
-a {
+.single-song-link {
   color: $blackColor;
   text-decoration: none;
+  &:hover {
+    color: $blackColor;
+  }
   .single-most-searched {
     font-size: 0.75rem;
     display: flex;

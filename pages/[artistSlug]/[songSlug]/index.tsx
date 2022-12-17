@@ -156,28 +156,29 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context: any) => {
+  console.log("dsljnkjdn");
+
   //? request single song data
-  const initialQuerySong = getQuery("posts");
+  const initialQuery = getQuery("artists");
   const searchBySlug = "?filters[slug][$eq]=";
   const songSlug = context.params.songSlug;
+  const artistSlug = context.params.artistSlug;
   const res = await fetch(
-    `${initialQuerySong}${searchBySlug}${songSlug}&populate=*`
+    `${initialQuery}${searchBySlug}${artistSlug}&populate[0]=songs.songImg&populate[1]=songs.album&populate[2]=songs.artist`
   );
-  const songData: fetchedDataType = await res.json();
 
-  //? request album data for otherTranslations component
-  const initialQueryArtist = getQuery("artists");
-  const artistSlug = songData.data[0].attributes.artist.data.attributes.slug;
-
-  const artistRes = await fetch(
-    `${initialQueryArtist}${searchBySlug}${artistSlug}&populate=*`
+  const artistData: fetchedArtistDataType = await res.json();
+  const songData = artistData.data[0].attributes.songs.data.filter(
+    (el) => el.attributes.slug === songSlug
   );
-  const artistData: fetchedArtistDataType = await artistRes.json();
+  console.log(songData);
 
   return {
     props: {
-      songData: songData.data[0],
+      songData: songData[0],
       songsFromArtist: artistData.data[0].attributes.songs.data,
     },
   };
 };
+
+//http://localhost:1337/api/artists?filters[slug][$eq]=blink-182&populate[0]=songs.songImg&populate[1]=songs.album

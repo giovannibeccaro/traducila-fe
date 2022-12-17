@@ -57,3 +57,11 @@ body.no-overflow {
 * :focus-visible {
   outline: 3px dotted $accentColor;
 }
+
+a {
+  color: $whiteColor;
+  text-decoration: underline;
+  &:hover {
+    color: $accentColor;
+  }
+}

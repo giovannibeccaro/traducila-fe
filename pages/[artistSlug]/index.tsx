@@ -27,7 +27,9 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
   }, [data.id]);
 
   function clickHandler(e: any) {
-    router.push(dangerouslyHtmlLinkConvert(e));
+    if (dangerouslyHtmlLinkConvert(e)) {
+      router.push(dangerouslyHtmlLinkConvert(e));
+    }
   }
 
   const { name, slug, tags, description, songs, albums } = data.attributes;

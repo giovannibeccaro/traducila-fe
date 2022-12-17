@@ -25,7 +25,6 @@ const OtherTranslationFromArtist: React.FC<Props> = ({
     );
 
     setDataWithoutCurrentSong(dataWithoutCurrentSong);
-    console.log(dataWithoutCurrentSong);
   }, [data, slug]);
 
   return (

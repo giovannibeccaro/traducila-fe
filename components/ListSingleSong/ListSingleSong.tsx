@@ -20,7 +20,7 @@ const ListSingleSong: React.FC<Props> = ({
   artistSlug,
 }) => {
   return (
-    <Link href={`/${artistSlug}/${slug}`}>
+    <Link className="single-song-link" href={`/${artistSlug}/${slug}`}>
       <article className="single-most-searched">
         <div className="left-part">
           <Image src={songImage} alt="album-cover" width={120} height={120} />

@@ -34,5 +34,4 @@ export function dangerouslyHtmlLinkConvert(e: any) {
   if (!targetLink) return;
   e.preventDefault();
   return targetLink.href;
-  console.log(targetLink.href); // this.props.history.push(e.target.href)
 }

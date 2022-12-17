@@ -144,3 +144,12 @@
     }
   }
 }
+
+@media (min-width: $width6) {
+  .contattaci-page {
+    .secondary-article {
+      overflow-x: initial;
+      padding-top: 3.9vw;
+    }
+  }
+}
