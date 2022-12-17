@@ -26,13 +26,13 @@ export default function Home() {
       <section className="home">
         <div className="home-main">
           <div className="mobile-heading">
-            <h1>LE MIGLIORI</h1>
-            <h1>TRADUZIONI DEI </h1>
-            <h1>TUOI TESTI PREFERITI</h1>
+            <p>LE MIGLIORI</p>
+            <p>TRADUZIONI DEI </p>
+            <p>TUOI TESTI PREFERITI</p>
           </div>
           <div className="desktop-heading">
-            <h1>LE MIGLIORI TRADUZIONI</h1>
-            <h1>DEI TUOI TESTI PREFERITI</h1>
+            <p>LE MIGLIORI TRADUZIONI</p>
+            <p>DEI TUOI TESTI PREFERITI</p>
           </div>
           <p className="subtitle">
             Inserire qui un testo carino riguardo il fatto che le nostre

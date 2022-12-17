@@ -16,10 +16,13 @@ import {
   setNavbarHeight,
   setIsSearchbarVisible,
 } from "../../store/navbar/navbarSlice";
-import useCheckMobileScreen from "../../hooks/useCheckMobileScreen";
+import { setIsPageScrolled } from "../../store/scrollCheck/scrollCheckSlice";
 
 const Navbar = () => {
-  // load redux state for navbar height and searchbar visibility
+  // load redux state to check if page has been scrolled and searchbar visibility
+  const { isPageScrolled } = useSelector(
+    (store: RootState) => store.scrollCheck
+  );
   const { isSearchbarVisible } = useSelector(
     (store: RootState) => store.navbar
   );
@@ -68,6 +71,21 @@ const Navbar = () => {
     dispatch(setIsSearchbarVisible(false))
   );
 
+  //? check if page is scrolled to reduce navbar height (songpage)
+  useEffect(() => {
+    function checkScroll() {
+      if (window.pageYOffset > 50 && !isPageScrolled) {
+        dispatch(setIsPageScrolled(true));
+      } else if (window.pageYOffset < 50 && isPageScrolled) {
+        dispatch(setIsPageScrolled(false));
+      }
+    }
+    window.addEventListener("scroll", checkScroll);
+    return () => {
+      window.removeEventListener("scroll", checkScroll);
+    };
+  }, [isPageScrolled, dispatch]);
+
   return (
     <>
       <nav
@@ -75,7 +93,13 @@ const Navbar = () => {
         className={`navbar 
           ${isHomePage ? "navbar-home" : ""}
           ${isTraduzioniPage ? "black-navbar traduzioni" : ""} 
-          ${isSingleSongPage ? "black-navbar single-song" : ""} 
+          ${
+            isSingleSongPage
+              ? isPageScrolled
+                ? "black-navbar single-song reduced"
+                : "black-navbar single-song"
+              : ""
+          } 
           ${isContattaciPage ? "navbar-contattaci" : ""}
           ${isArtistPage ? "artist-page" : ""}`}
       >

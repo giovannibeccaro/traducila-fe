@@ -11,6 +11,7 @@
   img {
     width: min(30vw, 175px);
     height: min(30vw, 175px);
+    border-radius: 0.25rem;
   }
 
   .scroll-to-description {
@@ -91,7 +92,6 @@
     img {
       position: absolute;
       box-shadow: 0 0 2rem rgba(37, 37, 37, 0.5);
-      border-radius: 0.25rem;
     }
 
     .song-info {

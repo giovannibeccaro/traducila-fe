@@ -1,12 +1,14 @@
 .song-page-main {
   padding-top: calc(min(35vw, 130px) * 2);
-  h1 {
+  h2 {
     font-size: 1.25rem;
     margin-block: -1rem 1rem;
+    font-weight: 600;
   }
   .translated-text,
   .original-text {
     font-size: $normalText;
+    margin-bottom: 5rem;
   }
 
   .desktop-only-section {

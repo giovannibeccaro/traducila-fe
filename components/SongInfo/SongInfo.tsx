@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { setIsPageScrolled } from "../../store/scrollCheck/scrollCheckSlice";
 
 const SongInfo = () => {
   //? redux for original song/translation check
@@ -35,21 +36,23 @@ const SongInfo = () => {
   } = songInfo;
   //? slim navbar functionality
   //  1) check if user has scrolled
-  const [isPageScrolled, setIsPageScrolled] = useState<boolean>(false);
+  const { isPageScrolled } = useSelector(
+    (store: RootState) => store.scrollCheck
+  );
 
   useEffect(() => {
     function checkScroll() {
       if (window.pageYOffset > 50 && !isPageScrolled) {
-        setIsPageScrolled(true);
+        dispatch(setIsPageScrolled(true));
       } else if (window.pageYOffset < 50 && isPageScrolled) {
-        setIsPageScrolled(false);
+        dispatch(setIsPageScrolled(false));
       }
     }
     window.addEventListener("scroll", checkScroll);
     return () => {
       window.removeEventListener("scroll", checkScroll);
     };
-  }, [isPageScrolled]);
+  }, [isPageScrolled, dispatch]);
 
   useEffect(() => {
     const routeSlug = route.query.artistSlug;

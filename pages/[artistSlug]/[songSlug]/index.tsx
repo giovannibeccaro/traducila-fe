@@ -133,12 +133,12 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
 export default SongTranslationPage;
 
 export async function getStaticPaths() {
+  //TODO filter data for translated song not null so that we have less fetches
+  //TODO what happens on 101st song? Possible pagination problem, check back later
   const endpoint = getQuery("posts");
   if (!endpoint) return;
   const res = await fetch(endpoint + "?populate=*&pagination[limit]=-1");
   const data = await res.json();
-
-  console.log(data);
 
   const acceptedSongs = data.data.filter(
     (song: songType) => song.attributes.originalSong !== null
@@ -152,7 +152,6 @@ export async function getStaticPaths() {
       },
     };
   });
-  console.log(paths);
 
   return {
     paths,

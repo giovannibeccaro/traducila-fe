@@ -56,7 +56,7 @@ const SearchBar: React.FC<Props> = ({ parentSection, shouldFocus }) => {
         <input
           ref={inputRef}
           type="text"
-          placeholder="Cerca qualcosa (canzoni, artisti, album)"
+          placeholder="Cerca una canzone o un artista..."
           onFocus={() => {
             setShowSuggestions(true);
           }}

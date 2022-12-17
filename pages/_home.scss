@@ -9,14 +9,38 @@
 
   .desktop-heading {
     display: none;
+    p {
+      font-family: $fredoka;
+      font-size: 1.75rem;
+      font-weight: 700;
+      @media (min-width: $width2) {
+        font-size: 2.75rem;
+      }
+      @media (min-width: $width3) {
+        font-size: 3.25rem;
+      }
+      margin: 0;
+      &:last-of-type {
+        margin-bottom: 1rem;
+        // @media (max-height: $height1) {
+        //   // smaller screen fix
+        //   margin-bottom: 0.25rem;
+        // }
+      }
+    }
   }
   .music-notes {
     display: none;
   }
 
-  h1 {
+  .mobile-heading p {
     font-family: $fredoka;
     font-size: 1.75rem;
+    font-weight: 700;
+
+    @media (max-width: $width0) {
+      font-size: 1.5rem;
+    }
     @media (min-width: $width2) {
       font-size: 2.75rem;
     }
@@ -32,11 +56,14 @@
       // }
     }
   }
-
   .subtitle {
     font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 2.5rem;
+    @media (max-width: $width0) {
+      font-size: 0.8rem;
+      margin-bottom: 2rem;
+    }
     @media (min-width: $width2) {
       font-size: 1.1rem;
     }
@@ -128,6 +155,9 @@
     .desktop-heading {
       display: block;
       margin-top: 10vh;
+      p {
+        font-size: 2.5rem;
+      }
     }
     .mobile-heading {
       display: none;
@@ -143,9 +173,6 @@
         height: 80%;
         filter: drop-shadow(0 0 1rem $accentColor);
       }
-    }
-    h1 {
-      font-size: 2.5rem;
     }
     .subtitle {
       font-size: 1rem;
