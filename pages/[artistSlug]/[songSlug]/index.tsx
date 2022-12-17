@@ -135,11 +135,15 @@ export default SongTranslationPage;
 export async function getStaticPaths() {
   const endpoint = getQuery("posts");
   if (!endpoint) return;
-  const res = await fetch(endpoint + "?populate=*");
+  const res = await fetch(endpoint + "?populate=*&pagination[limit]=-1");
   const data = await res.json();
+
+  console.log(data);
+
   const acceptedSongs = data.data.filter(
     (song: songType) => song.attributes.originalSong !== null
   );
+
   const paths = acceptedSongs.map((song: songType) => {
     return {
       params: {
@@ -148,6 +152,7 @@ export async function getStaticPaths() {
       },
     };
   });
+  console.log(paths);
 
   return {
     paths,

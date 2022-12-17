@@ -29,7 +29,7 @@ const OtherTranslationFromArtist: React.FC<Props> = ({
 
   return (
     <section className="other-translations-page">
-      <h2>Altre traduzioni di blink-182</h2>
+      <h2>Altre traduzioni di METTI NOME</h2>
       <ul>
         {dataWithoutCurrentSong.map((song) => (
           <li key={song.id}>
