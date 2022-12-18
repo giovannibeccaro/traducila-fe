@@ -59,3 +59,9 @@ a {
     color: $accentColor;
   }
 }
+
+.onlyMobile {
+  @media (min-width: $width4) {
+    display: none;
+  }
+}

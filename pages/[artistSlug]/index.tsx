@@ -92,7 +92,7 @@ export const getStaticProps = async (context: any) => {
   const slug = context.params.artistSlug;
 
   const res = await fetch(
-    `${initialQuerySong}${searchBySlug}${slug}&fields[0]=name&fields[1]=slug&fields[2]=description&populate[tags][fields][0]=genre&populate[albums][populate][0]=songs`
+    `${initialQuerySong}${searchBySlug}${slug}&fields[0]=name&fields[1]=slug&fields[2]=description&populate[tags][fields][0]=genre&populate[albums][populate][0]=songs&populate[albums][populate][1]=image`
   );
   const data: fetchedArtistDataType = await res.json();
 

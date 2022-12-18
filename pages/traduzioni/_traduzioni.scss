@@ -8,13 +8,17 @@ section.traduzioni {
     margin-inline: auto;
   }
 
-  button {
+  .toggle-show-list {
     display: flex;
     gap: 1rem;
     align-items: center;
     font-size: 1.25rem;
     font-weight: 600;
     padding-inline: 0;
+    @media (min-width: $width4) {
+      pointer-events: none;
+      cursor: default;
+    }
   }
   .translation-list-header {
     margin-block: 2rem -0.5rem;

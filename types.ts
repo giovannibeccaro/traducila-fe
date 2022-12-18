@@ -85,3 +85,16 @@ export type tagType = {
     genre: string;
   };
 };
+
+type imageType = {
+  id: number;
+  attributes: {
+    mime: string;
+    url: string;
+    width: 640;
+  };
+};
+
+export type imagesType = {
+  data: imageType[];
+};

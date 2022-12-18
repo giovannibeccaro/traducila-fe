@@ -15,23 +15,11 @@ const OtherTranslationFromArtist: React.FC<Props> = ({
 }) => {
   //? don't render current song
 
-  const [dataWithoutCurrentSong, setDataWithoutCurrentSong] = useState<
-    songType[]
-  >([]);
-
-  useEffect(() => {
-    const dataWithoutCurrentSong = data.filter(
-      (song) => song.attributes.slug !== slug && song.attributes.originalSong
-    );
-
-    setDataWithoutCurrentSong(dataWithoutCurrentSong);
-  }, [data, slug]);
-
   return (
     <section className="other-translations-page">
       <h2>Altre traduzioni di METTI NOME</h2>
       <ul>
-        {dataWithoutCurrentSong.map((song) => (
+        {data.map((song) => (
           <li key={song.id}>
             <Link href={`/${artistSlug}/${song.attributes.slug}`}>
               {song.attributes.name}

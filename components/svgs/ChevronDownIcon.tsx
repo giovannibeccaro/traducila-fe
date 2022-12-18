@@ -3,6 +3,7 @@ import React from "react";
 const ChevronDownIcon = () => {
   return (
     <svg
+      className="onlyMobile"
       width="12"
       height="8"
       viewBox="0 0 12 8"

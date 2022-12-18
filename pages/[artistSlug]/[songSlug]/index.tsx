@@ -7,6 +7,7 @@ import { dangerouslyHtmlLinkConvert, getQuery } from "../../../utils/utils";
 import { setSongInfo } from "../../../store/songInfo/songInfoSlice";
 import OtherTranslationFromArtist from "../../../components/OtherTranslationsFromArtist/OtherTranslationFromArtist";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 type Props = {
   songData: songType;
@@ -71,6 +72,11 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
     updateCount();
   }, [artist.data.attributes.slug, songData.id]);
 
+  const otherSongs = songsFromArtist.filter(
+    (el) => el.attributes.slug !== slug && el.attributes.translatedSong
+  );
+  console.log(otherSongs);
+
   const router = useRouter();
   function clickHandler(e: any) {
     router.push(dangerouslyHtmlLinkConvert(e));
@@ -118,12 +124,21 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
               dangerouslySetInnerHTML={{ __html: songDescription }}
             />
           </div>
-          {songsFromArtist.length > 0 && (
+          {otherSongs.length > 0 ? (
             <OtherTranslationFromArtist
-              data={songsFromArtist}
+              data={otherSongs}
               slug={slug}
               artistSlug={artist.data.attributes.slug}
             />
+          ) : (
+            <div className="suggest-song">
+              <h2>Altre traduzioni di {artistName}</h2>
+              <p>
+                Non sono disponibili nei nostri archivi altre traduzioni di{" "}
+                {artistName}. Cerchi la traduzione di una canzone in particolare
+                di questo artista? <Link href="/">Scopri di più.</Link>
+              </p>
+            </div>
           )}
         </div>
       </section>
@@ -133,11 +148,14 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
 export default SongTranslationPage;
 
 export async function getStaticPaths() {
-  //TODO filter data for translated song not null so that we have less fetches
+  //TODO filter data for translated song not null so that we have less less stress on api
   //TODO what happens on 101st song? Possible pagination problem, check back later
   const endpoint = getQuery("posts");
   if (!endpoint) return;
-  const res = await fetch(endpoint + "?populate=*&pagination[limit]=-1");
+  const res = await fetch(
+    endpoint +
+      "?populate=artist&filters[translatedSong][$notNull]=true&pagination[limit]=-1"
+  );
   const data = await res.json();
 
   const acceptedSongs = data.data.filter(
@@ -160,8 +178,6 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context: any) => {
-  console.log("dsljnkjdn");
-
   //? request single song data
   const initialQuery = getQuery("artists");
   const searchBySlug = "?filters[slug][$eq]=";
@@ -175,7 +191,6 @@ export const getStaticProps = async (context: any) => {
   const songData = artistData.data[0].attributes.songs.data.filter(
     (el) => el.attributes.slug === songSlug
   );
-  console.log(songData);
 
   return {
     props: {

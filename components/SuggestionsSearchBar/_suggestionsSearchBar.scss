@@ -75,6 +75,25 @@
   left: 0;
   padding: 0.5rem 2rem 0.75rem;
   background-color: rgb(59, 59, 59);
+  @media (min-width: $width2) {
+    padding-inline: 6%;
+    ul {
+      margin-top: 3rem;
+    }
+    a {
+      padding: 1rem 0;
+      align-items: center;
+      max-width: 30rem;
+      margin-inline: auto;
+
+      &::after {
+        bottom: -6px;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }
 
 @media (min-width: $width3) {
