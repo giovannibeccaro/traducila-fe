@@ -20,7 +20,7 @@
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.3;
-    @media (min-width: $width2) {
+    @media (min-width: $width4) {
       width: 0;
     }
   }

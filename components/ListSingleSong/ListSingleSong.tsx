@@ -27,7 +27,7 @@ const ListSingleSong: React.FC<Props> = ({
 
           <section className="info">
             <div className="main-info">
-              <h5>{songName}</h5>
+              <h5 className={songName.length > 25 ? "long" : ""}>{songName}</h5>
               <p>{artistName}</p>
             </div>
             <p className="category">Testo e traduzione</p>

@@ -12,9 +12,10 @@
     position: relative;
     align-items: center;
     height: 60px; //same as img
-    width: 12rem;
+
     @media (min-width: $width4) {
-      width: 15rem;
+      width: 18rem;
+      gap: 1rem;
     }
     &::after {
       content: "";
@@ -26,7 +27,7 @@
       left: 50%;
       transform: translateX(-50%);
       opacity: 0.3;
-      @media (min-width: $width2) {
+      @media (min-width: $width4) {
         width: 0;
       }
     }
@@ -60,8 +61,13 @@
           margin: 0;
           font-size: 0.75rem;
           font-weight: 500;
+          line-height: 1;
+          margin-bottom: 0.25rem;
           @media (min-width: $width2) {
             font-size: 1rem;
+            &.long {
+              font-size: 0.75rem;
+            }
           }
         }
       }

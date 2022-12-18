@@ -74,7 +74,7 @@ const TraduzioniPage: React.FC<Props> = ({
               ))}
           </div>
         </div>
-        <div className="song-list">
+        <div className="artist-list">
           <span className="inline translation-list-header">
             <button
               className="toggle-show-list"

@@ -33,6 +33,10 @@ section.traduzioni {
     }
   }
 
+  a:hover {
+    text-decoration: none;
+  }
+
   @media (min-width: $width4) {
     .traduzioni-charts {
       display: flex;

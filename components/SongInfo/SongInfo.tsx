@@ -80,7 +80,9 @@ const SongInfo = () => {
       )}
       <div className="song-info">
         <div className="main-info">
-          <h2 className="song-title">{name}</h2>
+          <h2 className={name.length > 30 ? "song-title long" : "song-title"}>
+            {name}
+          </h2>
           <Link href={`/${artistSlug}`}>
             <h3 className="artist-name">{artistName}</h3>
           </Link>
