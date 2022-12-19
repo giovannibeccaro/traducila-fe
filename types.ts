@@ -24,6 +24,7 @@ export type albumType = {
     updatedAt: string;
     publishedAt: string;
     slug: string;
+    image: imagesType;
     songs: {
       data: songType[];
     };
