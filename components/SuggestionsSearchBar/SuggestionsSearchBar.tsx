@@ -92,7 +92,9 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
             <li key={Math.random()}>
               <Link
                 href={
-                  category === "artists" ? `/${slug}` : `/${artistSlug}/${slug}`
+                  category === "artists"
+                    ? `/${slug}`
+                    : `/${artistSlug}/${slug + "-traduzione"}`
                 }
                 onClick={() => dispatch(setIsSearchbarVisible(false))}
               >

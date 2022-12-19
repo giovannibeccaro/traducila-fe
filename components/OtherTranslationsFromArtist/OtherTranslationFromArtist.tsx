@@ -21,7 +21,9 @@ const OtherTranslationFromArtist: React.FC<Props> = ({
       <ul>
         {data.map((song) => (
           <li key={song.id}>
-            <Link href={`/${artistSlug}/${song.attributes.slug}`}>
+            <Link
+              href={`/${artistSlug}/${song.attributes.slug + "-traduzione"}`}
+            >
               {song.attributes.name}
             </Link>
           </li>

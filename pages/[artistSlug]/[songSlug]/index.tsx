@@ -75,10 +75,11 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
   const otherSongs = songsFromArtist.filter(
     (el) => el.attributes.slug !== slug && el.attributes.translatedSong
   );
-  console.log(otherSongs);
 
   const router = useRouter();
   function clickHandler(e: any) {
+    if (!dangerouslyHtmlLinkConvert(e)) return;
+
     router.push(dangerouslyHtmlLinkConvert(e));
   }
 
@@ -165,7 +166,7 @@ export async function getStaticPaths() {
   const paths = acceptedSongs.map((song: songType) => {
     return {
       params: {
-        songSlug: song.attributes.slug,
+        songSlug: song.attributes.slug + "-traduzione",
         artistSlug: song.attributes.artist.data.attributes.slug,
       },
     };
@@ -183,13 +184,16 @@ export const getStaticProps = async (context: any) => {
   const searchBySlug = "?filters[slug][$eq]=";
   const songSlug = context.params.songSlug;
   const artistSlug = context.params.artistSlug;
+  const songSlugWithoutTraduzione = songSlug.split("-traduzione")[0];
+  console.log(songSlugWithoutTraduzione);
+
   const res = await fetch(
     `${initialQuery}${searchBySlug}${artistSlug}&populate[0]=songs.songImg&populate[1]=songs.album&populate[2]=songs.artist`
   );
 
   const artistData: fetchedArtistDataType = await res.json();
   const songData = artistData.data[0].attributes.songs.data.filter(
-    (el) => el.attributes.slug === songSlug
+    (el) => el.attributes.slug === songSlugWithoutTraduzione
   );
 
   return {

@@ -53,7 +53,7 @@ const TraduzioniPage: React.FC<Props> = ({
                   songName={article.attributes.name}
                   artistName={article.attributes.artist.data.attributes.name}
                   songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug}
+                  slug={article.attributes.slug + "-traduzione"}
                   artistSlug={article.attributes.artist.data.attributes.slug}
                   position={position}
                 />
@@ -67,7 +67,7 @@ const TraduzioniPage: React.FC<Props> = ({
                   songName={article.attributes.name}
                   artistName={article.attributes.artist.data.attributes.name}
                   songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug}
+                  slug={article.attributes.slug + "-traduzione"}
                   artistSlug={article.attributes.artist.data.attributes.slug}
                   position={position}
                 />
@@ -127,7 +127,7 @@ const TraduzioniPage: React.FC<Props> = ({
                   songName={article.attributes.name}
                   artistName={article.attributes.artist.data.attributes.name}
                   songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug}
+                  slug={article.attributes.slug + "-traduzione"}
                   artistSlug={article.attributes.artist.data.attributes.slug}
                 />
               ))}
@@ -140,7 +140,7 @@ const TraduzioniPage: React.FC<Props> = ({
                   songName={article.attributes.name}
                   artistName={article.attributes.artist.data.attributes.name}
                   songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug}
+                  slug={article.attributes.slug + "-traduzione"}
                   artistSlug={article.attributes.artist.data.attributes.slug}
                 />
               ))}

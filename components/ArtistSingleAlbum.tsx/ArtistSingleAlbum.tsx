@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { imagesType, songType } from "../../types";
-import { getQuery } from "../../utils/utils";
 import InfoIcon from "../svgs/InfoIcon";
 
 type Props = {
@@ -37,7 +36,9 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
           if (song.attributes.translatedSong) {
             return (
               <li className="translated" key={song.id}>
-                <Link href={`/${artistSlug}/${song.attributes.slug}`}>
+                <Link
+                  href={`/${artistSlug}/${song.attributes.slug}-traduzione`}
+                >
                   {song.attributes.name}
                   <p className="category">Testo e traduzione</p>
                 </Link>
