@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ListSingleArtist from "../../components/ListSingleArtist/ListSingleArtist";
@@ -5,7 +6,6 @@ import ListSingleSong from "../../components/ListSingleSong/ListSingleSong";
 import ResultsSection from "../../components/ResultsSection/ResultsSection";
 import ChevronDownIcon from "../../components/svgs/ChevronDownIcon";
 import ChevronUpIcon from "../../components/svgs/ChevronUpIcon";
-import useCheckMobileScreen from "../../hooks/useCheckMobileScreen";
 import { artistType, fetchedDataType, songType } from "../../types";
 import { getQuery } from "../../utils/utils";
 
@@ -30,124 +30,137 @@ const TraduzioniPage: React.FC<Props> = ({
   const query = router.asPath.split("?")[1];
 
   return (
-    <section className="traduzioni">
-      {query && <ResultsSection query={query} />}
-      <div className="traduzioni-charts">
-        <div className="song-list">
-          <span className="inline translation-list-header first">
-            <button
-              className="toggle-show-list"
-              onClick={() => {
-                setIsMostViewedOpen(!isMostViewedOpen);
-              }}
-            >
-              <p>I più cercati</p>
-              {isMostViewedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </button>
-          </span>
-          <div className="mobile-single-song">
-            {isMostViewedOpen &&
-              mostViewed.map((article, position) => (
-                <ListSingleSong
-                  key={article.id}
-                  songName={article.attributes.name}
-                  artistName={article.attributes.artist.data.attributes.name}
-                  songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug + "-traduzione"}
-                  artistSlug={article.attributes.artist.data.attributes.slug}
-                  position={position}
-                />
-              ))}
+    <>
+      <Head>
+        <title>Traduzioni - Traducila</title>
+        <meta
+          name="description"
+          content="Cerca tra tutte le canzoni presenti nel nostro archivio quella che "
+        />
+      </Head>
+      <section className="traduzioni">
+        {query && <ResultsSection query={query} />}
+        <div className="traduzioni-charts">
+          <div className="song-list">
+            <span className="inline translation-list-header first">
+              <button
+                className="toggle-show-list"
+                onClick={() => {
+                  setIsMostViewedOpen(!isMostViewedOpen);
+                }}
+              >
+                <p>I più cercati</p>
+                {isMostViewedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+              </button>
+            </span>
+            <div className="mobile-single-song">
+              {isMostViewedOpen &&
+                mostViewed.map((article, position) => (
+                  <ListSingleSong
+                    key={article.id}
+                    songName={article.attributes.name}
+                    artistName={article.attributes.artist.data.attributes.name}
+                    songImage={article.attributes.songImg.data.attributes.url}
+                    slug={article.attributes.slug + "-traduzione"}
+                    artistSlug={article.attributes.artist.data.attributes.slug}
+                    position={position}
+                  />
+                ))}
+            </div>
+            <div className="desktop-single-song">
+              {mostViewed &&
+                mostViewed.map((article, position) => (
+                  <ListSingleSong
+                    key={article.id}
+                    songName={article.attributes.name}
+                    artistName={article.attributes.artist.data.attributes.name}
+                    songImage={article.attributes.songImg.data.attributes.url}
+                    slug={article.attributes.slug + "-traduzione"}
+                    artistSlug={article.attributes.artist.data.attributes.slug}
+                    position={position}
+                  />
+                ))}
+            </div>
           </div>
-          <div className="desktop-single-song">
-            {mostViewed &&
-              mostViewed.map((article, position) => (
-                <ListSingleSong
-                  key={article.id}
-                  songName={article.attributes.name}
-                  artistName={article.attributes.artist.data.attributes.name}
-                  songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug + "-traduzione"}
-                  artistSlug={article.attributes.artist.data.attributes.slug}
-                  position={position}
-                />
-              ))}
+          <div className="artist-list">
+            <span className="inline translation-list-header">
+              <button
+                className="toggle-show-list"
+                onClick={() => setIsMostViewedArtists(!isMostViewedArtists)}
+              >
+                <p>Artisti più cercati</p>
+                {isMostViewedArtists ? <ChevronUpIcon /> : <ChevronDownIcon />}
+              </button>
+            </span>
+            <div className="mobile-single-artist">
+              {isMostViewedArtists &&
+                mostViewedArtists &&
+                mostViewedArtists.map((artist, position) => (
+                  <ListSingleArtist
+                    key={artist.id}
+                    artistName={artist.attributes.name}
+                    slug={artist.attributes.slug}
+                    position={position}
+                  />
+                ))}
+            </div>
+            <div className="desktop-single-artist">
+              {mostViewedArtists &&
+                mostViewedArtists.map((artist, position) => (
+                  <ListSingleArtist
+                    key={artist.id}
+                    artistName={artist.attributes.name}
+                    slug={artist.attributes.slug}
+                    position={position}
+                  />
+                ))}
+            </div>
+          </div>
+          <div className="song-list">
+            <span className="inline translation-list-header">
+              <button
+                className="toggle-show-list"
+                onClick={() => setIsNewTranslationsOpen(!isNewTranslationsOpen)}
+              >
+                <p>Ultime traduzioni</p>
+                {isNewTranslationsOpen ? (
+                  <ChevronUpIcon />
+                ) : (
+                  <ChevronDownIcon />
+                )}
+              </button>
+            </span>
+            <div className="mobile-single-song">
+              {isNewTranslationsOpen &&
+                newTranslations &&
+                newTranslations.map((article) => (
+                  <ListSingleSong
+                    key={article.id}
+                    songName={article.attributes.name}
+                    artistName={article.attributes.artist.data.attributes.name}
+                    songImage={article.attributes.songImg.data.attributes.url}
+                    slug={article.attributes.slug + "-traduzione"}
+                    artistSlug={article.attributes.artist.data.attributes.slug}
+                  />
+                ))}
+            </div>
+            <div className="desktop-single-song">
+              {newTranslations &&
+                newTranslations.map((article) => (
+                  <ListSingleSong
+                    key={article.id}
+                    songName={article.attributes.name}
+                    artistName={article.attributes.artist.data.attributes.name}
+                    songImage={article.attributes.songImg.data.attributes.url}
+                    slug={article.attributes.slug + "-traduzione"}
+                    artistSlug={article.attributes.artist.data.attributes.slug}
+                  />
+                ))}
+            </div>
           </div>
         </div>
-        <div className="artist-list">
-          <span className="inline translation-list-header">
-            <button
-              className="toggle-show-list"
-              onClick={() => setIsMostViewedArtists(!isMostViewedArtists)}
-            >
-              <p>Artisti più cercati</p>
-              {isMostViewedArtists ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </button>
-          </span>
-          <div className="mobile-single-artist">
-            {isMostViewedArtists &&
-              mostViewedArtists &&
-              mostViewedArtists.map((artist, position) => (
-                <ListSingleArtist
-                  key={artist.id}
-                  artistName={artist.attributes.name}
-                  slug={artist.attributes.slug}
-                  position={position}
-                />
-              ))}
-          </div>
-          <div className="desktop-single-artist">
-            {mostViewedArtists &&
-              mostViewedArtists.map((artist, position) => (
-                <ListSingleArtist
-                  key={artist.id}
-                  artistName={artist.attributes.name}
-                  slug={artist.attributes.slug}
-                  position={position}
-                />
-              ))}
-          </div>
-        </div>
-        <div className="song-list">
-          <span className="inline translation-list-header">
-            <button
-              className="toggle-show-list"
-              onClick={() => setIsNewTranslationsOpen(!isNewTranslationsOpen)}
-            >
-              <p>Ultime traduzioni</p>
-              {isNewTranslationsOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </button>
-          </span>
-          <div className="mobile-single-song">
-            {isNewTranslationsOpen &&
-              newTranslations &&
-              newTranslations.map((article) => (
-                <ListSingleSong
-                  key={article.id}
-                  songName={article.attributes.name}
-                  artistName={article.attributes.artist.data.attributes.name}
-                  songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug + "-traduzione"}
-                  artistSlug={article.attributes.artist.data.attributes.slug}
-                />
-              ))}
-          </div>
-          <div className="desktop-single-song">
-            {newTranslations &&
-              newTranslations.map((article) => (
-                <ListSingleSong
-                  key={article.id}
-                  songName={article.attributes.name}
-                  artistName={article.attributes.artist.data.attributes.name}
-                  songImage={article.attributes.songImg.data.attributes.url}
-                  slug={article.attributes.slug + "-traduzione"}
-                  artistSlug={article.attributes.artist.data.attributes.slug}
-                />
-              ))}
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
