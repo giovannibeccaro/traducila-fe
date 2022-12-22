@@ -52,7 +52,7 @@ const NavLinks: React.FC<Props> = ({
         </li>
         <li>
           <Link
-            className={route === "/" ? "chi-siamo" : ""}
+            className={route === "/chi-siamo" ? "active" : ""}
             onClick={() => setIsMobileMenuOpen(false)}
             href="/chi-siamo"
           >

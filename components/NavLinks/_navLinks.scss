@@ -42,6 +42,10 @@
     font-size: 2rem;
     font-family: $roboto;
     text-decoration: none;
+    position: relative;
+    &.active {
+      color: $accentColor;
+    }
     &:hover {
       color: $accentColor;
     }
