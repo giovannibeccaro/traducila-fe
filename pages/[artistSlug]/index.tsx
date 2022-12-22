@@ -6,6 +6,7 @@ import { getQuery } from "../../utils/utils";
 import { RootState } from "../../store/store";
 import { dangerouslyHtmlLinkConvert } from "../../utils/utils";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 type Props = {
   data: artistType;
@@ -35,36 +36,45 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
   const { name, slug, tags, description, songs, albums } = data.attributes;
 
   return (
-    <main className="artist-page">
-      <section
-        className="artist-info"
-        style={
-          navbarHeight ? { paddingTop: navbarHeight } : { marginTop: "88px" }
-        }
-      >
-        <h2 className="artist-name">{name}</h2>
-        <div className="tags">
-          {tags?.data.map((tag) => (
-            <p key={tag.attributes.genre}>{tag.attributes.genre}</p>
+    <>
+      <Head>
+        <title>{name} - Traducila</title>
+        <meta
+          name="description"
+          content={`Scopri tutti gli album e le canzoni che abbiamo tradotto di ${name}`}
+        />
+      </Head>
+      <main className="artist-page">
+        <section
+          className="artist-info"
+          style={
+            navbarHeight ? { paddingTop: navbarHeight } : { marginTop: "88px" }
+          }
+        >
+          <h2 className="artist-name">{name}</h2>
+          <div className="tags">
+            {tags?.data.map((tag) => (
+              <p key={tag.attributes.genre}>{tag.attributes.genre}</p>
+            ))}
+          </div>
+          <div
+            className="description"
+            onClick={clickHandler}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        </section>
+        <h2 className="album-header">Album dell&apos;artista</h2>
+        <div className="albums-section">
+          {albums.data.map((album) => (
+            <ArtistSingleAlbum
+              key={album.id}
+              albumData={album.attributes}
+              artistSlug={slug}
+            />
           ))}
         </div>
-        <div
-          className="description"
-          onClick={clickHandler}
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
-      </section>
-      <h2 className="album-header">Album dell&apos;artista</h2>
-      <div className="albums-section">
-        {albums.data.map((album) => (
-          <ArtistSingleAlbum
-            key={album.id}
-            albumData={album.attributes}
-            artistSlug={slug}
-          />
-        ))}
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 

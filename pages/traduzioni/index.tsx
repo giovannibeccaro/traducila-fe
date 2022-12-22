@@ -35,7 +35,7 @@ const TraduzioniPage: React.FC<Props> = ({
         <title>Traduzioni - Traducila</title>
         <meta
           name="description"
-          content="Cerca tra tutte le canzoni presenti nel nostro archivio quella che "
+          content="Cerca tra tutte le canzoni presenti nel nostro archivio quella che ti interessa. Scopri nuove canzoni con le nostre liste! "
         />
       </Head>
       <section className="traduzioni">

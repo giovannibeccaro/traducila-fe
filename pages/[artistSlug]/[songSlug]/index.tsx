@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../store/store";
-import { artistType, songType } from "../../../types";
-import { fetchedDataType, fetchedArtistDataType } from "../../../types";
+import { songType } from "../../../types";
+import { fetchedArtistDataType } from "../../../types";
 import { dangerouslyHtmlLinkConvert, getQuery } from "../../../utils/utils";
 import { setSongInfo } from "../../../store/songInfo/songInfoSlice";
 import OtherTranslationFromArtist from "../../../components/OtherTranslationsFromArtist/OtherTranslationFromArtist";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 
 type Props = {
   songData: songType;
@@ -84,66 +85,76 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
   }
 
   return (
-    <main className="song-page-main">
-      <section className="song-page-first-section">
-        <h1>{`${isTranslation ? "Traduzione di " : "Testo di "} ${name}`}</h1>
-        {isTranslation ? (
-          <div
-            className="translated-text"
-            dangerouslySetInnerHTML={{ __html: translatedSong }}
-          />
-        ) : (
-          <div
-            className="original-text"
-            dangerouslySetInnerHTML={{ __html: originalSong }}
-          />
-        )}
-      </section>
-      <section className="desktop-only-section">
-        <div className="original-text-container">
-          <h1>{`Testo di ${name}`}</h1>
-          <div
-            className="translated-text"
-            dangerouslySetInnerHTML={{ __html: originalSong }}
-          />
-        </div>
-        <div className="translated-text-container">
-          <h1>{`Traduzione di ${name}`}</h1>
-          <div
-            className="translated-text"
-            dangerouslySetInnerHTML={{ __html: translatedSong }}
-          />
-        </div>
-      </section>
-      <section className="song-page-secondary-section">
-        <div className="secondary-section-content">
-          <div className="secondary-section-description">
-            <h2>Descrizione</h2>
+    <>
+      <Head>
+        <title>{`Testo e traduzione di ${name}`} - Traducila</title>
+        <meta
+          name="description"
+          content={`Clicca per leggere il testo e la traduzione di ${name}, di ${artistName}. Oltre a testo e traduzione troverai anche altre informazioni interessanti sulla canzone.`}
+        />
+      </Head>
+      <main className="song-page-main">
+        <section className="song-page-first-section">
+          <h1>{`${isTranslation ? "Traduzione di " : "Testo di "} ${name}`}</h1>
+          {isTranslation ? (
             <div
-              className="description"
-              onClick={clickHandler}
-              dangerouslySetInnerHTML={{ __html: songDescription }}
-            />
-          </div>
-          {otherSongs.length > 0 ? (
-            <OtherTranslationFromArtist
-              data={otherSongs}
-              slug={slug}
-              artistSlug={artist.data.attributes.slug}
+              className="translated-text"
+              dangerouslySetInnerHTML={{ __html: translatedSong }}
             />
           ) : (
-            <div className="suggest-song">
-              <h2>Altre traduzioni di {artistName}</h2>
-              <p>
-                Non sono disponibili nei nostri archivi altre traduzioni di{" "}
-                {artistName}. Cerchi la traduzione di una canzone in particolare
-                di questo artista? <Link href="/">Scopri di più.</Link>
-              </p>
-            </div>
+            <div
+              className="original-text"
+              dangerouslySetInnerHTML={{ __html: originalSong }}
+            />
           )}
-        </div>
-      </section>
-    </main>
+        </section>
+        <section className="desktop-only-section">
+          <div className="original-text-container">
+            <h1>{`Testo di ${name}`}</h1>
+            <div
+              className="translated-text"
+              dangerouslySetInnerHTML={{ __html: originalSong }}
+            />
+          </div>
+          <div className="translated-text-container">
+            <h1>{`Traduzione di ${name}`}</h1>
+            <div
+              className="translated-text"
+              dangerouslySetInnerHTML={{ __html: translatedSong }}
+            />
+          </div>
+        </section>
+        <section className="song-page-secondary-section">
+          <div className="secondary-section-content">
+            <div className="secondary-section-description">
+              <h2>Descrizione</h2>
+              <div
+                className="description"
+                onClick={clickHandler}
+                dangerouslySetInnerHTML={{ __html: songDescription }}
+              />
+            </div>
+            {otherSongs.length > 0 ? (
+              <OtherTranslationFromArtist
+                data={otherSongs}
+                slug={slug}
+                artistSlug={artist.data.attributes.slug}
+              />
+            ) : (
+              <div className="suggest-song">
+                <h2>Altre traduzioni di {artistName}</h2>
+                <p>
+                  Non sono disponibili nei nostri archivi altre traduzioni di{" "}
+                  {artistName}. Cerchi la traduzione di una canzone in
+                  particolare di questo artista?{" "}
+                  <Link href="/">Scopri di più.</Link>
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 export default SongTranslationPage;
