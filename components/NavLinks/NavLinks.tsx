@@ -5,11 +5,13 @@ import CrossIcon from "../svgs/CrossIcon";
 type Props = {
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  route: string;
 };
 
 const NavLinks: React.FC<Props> = ({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
+  route,
 }) => {
   //? if navbar menu on mobile is open, block body so that the user can't scroll in the background
   useEffect(() => {
@@ -31,17 +33,29 @@ const NavLinks: React.FC<Props> = ({
       </button>
       <ul>
         <li>
-          <Link onClick={() => setIsMobileMenuOpen(false)} href="/">
+          <Link
+            className={route === "/" ? "active" : ""}
+            onClick={() => setIsMobileMenuOpen(false)}
+            href="/"
+          >
             Home
           </Link>
         </li>
         <li>
-          <Link onClick={() => setIsMobileMenuOpen(false)} href="/traduzioni">
+          <Link
+            className={route === "/traduzioni" ? "active" : ""}
+            onClick={() => setIsMobileMenuOpen(false)}
+            href="/traduzioni"
+          >
             Traduzioni
           </Link>
         </li>
         <li>
-          <Link onClick={() => setIsMobileMenuOpen(false)} href="/contattaci">
+          <Link
+            className={route === "/" ? "chi-siamo" : ""}
+            onClick={() => setIsMobileMenuOpen(false)}
+            href="/chi-siamo"
+          >
             Chi siamo
           </Link>
         </li>

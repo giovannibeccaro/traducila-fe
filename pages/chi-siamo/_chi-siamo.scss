@@ -1,4 +1,4 @@
-.contattaci-page {
+.chi-siamo-page {
   font-family: $poppins;
   font-size: 14px;
   @media (min-width: $width2) {
@@ -107,7 +107,7 @@
 }
 
 @media (min-width: $width4minus) {
-  .contattaci-page {
+  .chi-siamo-page {
     .secondary-articles {
       margin-inline: auto;
       flex-direction: row;
@@ -131,7 +131,7 @@
   }
 }
 @media (min-width: $width5) {
-  .contattaci-page {
+  .chi-siamo-page {
     .secondary-articles {
       justify-content: space-between;
       gap: 5rem;
@@ -146,7 +146,7 @@
 }
 
 @media (min-width: $width6) {
-  .contattaci-page {
+  .chi-siamo-page {
     .secondary-article {
       overflow-x: initial;
       padding-top: 3.9vw;

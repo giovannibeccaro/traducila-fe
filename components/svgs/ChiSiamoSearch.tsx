@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContattaciSearch = () => {
+const ChiSiamoSearch = () => {
   return (
     <svg
       width="239"
@@ -18,4 +18,4 @@ const ContattaciSearch = () => {
   );
 };
 
-export default ContattaciSearch;
+export default ChiSiamoSearch;

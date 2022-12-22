@@ -1,10 +1,10 @@
 import React from "react";
-import ContattaciMusic from "../../components/svgs/ContattaciMusic";
-import ContattaciWorld from "../../components/svgs/ContattaciWorld";
-import ContattaciSearch from "../../components/svgs/ContattaciSearch";
+import ChiSiamoMusic from "../../components/svgs/ChiSiamoMusic";
+import ChiSiamoWorld from "../../components/svgs/ChiSiamoWorld";
+import ChiSiamoSearch from "../../components/svgs/ChiSiamoSearch";
 import Head from "next/head";
 
-const ContattaciPage = () => {
+const ChiSiamoPage = () => {
   return (
     <>
       <Head>
@@ -14,7 +14,7 @@ const ContattaciPage = () => {
           content="Scopri cosa c'è dietro a traducila.it e i metodi che usiamo nel traduzione.s"
         />
       </Head>
-      <main className="contattaci-page">
+      <main className="chi-siamo-page">
         <article className="main-article">
           <h2>Chi siamo</h2>
           <p>
@@ -44,7 +44,7 @@ const ContattaciPage = () => {
               laboriosam iste modi esse! Maxime, quisquam assumenda. Error,
               quisquam!
             </p>
-            <ContattaciSearch />
+            <ChiSiamoSearch />
           </article>
           <article className="secondary-article">
             <h2>Qualcosa qualcosa unire il mondo</h2>
@@ -57,7 +57,7 @@ const ContattaciPage = () => {
               laboriosam iste modi esse! Maxime, quisquam assumenda. Error,
               quisquam!
             </p>
-            <ContattaciWorld />
+            <ChiSiamoWorld />
           </article>
           <article className="secondary-article">
             <h2>Boh la musica è bella eccetera eccetera</h2>
@@ -70,7 +70,7 @@ const ContattaciPage = () => {
               laboriosam iste modi esse! Maxime, quisquam assumenda. Error,
               quisquam!
             </p>
-            <ContattaciMusic />
+            <ChiSiamoMusic />
           </article>
         </section>
       </main>
@@ -78,4 +78,4 @@ const ContattaciPage = () => {
   );
 };
 
-export default ContattaciPage;
+export default ChiSiamoPage;

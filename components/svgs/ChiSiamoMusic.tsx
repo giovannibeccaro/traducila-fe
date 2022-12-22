@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContattaciMusic = () => {
+const ChiSiamoMusic = () => {
   return (
     <svg
       width="205"
@@ -18,4 +18,4 @@ const ContattaciMusic = () => {
   );
 };
 
-export default ContattaciMusic;
+export default ChiSiamoMusic;

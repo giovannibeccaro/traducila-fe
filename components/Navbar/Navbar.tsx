@@ -36,7 +36,7 @@ const Navbar = () => {
   const isArtistPage = router.route === "/[artistSlug]";
   const isSingleSongPage = router.asPath.includes("traduzione");
   const isTraduzioniPage = route === "/traduzioni";
-  const isContattaciPage = route === "/contattaci";
+  const isChiSiamoPage = route === "/chi-siamo";
   const isErrorPage = route === "/_error";
   const isHomePage = route === "/";
 
@@ -100,7 +100,7 @@ const Navbar = () => {
                 : "black-navbar single-song"
               : ""
           } 
-          ${isContattaciPage ? "navbar-contattaci" : ""}
+          ${isChiSiamoPage ? "navbar-chi-siamo" : ""}
           ${isArtistPage ? "artist-page" : ""}`}
       >
         <div className="main-nav">
@@ -132,6 +132,7 @@ const Navbar = () => {
             <NavLinks
               isMobileMenuOpen={isMobileMenuOpen}
               setIsMobileMenuOpen={setIsMobileMenuOpen}
+              route={route}
             />
           </div>
         </div>

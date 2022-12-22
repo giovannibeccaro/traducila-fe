@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContattaciWorld = () => {
+const ChiSiamoWorld = () => {
   return (
     <svg viewBox="0 0 221 291" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -12,4 +12,4 @@ const ContattaciWorld = () => {
   );
 };
 
-export default ContattaciWorld;
+export default ChiSiamoWorld;
