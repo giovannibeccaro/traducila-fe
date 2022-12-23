@@ -33,6 +33,7 @@
   a {
     color: $whiteColor;
     text-decoration: underline;
+    display: inline-block;
     &:hover {
       color: $accentColor;
     }
@@ -84,6 +85,7 @@
 @media (min-width: $width5) {
   .song-info-section {
     transform: translateY(5vh);
+    margin-top: 0.6rem;
 
     .show-alt-text {
       display: none;
@@ -116,8 +118,6 @@
     }
 
     .main-info {
-      display: flex;
-      flex-direction: column;
       height: 100%;
     }
 
