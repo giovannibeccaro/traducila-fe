@@ -17,7 +17,9 @@ const OtherTranslationFromArtist: React.FC<Props> = ({
 
   return (
     <section className="other-translations-page">
-      <h2>Altre traduzioni di METTI NOME</h2>
+      <h2>
+        Altre traduzioni di {data[0].attributes.artist.data.attributes.name}
+      </h2>
       <ul>
         {data.map((song) => (
           <li key={song.id}>
