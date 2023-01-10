@@ -47,7 +47,7 @@ const ChiSiamoPage = () => {
             <ChiSiamoSearch />
           </article>
           <article className="secondary-article">
-            <h2>Qualcosa qualcosa unire il mondo</h2>
+            <h2>Lorem ipsum, dolor sit amet consectetur</h2>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Temporibus sint laborum veniam velit quia deserunt numquam,
@@ -60,7 +60,7 @@ const ChiSiamoPage = () => {
             <ChiSiamoWorld />
           </article>
           <article className="secondary-article">
-            <h2>Boh la musica è bella eccetera eccetera</h2>
+            <h2>Lorem ipsum, dolor sit amet consectetur</h2>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Temporibus sint laborum veniam velit quia deserunt numquam,
