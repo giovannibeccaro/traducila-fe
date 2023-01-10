@@ -36,8 +36,8 @@ export default function Home() {
             <p>DEI TUOI TESTI PREFERITI</p>
           </div>
           <p className="subtitle">
-            Inserire qui un testo carino riguardo il fatto che le nostre
-            traduzioni sono migliori per motivo X.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nisi
+            ipsa earum officia reprehenderit. Cum repudiandae quo illum.
           </p>
           <SearchBar parentSection="homepage" />
           <Link className="view-others" href="/traduzioni">
