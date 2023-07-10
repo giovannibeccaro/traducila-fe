@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { imagesType, songType } from "../../types";
+import { songType } from "../../types";
 import InfoIcon from "../svgs/InfoIcon";
 
 type Props = {
   albumData: {
     name: string;
     slug: string;
-    image: imagesType;
+    imageUrl: string;
     songs: {
       data: songType[];
     };
@@ -25,7 +25,7 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
         <h2 className="album-name">{albumData.name}</h2>
 
         <Image
-          src={albumData.image.data[0].attributes.url}
+          src={albumData.imageUrl}
           alt={`copertina di ${albumData.name}`}
           width="60"
           height="60"
@@ -36,10 +36,8 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
           if (song.attributes.translatedSong) {
             return (
               <li className="translated" key={song.id}>
-                <Link
-                  href={`/${artistSlug}/${song.attributes.slug}-traduzione`}
-                >
-                  {song.attributes.name}
+                <Link href={`/${artistSlug}/${song.attributes.slug}`}>
+                  {song.attributes.title}
                   <p className="category">Testo e traduzione</p>
                 </Link>
               </li>
@@ -47,7 +45,7 @@ const ArtistSingleAlbum: React.FC<Props> = ({ albumData, artistSlug }) => {
           } else
             return (
               <li className="not-translated" key={song.id}>
-                <p>{song.attributes.name}</p>
+                <p>{song.attributes.title}</p>
                 <p
                   className={`no-translation-available ${
                     showTooltip.visible && showTooltip.id === song.id

@@ -31,7 +31,7 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
           };
           try {
             const res = await fetch(
-              `${endpoint}?filters[slug][$contains]=${query}${populate()}&fields[0]=name&fields[1]=slug${
+              `${endpoint}?filters[slug][$contains]=${query}${
                 category === "posts"
                   ? "&filters[translatedSong][$notNull]=true"
                   : ""
@@ -46,12 +46,12 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
             const suggestionsFetched: suggestionType[] = data.map(
               ({ attributes }: any) => {
                 return {
-                  entryName: attributes.name,
+                  entryName: attributes.title,
                   category,
                   slug: attributes.slug,
-                  artist: attributes.artist?.data.attributes.name,
-                  artistSlug: attributes.artist?.data.attributes.slug,
-                  image: attributes.songImg?.data?.attributes.url,
+                  artist: attributes.artistName,
+                  artistSlug: attributes.artistSlug,
+                  image: attributes.imageUrl,
                 };
               }
             );
@@ -92,7 +92,7 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
           };
           try {
             const res = await fetch(
-              `${endpoint}?filters[slug][$contains]=${query}${populate()}&fields[0]=name&fields[1]=slug${
+              `${endpoint}?filters[slug][$contains]=${query}${
                 category === "posts"
                   ? "&filters[translatedSong][$notNull]=true"
                   : ""
@@ -107,12 +107,12 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
             const suggestionsFetched: suggestionType[] = data.map(
               ({ attributes }: any) => {
                 return {
-                  entryName: attributes.name,
+                  entryName: attributes.title,
                   category,
                   slug: attributes.slug,
-                  artist: attributes.artist?.data.attributes.name,
-                  artistSlug: attributes.artist?.data.attributes.slug,
-                  image: attributes.songImg?.data?.attributes.url,
+                  artist: attributes.artistName,
+                  artistSlug: attributes.artistSlug,
+                  image: attributes.imageUrl,
                 };
               }
             );

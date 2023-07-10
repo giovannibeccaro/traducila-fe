@@ -33,12 +33,12 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
     }
   }
 
-  const { name, slug, tags, description, songs, albums } = data.attributes;
+  const { name, slug, description, songs, albums } = data.attributes;
 
   return (
     <>
       <Head>
-        <title>{name} - Traducila</title>
+        <title>{`${name} - Traducila`}</title>
         <meta
           name="description"
           content={`Scopri tutti gli album e le canzoni che abbiamo tradotto di ${name}`}
@@ -52,11 +52,6 @@ const ArtistPage: React.FC<Props> = ({ data }) => {
           }
         >
           <h2 className="artist-name">{name}</h2>
-          <div className="tags">
-            {tags?.data.map((tag) => (
-              <p key={tag.attributes.genre}>{tag.attributes.genre}</p>
-            ))}
-          </div>
           <div
             className="description"
             onClick={clickHandler}
@@ -115,6 +110,6 @@ export const getStaticProps = async (context: any) => {
 
 export default ArtistPage;
 
-// http://localhost:1337/api/artists?filters[slug][$eq]=blink-182&fields[0]=name&fields[1]=slug&fields[2]=description&populate[tags][fields][0]=genre&populate[albums][fields][0]=name&populate[albums][fields][1]=slug&populate[songs][fields][0]=name&populate[songs][fields][1]=slug&populate[songs][fields][2]=originalSong&populate[songs][fields][3]=translatedSong&populate[songs][fields][4]=writtenBy&populate[songs][fields][5]=producedBy&populate[songs][fields][6]=yearOfProduction&populate[songs][fields][7]=songDescription&populate[songs][songImg][fields][0]=url
+// http://localhost:1337/api/artists?filters[slug][$eq]=blink-182&fields[0]=name&fields[1]=slug&fields[2]=description&populate[tags][fields][0]=genre&populate[albums][fields][0]=name&populate[albums][fields][1]=slug&populate[songs][fields][0]=name&populate[songs][fields][1]=slug&populate[songs][fields][2]=originalSong&populate[songs][fields][3]=translatedSong&populate[songs][fields][4]=writtenBy&populate[songs][fields][5]=producedBy&populate[songs][fields][6]=releaseDate&populate[songs][fields][7]=songDescription&populate[songs][songImg][fields][0]=url
 
 //http://localhost:1337/api/artists?filters[slug][$eq]=blink-182&populate[0]=songs.songImg&fields[0]=url

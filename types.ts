@@ -3,7 +3,6 @@ export type artistType = {
   attributes: {
     name: string;
     slug: string;
-    tags: { data: tagType[] };
     description: string;
     createdAt: string;
     updatedAt: string;
@@ -14,51 +13,50 @@ export type artistType = {
     albums: {
       data: albumType[];
     };
+    viewCount: number;
+    extApiId: string;
   };
 };
 export type albumType = {
   id: number;
   attributes: {
     name: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
     slug: string;
-    image: imagesType;
+    artistId: number;
+    artistName: string;
+    extApiId: string;
+    imageUrl: string;
     songs: {
       data: songType[];
     };
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
   };
 };
 
 export type songType = {
   id: number;
   attributes: {
-    name: string;
-    originalSong: string;
-    translatedSong: string;
-    writtenBy: string;
-    producedBy: string;
-    yearOfProduction: string;
-    songDescription: string;
+    title: string;
+    originalSong: string | null;
+    translatedSong: string | null;
+    writtenBy: string | null;
+    producedBy: string | null;
+    releaseDate: string;
+    songDescription: string | null;
+    slug: string;
+    imageUrl: string;
+    albumName: string;
+    albumId: number;
+    artistName: string;
+    artistId: number;
+    artistSlug: string;
+    extApiId: string;
+    viewCount: number;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    slug: string;
-    songImg: {
-      data: {
-        id: number;
-        attributes: {
-          url: string;
-          width: number;
-          height: number;
-        };
-      };
-    };
-    album: {
-      data: albumType;
-    };
-    artist: { data: artistType };
   };
 };
 
@@ -78,24 +76,4 @@ export type suggestionType = {
   test?: string;
   artistSlug?: string;
   image?: string;
-};
-
-export type tagType = {
-  id: number;
-  attributes: {
-    genre: string;
-  };
-};
-
-type imageType = {
-  id: number;
-  attributes: {
-    mime: string;
-    url: string;
-    width: 640;
-  };
-};
-
-export type imagesType = {
-  data: imageType[];
 };

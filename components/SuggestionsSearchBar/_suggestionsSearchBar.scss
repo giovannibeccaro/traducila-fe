@@ -76,14 +76,14 @@
   padding: 0.5rem 2rem 0.75rem;
   background-color: rgb(59, 59, 59);
   @media (min-width: $width2) {
-    padding-inline: 6%;
+    padding-inline: 20%;
     ul {
       margin-top: 3rem;
     }
     a {
       padding: 1rem 0;
       align-items: center;
-      max-width: 30rem;
+      max-width: 35rem;
       margin-inline: auto;
 
       &::after {
@@ -98,17 +98,24 @@
 
 @media (min-width: $width3) {
   .home-main .suggestions-section {
-    width: min(100%, 30rem);
+    width: min(100%, 26vw);
   }
   .suggestions-section.traduzioni {
     width: min(100%, 45rem);
     left: 50%;
     transform: translateX(-50%);
-    top: -3.5rem;
+    top: -3.9rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
   }
 }
 @media (min-width: 850px) {
   .suggestions-section.traduzioni {
-    background-color: $searchBarColor;
+    background-color: $whiteColor;
+    a {
+      color: $blackColor;
+      &::after {
+        background-color: $blackColor;
+      }
+    }
   }
 }

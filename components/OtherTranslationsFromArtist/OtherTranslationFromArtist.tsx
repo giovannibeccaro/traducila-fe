@@ -17,16 +17,12 @@ const OtherTranslationFromArtist: React.FC<Props> = ({
 
   return (
     <section className="other-translations-page">
-      <h2>
-        Altre traduzioni di {data[0].attributes.artist.data.attributes.name}
-      </h2>
+      <h2>Altre traduzioni di {data[0].attributes.artistName}</h2>
       <ul>
         {data.map((song) => (
           <li key={song.id}>
-            <Link
-              href={`/${artistSlug}/${song.attributes.slug + "-traduzione"}`}
-            >
-              {song.attributes.name}
+            <Link href={`/${artistSlug}/${song.attributes.slug}`}>
+              {song.attributes.title}
             </Link>
           </li>
         ))}

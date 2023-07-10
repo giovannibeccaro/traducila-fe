@@ -27,11 +27,11 @@ const SongInfo = () => {
   //? redux for song info state
   const { songInfo } = useSelector((store: RootState) => store.songInfo);
   const {
-    name,
+    title,
     songImg,
     artistName,
     albumName,
-    yearOfProduction,
+    releaseDate,
     writtenBy,
     producedBy,
   } = songInfo;
@@ -83,8 +83,10 @@ const SongInfo = () => {
         )}
         <div className="song-info">
           <div className="main-info">
-            <h2 className={name.length > 30 ? "song-title long" : "song-title"}>
-              {name}
+            <h2
+              className={title.length > 30 ? "song-title long" : "song-title"}
+            >
+              {title}
             </h2>
             <Link href={`/${artistSlug}`}>
               <h3 className="artist-name">{artistName}</h3>
@@ -98,7 +100,7 @@ const SongInfo = () => {
               </p>
               <p>
                 <span className="light-weight-text">Anno di produzione: </span>
-                <b>{yearOfProduction}</b>
+                <b>{releaseDate}</b>
               </p>
               <p>
                 <span className="light-weight-text">Scritto da: </span>

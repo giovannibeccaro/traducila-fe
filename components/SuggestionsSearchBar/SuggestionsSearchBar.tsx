@@ -34,7 +34,7 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
           };
           try {
             const res = await fetch(
-              `${endpoint}?filters[slug][$contains]=${slug}${populate()}&fields[0]=name&fields[1]=slug${
+              `${endpoint}?filters[slug][$contains]=${slug}${
                 category === "posts"
                   ? "&filters[translatedSong][$notNull]=true"
                   : ""
@@ -49,11 +49,11 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
             const suggestionsFetched: suggestionType[] = data.map(
               ({ attributes }: any) => {
                 return {
-                  entryName: attributes.name,
+                  entryName: attributes.title,
                   category,
                   slug: attributes.slug,
-                  artist: attributes.artist?.data.attributes.name,
-                  artistSlug: attributes.artist?.data.attributes.slug,
+                  artist: attributes.artistName,
+                  artistSlug: attributes.artistSlug,
                 };
               }
             );
@@ -92,9 +92,7 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
             <li key={Math.random()}>
               <Link
                 href={
-                  category === "artists"
-                    ? `/${slug}`
-                    : `/${artistSlug}/${slug + "-traduzione"}`
+                  category === "artists" ? `/${slug}` : `/${artistSlug}/${slug}`
                 }
                 onClick={() => dispatch(setIsSearchbarVisible(false))}
               >

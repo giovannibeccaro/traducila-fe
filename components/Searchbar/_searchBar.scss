@@ -109,7 +109,7 @@ form {
     }
     @media (min-width: $width2) {
       margin-inline: -6%;
-      padding-inline: 6%;
+      padding-inline: 30%;
     }
     input {
       padding: 0;
@@ -130,7 +130,7 @@ form {
 @media (min-width: $width6) {
   form.homepage {
     height: 6vh;
-    width: 39vw;
+    width: 26vw;
     align-items: center;
 
     input {

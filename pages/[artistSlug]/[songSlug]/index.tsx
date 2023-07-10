@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../store/store";
-import { songType } from "../../../types";
+import { albumType, artistType, songType } from "../../../types";
 import { fetchedArtistDataType } from "../../../types";
 import { dangerouslyHtmlLinkConvert, getQuery } from "../../../utils/utils";
 import { setSongInfo } from "../../../store/songInfo/songInfoSlice";
@@ -22,60 +22,52 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
   //? redux for songInfo state setting
   const dispatch = useDispatch();
   const {
-    name,
+    title,
     originalSong,
     translatedSong,
     writtenBy,
     producedBy,
-    yearOfProduction,
+    releaseDate,
     songDescription,
     slug,
-    album,
-    artist,
-    songImg,
+    albumName,
+    artistName,
+    artistSlug,
+    imageUrl,
   } = songData.attributes;
-
-  const artistName = artist.data.attributes.name;
-  const albumName = album.data.attributes.name;
-  const songImgUrl = songImg.data.attributes.url;
 
   //? setting redux songInfo state with getStaticProps data
   useEffect(() => {
     dispatch(
       setSongInfo({
-        name,
+        title,
         artistName,
-        songImg: songImgUrl,
+        songImg: imageUrl,
         albumName,
-        yearOfProduction,
+        releaseDate,
         writtenBy,
         producedBy,
       })
     );
   }, [
     dispatch,
-    name,
+    title,
     artistName,
     albumName,
-    songImgUrl,
-    yearOfProduction,
+    imageUrl,
+    releaseDate,
     writtenBy,
     producedBy,
   ]);
 
   useEffect(() => {
     function updateCount() {
-      const artistSlug = artist.data.attributes.slug;
       fetch(`${getQuery("posts")}/${artistSlug}/${songData.id}`, {
         method: "PATCH",
       });
     }
     updateCount();
-  }, [artist.data.attributes.slug, songData.id]);
-
-  const otherSongs = songsFromArtist.filter(
-    (el) => el.attributes.slug !== slug && el.attributes.translatedSong
-  );
+  }, [artistSlug, songData.id]);
 
   const router = useRouter();
   function clickHandler(e: any) {
@@ -87,58 +79,66 @@ const SongTranslationPage: FC<Props> = ({ songData, songsFromArtist }) => {
   return (
     <>
       <Head>
-        <title>{`Testo e traduzione di ${name}`} - Traducila</title>
+        <title>{`Testo e traduzione di ${title} - Traducila`}</title>
         <meta
           name="description"
-          content={`Clicca per leggere il testo e la traduzione di ${name}, di ${artistName}. Oltre a testo e traduzione troverai anche altre informazioni interessanti sulla canzone.`}
+          content={`Clicca per leggere il testo e la traduzione di ${title}, di ${artistName}. Oltre a testo e traduzione troverai anche altre informazioni interessanti sulla canzone.`}
         />
       </Head>
       <main className="song-page-main">
         <section className="song-page-first-section">
-          <h1>{`${isTranslation ? "Traduzione di " : "Testo di "} ${name}`}</h1>
-          {isTranslation ? (
-            <div
-              className="translated-text"
-              dangerouslySetInnerHTML={{ __html: translatedSong }}
-            />
-          ) : (
-            <div
-              className="original-text"
-              dangerouslySetInnerHTML={{ __html: originalSong }}
-            />
-          )}
+          <h1>{`${
+            isTranslation ? "Traduzione di " : "Testo di "
+          } ${title}`}</h1>
+          {isTranslation
+            ? translatedSong && (
+                <div
+                  className="translated-text"
+                  dangerouslySetInnerHTML={{ __html: translatedSong }}
+                />
+              )
+            : originalSong && (
+                <div
+                  className="original-text"
+                  dangerouslySetInnerHTML={{ __html: originalSong }}
+                />
+              )}
         </section>
-        <section className="desktop-only-section">
-          <div className="original-text-container">
-            <h1>{`Testo di ${name}`}</h1>
-            <div
-              className="translated-text"
-              dangerouslySetInnerHTML={{ __html: originalSong }}
-            />
-          </div>
-          <div className="translated-text-container">
-            <h1>{`Traduzione di ${name}`}</h1>
-            <div
-              className="translated-text"
-              dangerouslySetInnerHTML={{ __html: translatedSong }}
-            />
-          </div>
-        </section>
+        {originalSong && translatedSong && (
+          <section className="desktop-only-section">
+            <div className="original-text-container">
+              <h1>{`Testo di ${title}`}</h1>
+              <div
+                className="translated-text"
+                dangerouslySetInnerHTML={{ __html: originalSong }}
+              />
+            </div>
+            <div className="translated-text-container">
+              <h1>{`Traduzione di ${title}`}</h1>
+              <div
+                className="translated-text"
+                dangerouslySetInnerHTML={{ __html: translatedSong }}
+              />
+            </div>
+          </section>
+        )}
         <section className="song-page-secondary-section">
           <div className="secondary-section-content">
             <div className="secondary-section-description">
               <h2>Descrizione</h2>
-              <div
-                className="description"
-                onClick={clickHandler}
-                dangerouslySetInnerHTML={{ __html: songDescription }}
-              />
+              {songDescription && (
+                <div
+                  className="description"
+                  onClick={clickHandler}
+                  dangerouslySetInnerHTML={{ __html: songDescription }}
+                />
+              )}
             </div>
-            {otherSongs.length > 0 ? (
+            {songsFromArtist.length > 0 ? (
               <OtherTranslationFromArtist
-                data={otherSongs}
+                data={songsFromArtist}
                 slug={slug}
-                artistSlug={artist.data.attributes.slug}
+                artistSlug={artistSlug}
               />
             ) : (
               <div className="suggest-song">
@@ -177,8 +177,8 @@ export async function getStaticPaths() {
   const paths = acceptedSongs.map((song: songType) => {
     return {
       params: {
-        songSlug: song.attributes.slug + "-traduzione",
-        artistSlug: song.attributes.artist.data.attributes.slug,
+        songSlug: song.attributes.slug,
+        artistSlug: song.attributes.artistSlug,
       },
     };
   });
@@ -190,27 +190,43 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (context: any) => {
-  //? request single song data
-  const initialQuery = getQuery("artists");
+  // //? request single song data
+  // const initialQuery = getQuery("artists");
+  const songQuery = getQuery("posts");
   const searchBySlug = "?filters[slug][$eq]=";
   const songSlug = context.params.songSlug;
-  const artistSlug = context.params.artistSlug;
-  const songSlugWithoutTraduzione = songSlug.split("-traduzione")[0];
-  console.log(songSlugWithoutTraduzione);
+  // const artistSlug = context.params.artistSlug;
+  // console.log(songSlug, artistSlug);
 
-  const res = await fetch(
-    `${initialQuery}${searchBySlug}${artistSlug}&populate[0]=songs.songImg&populate[1]=songs.album&populate[2]=songs.artist`
-  );
+  // const songSlugWithoutTraduzione = songSlug.split("-traduzione")[0];
+  // console.log(songSlugWithoutTraduzione);
 
-  const artistData: fetchedArtistDataType = await res.json();
-  const songData = artistData.data[0].attributes.songs.data.filter(
-    (el) => el.attributes.slug === songSlugWithoutTraduzione
+  // const res = await fetch(
+  //   `${initialQuery}${searchBySlug}${artistSlug}&populate=*`
+  // );
+  // console.log(res);
+
+  // const artistData: fetchedArtistDataType = await res.json();
+  // console.log(artistData);
+
+  // const songData = artistData.data[0].attributes.songs.data.filter(
+  //   (el) => el.attributes.slug === songSlugWithoutTraduzione
+  // );
+  // console.log(songData);
+
+  const songRes = await fetch(`${songQuery}${searchBySlug}${songSlug}`);
+  const songData: { data: songType[] } = await songRes.json();
+  const currSong: songType = songData.data[0];
+
+  const songsFromArtistRes = await fetch(
+    `${songQuery}?filters[artistId][$eq]=${currSong.attributes.artistId}&filters[translatedSong][$notNull]=true&filters[id][$ne]=${currSong.id}`
   );
+  const songsFromArtist: { data: songType[] } = await songsFromArtistRes.json();
 
   return {
     props: {
-      songData: songData[0],
-      songsFromArtist: artistData.data[0].attributes.songs.data,
+      songData: currSong,
+      songsFromArtist: songsFromArtist.data,
     },
   };
 };

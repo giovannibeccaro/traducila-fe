@@ -58,11 +58,11 @@ const TraduzioniPage: React.FC<Props> = ({
                 mostViewed.map((article, position) => (
                   <ListSingleSong
                     key={article.id}
-                    songName={article.attributes.name}
-                    artistName={article.attributes.artist.data.attributes.name}
-                    songImage={article.attributes.songImg.data.attributes.url}
-                    slug={article.attributes.slug + "-traduzione"}
-                    artistSlug={article.attributes.artist.data.attributes.slug}
+                    songName={article.attributes.title}
+                    artistName={article.attributes.artistName}
+                    songImage={article.attributes.imageUrl}
+                    slug={article.attributes.slug}
+                    artistSlug={article.attributes.artistSlug}
                     position={position}
                   />
                 ))}
@@ -72,11 +72,11 @@ const TraduzioniPage: React.FC<Props> = ({
                 mostViewed.map((article, position) => (
                   <ListSingleSong
                     key={article.id}
-                    songName={article.attributes.name}
-                    artistName={article.attributes.artist.data.attributes.name}
-                    songImage={article.attributes.songImg.data.attributes.url}
-                    slug={article.attributes.slug + "-traduzione"}
-                    artistSlug={article.attributes.artist.data.attributes.slug}
+                    songName={article.attributes.title}
+                    artistName={article.attributes.artistName}
+                    songImage={article.attributes.imageUrl}
+                    slug={article.attributes.slug}
+                    artistSlug={article.attributes.artistSlug}
                     position={position}
                   />
                 ))}
@@ -136,11 +136,11 @@ const TraduzioniPage: React.FC<Props> = ({
                 newTranslations.map((article) => (
                   <ListSingleSong
                     key={article.id}
-                    songName={article.attributes.name}
-                    artistName={article.attributes.artist.data.attributes.name}
-                    songImage={article.attributes.songImg.data.attributes.url}
-                    slug={article.attributes.slug + "-traduzione"}
-                    artistSlug={article.attributes.artist.data.attributes.slug}
+                    songName={article.attributes.title}
+                    artistName={article.attributes.artistName}
+                    songImage={article.attributes.imageUrl}
+                    slug={article.attributes.slug}
+                    artistSlug={article.attributes.artistSlug}
                   />
                 ))}
             </div>
@@ -149,11 +149,11 @@ const TraduzioniPage: React.FC<Props> = ({
                 newTranslations.map((article) => (
                   <ListSingleSong
                     key={article.id}
-                    songName={article.attributes.name}
-                    artistName={article.attributes.artist.data.attributes.name}
-                    songImage={article.attributes.songImg.data.attributes.url}
-                    slug={article.attributes.slug + "-traduzione"}
-                    artistSlug={article.attributes.artist.data.attributes.slug}
+                    songName={article.attributes.title}
+                    artistName={article.attributes.artistName}
+                    songImage={article.attributes.imageUrl}
+                    slug={article.attributes.slug}
+                    artistSlug={article.attributes.artistSlug}
                   />
                 ))}
             </div>
@@ -171,7 +171,7 @@ export async function getStaticProps() {
     const [newTranslationsRes, mostViewedRes, mostViewedArtistsRes] =
       await Promise.all([
         fetch(
-          `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=publishedAt%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
+          `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=createdAt%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
         ),
         fetch(
           `${endpointPosts}?filters[translatedSong][$notNull]=true&sort=viewCount%3Adesc&pagination[page]=1&pagination[pageSize]=10&populate=*`
