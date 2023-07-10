@@ -164,10 +164,7 @@ export async function getStaticPaths() {
   //TODO what happens on 101st song? Possible pagination problem, check back later
   const endpoint = getQuery("posts");
   if (!endpoint) return;
-  const res = await fetch(
-    endpoint +
-      "?populate=artist&filters[translatedSong][$notNull]=true&pagination[limit]=-1"
-  );
+  const res = await fetch(endpoint + "?filters[translatedSong][$notNull]=true");
   const data = await res.json();
 
   const acceptedSongs = data.data.filter(
