@@ -109,7 +109,3 @@ export const getStaticProps = async (context: any) => {
 };
 
 export default ArtistPage;
-
-// http://localhost:1337/api/artists?filters[slug][$eq]=blink-182&fields[0]=name&fields[1]=slug&fields[2]=description&populate[tags][fields][0]=genre&populate[albums][fields][0]=name&populate[albums][fields][1]=slug&populate[songs][fields][0]=name&populate[songs][fields][1]=slug&populate[songs][fields][2]=originalSong&populate[songs][fields][3]=translatedSong&populate[songs][fields][4]=writtenBy&populate[songs][fields][5]=producedBy&populate[songs][fields][6]=releaseDate&populate[songs][fields][7]=songDescription&populate[songs][songImg][fields][0]=url
-
-//http://localhost:1337/api/artists?filters[slug][$eq]=blink-182&populate[0]=songs.songImg&fields[0]=url
