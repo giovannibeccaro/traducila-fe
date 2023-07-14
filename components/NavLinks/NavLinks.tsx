@@ -50,7 +50,7 @@ const NavLinks: React.FC<Props> = ({
             Traduzioni
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             className={route === "/chi-siamo" ? "active" : ""}
             onClick={() => setIsMobileMenuOpen(false)}
@@ -58,7 +58,7 @@ const NavLinks: React.FC<Props> = ({
           >
             Chi siamo
           </Link>
-        </li>
+        </li> */}
       </ul>
     </section>
   );

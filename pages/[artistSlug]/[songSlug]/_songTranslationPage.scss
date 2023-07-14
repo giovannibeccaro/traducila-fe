@@ -24,7 +24,7 @@
     color: $whiteColor;
     margin: -2rem;
     margin-top: 0;
-    padding-block: 3.5rem;
+    padding: 3.5rem 2rem;
 
     h2 {
       margin-bottom: 1rem;
@@ -40,8 +40,14 @@
 
       a {
         color: $whiteColor;
-        font-size: 0.9rem;
+        font-size: 1rem;
         font-weight: 600;
+      }
+    }
+
+    @media (max-width: $width5) {
+      .suggest-song h2 {
+        margin-top: 2rem;
       }
     }
   }
@@ -73,15 +79,15 @@
     .desktop-only-section {
       display: flex;
       justify-content: space-between;
-      max-width: 55rem;
+      max-width: 65rem;
       margin-inline: auto;
       gap: 2rem;
     }
 
     .secondary-section-content {
       display: flex;
-      gap: 3rem;
-      max-width: 60rem;
+      gap: 7rem;
+      max-width: 65rem;
     }
 
     .secondary-section-description {

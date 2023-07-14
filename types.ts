@@ -75,5 +75,5 @@ export type suggestionType = {
   slug: string;
   test?: string;
   artistSlug?: string;
-  image?: string;
+  imageUrl?: string;
 };

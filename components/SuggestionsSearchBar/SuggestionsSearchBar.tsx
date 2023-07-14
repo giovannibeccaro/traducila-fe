@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "../../store/navbar/navbarSlice";
 import { suggestionType } from "../../types";
 import { getQuery, stringToSlug } from "../../utils/utils";
+import Image from "next/image";
 
 type Props = {
   searchedSong: string;
@@ -48,12 +49,15 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
 
             const suggestionsFetched: suggestionType[] = data.map(
               ({ attributes }: any) => {
+                console.log(attributes);
+
                 return {
-                  entryName: attributes.title,
+                  entryName: attributes.title ?? attributes.name,
                   category,
                   slug: attributes.slug,
                   artist: attributes.artistName,
                   artistSlug: attributes.artistSlug,
+                  imageUrl: attributes.imageUrl,
                 };
               }
             );
@@ -79,6 +83,7 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
     }, 600);
     return () => clearTimeout(timer);
   }, [searchedSong]);
+  console.log(suggestions);
 
   return suggestions.length > 0 ? (
     <section
@@ -88,7 +93,7 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
     >
       <ul>
         {suggestions.map(
-          ({ entryName, category, artist, slug, artistSlug }) => (
+          ({ entryName, category, artist, slug, artistSlug, imageUrl }) => (
             <li key={Math.random()}>
               <Link
                 href={
@@ -96,7 +101,17 @@ const SuggestionsSearchBar: React.FC<Props> = ({ searchedSong, route }) => {
                 }
                 onClick={() => dispatch(setIsSearchbarVisible(false))}
               >
-                <p className="suggestion-left-part">{entryName}</p>
+                <div className="image-and-title-container">
+                  {imageUrl && (
+                    <Image
+                      src={imageUrl}
+                      alt={`${entryName} cover`}
+                      width={45}
+                      height={45}
+                    />
+                  )}
+                  <p className="suggestion-left-part">{entryName}</p>
+                </div>
                 <div className="suggestion-right-part">
                   <div className="category-tag">
                     {category === "artists" ? "artista" : "testo e traduzione"}

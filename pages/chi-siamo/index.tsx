@@ -78,4 +78,11 @@ const ChiSiamoPage = () => {
   );
 };
 
+export function getStaticProps() {
+  return {
+    // returns the default 404 page with a status code of 404 in production
+    notFound: true,
+  };
+}
+
 export default ChiSiamoPage;

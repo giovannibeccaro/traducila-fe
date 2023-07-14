@@ -25,10 +25,6 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
         // fetch data for each category
         categories.forEach(async (category) => {
           const endpoint = getQuery(category);
-          const populate = () => {
-            if (category === "artists") return "";
-            return "&populate[0]=artist&populate[1]=songImg";
-          };
           try {
             const res = await fetch(
               `${endpoint}?filters[slug][$contains]=${query}${
