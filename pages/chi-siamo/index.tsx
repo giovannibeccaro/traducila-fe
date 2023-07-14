@@ -11,7 +11,7 @@ const ChiSiamoPage = () => {
         <title>Chi siamo - Traducila</title>
         <meta
           name="description"
-          content="Scopri cosa c'è dietro a traducila.it e i metodi che usiamo nel traduzione.s"
+          content="Scopri cosa c'è dietro a traducila.it e i metodi che usiamo nel traduzione."
         />
       </Head>
       <main className="chi-siamo-page">
