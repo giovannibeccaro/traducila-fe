@@ -144,7 +144,7 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
           if (
             result.category === "posts" &&
             result.artist &&
-            result.image &&
+            result.imageUrl &&
             result.artistSlug
           ) {
             return (
@@ -152,7 +152,7 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
                 key={result.slug}
                 songName={result.entryName}
                 slug={result.slug}
-                songImage={result.image}
+                songImage={result.imageUrl}
                 artistName={result.artist}
                 artistSlug={result.artistSlug}
               />
