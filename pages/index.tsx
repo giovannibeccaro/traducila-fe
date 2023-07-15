@@ -36,8 +36,8 @@ export default function Home() {
             <p>DEI TUOI TESTI PREFERITI</p>
           </div>
           <p className="subtitle">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nisi
-            ipsa earum officia reprehenderit. Cum repudiandae quo illum.
+            Esplora il mondo della musica, senza barriere linguistiche:
+            traduciamo canzoni, condividiamo emozioni
           </p>
           <SearchBar parentSection="homepage" />
           <Link className="view-others" href="/traduzioni">
