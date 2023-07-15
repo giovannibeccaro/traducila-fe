@@ -23,7 +23,7 @@ const ListSingleSong: React.FC<Props> = ({
     <Link className="single-song-link" href={`/${artistSlug}/${slug}`}>
       <article className="single-most-searched">
         <div className="left-part">
-          <Image src={songImage} alt="album-cover" width={120} height={120} />
+          <Image src={songImage} alt="album-cover" width={60} height={60} />
 
           <section className="info">
             <div className="main-info">

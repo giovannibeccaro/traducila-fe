@@ -99,6 +99,7 @@ const TraduzioniPage: React.FC<Props> = ({
                   <ListSingleArtist
                     key={artist.id}
                     artistName={artist.attributes.name}
+                    artistImage={artist.attributes.imageUrl}
                     slug={artist.attributes.slug}
                     position={position}
                   />
@@ -110,6 +111,7 @@ const TraduzioniPage: React.FC<Props> = ({
                   <ListSingleArtist
                     key={artist.id}
                     artistName={artist.attributes.name}
+                    artistImage={artist.attributes.imageUrl}
                     slug={artist.attributes.slug}
                     position={position}
                   />

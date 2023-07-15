@@ -3,6 +3,7 @@ export type artistType = {
   attributes: {
     name: string;
     slug: string;
+    imageUrl: string;
     description: string;
     createdAt: string;
     updatedAt: string;
@@ -49,8 +50,8 @@ export type songType = {
     imageUrl: string;
     albumName: string;
     albumId: number;
-    artistName: string;
     artistId: number;
+    artistName: string;
     artistSlug: string;
     extApiId: string;
     viewCount: number;
