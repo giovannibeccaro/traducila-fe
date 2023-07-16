@@ -6,7 +6,7 @@ type Props = {
   artistName: string;
   slug: string;
   position?: number;
-  artistImage: string;
+  artistImage?: string;
 };
 
 const ListSingleArtist: React.FC<Props> = ({
@@ -18,7 +18,9 @@ const ListSingleArtist: React.FC<Props> = ({
   return (
     <Link href={`/${slug}`}>
       <article className="single-artist-article">
-        <Image src={artistImage} alt="artist cover" width={60} height={60} />
+        {artistImage && (
+          <Image src={artistImage} alt="artist cover" width={60} height={60} />
+        )}
         <section className="info">
           <div className="main-info">
             <h5>{artistName}</h5>

@@ -163,6 +163,7 @@ const ResultsSection: React.FC<Props> = ({ query }) => {
                 key={result.slug}
                 slug={result.slug}
                 artistName={result.entryName}
+                artistImage={result.artistImage}
               />
             );
           }
